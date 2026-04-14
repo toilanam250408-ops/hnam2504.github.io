@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HnamStore Vietnam — Chuột Gaming Siêu Nhẹ</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07070c;--bg2:#0e0e16;--bg3:#161622;
+  --cyan:#00e5ff;--cyan-dim:#009db3;
+  --magenta:#ff2d78;--magenta-dim:#b3204f;
+  --gold:#ffc400;--green:#00ff88;
+  --text:#eaeaf2;--text-dim:#7e7e98;
+  --card-bg:rgba(14,14,22,0.92);
+  --glass:rgba(255,255,255,0.03);
+  --border:rgba(0,229,255,0.1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;overflow-x:hidden;line-height:1.6}
+body::before{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:0.02;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan-dim);border-radius:3px}
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:.9rem 2rem;
+  background:rgba(7,7,12,0.75);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .3s;
+}
+.navbar.scrolled{padding:.55rem 2rem;background:rgba(7,7,12,0.95)}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:3px;color:var(--cyan);text-decoration:none}
+.logo span{color:var(--magenta)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-weight:500;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--cyan);transition:width .3s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-links a:hover::after{width:100%}
+.cart-btn{
+  display:flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--cyan),var(--magenta));
+  color:#000;font-weight:700;font-size:.8rem;letter-spacing:1px;
+  padding:.55rem 1.3rem;border-radius:50px;border:none;cursor:pointer;
+  text-transform:uppercase;transition:transform .2s,box-shadow .3s;
+}
+.cart-btn:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(0,229,255,0.25)}
+.cart-count{background:#000;color:var(--cyan);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.7rem}
+.mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer}
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:6rem 2rem 4rem;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 55% at 25% 35%,rgba(0,229,255,0.07),transparent),
+    radial-gradient(ellipse 55% 45% at 75% 65%,rgba(255,45,120,0.05),transparent),
+    radial-gradient(ellipse 35% 35% at 50% 50%,rgba(255,196,0,0.02),transparent);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,229,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.035) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse 65% 55% at center,#000,transparent);
+  animation:gridPulse 5s ease-in-out infinite;
+}
+@keyframes gridPulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:900px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.18);
+  padding:.35rem 1.1rem;border-radius:50px;font-size:.78rem;color:var(--cyan);
+  font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem;
+  animation:fadeInDown .8s ease;
+}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{
+  font-family:'Orbitron',sans-serif;font-size:clamp(2.4rem,6.5vw,5rem);
+  font-weight:900;line-height:1.08;letter-spacing:-1px;
+  margin-bottom:1.5rem;animation:fadeInUp .8s ease;
+}
+.hero h1 .line1{display:block;color:var(--text)}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--text-dim);max-width:620px;margin:0 auto 2.5rem;animation:fadeInUp .8s ease .2s both}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .4s both}
+.btn-primary{
+  padding:.85rem 2.2rem;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.9rem;
+  letter-spacing:1px;text-transform:uppercase;text-decoration:none;
+  background:linear-gradient(135deg,var(--cyan),#00b8d4);color:#000;
+  transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,229,255,0.25)}
+.btn-outline{
+  padding:.85rem 2.2rem;border-radius:50px;cursor:pointer;
+  font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.9rem;
+  letter-spacing:1px;text-transform:uppercase;text-decoration:none;
+  background:transparent;color:var(--cyan);border:2px solid var(--cyan);
+  transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-outline:hover{background:rgba(0,229,255,0.07);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3.5rem;animation:fadeInUp .8s ease .6s both}
+.stat{text-align:center}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan)}
+.stat-label{font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;margin-top:.3rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+section{padding:5rem 2rem}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-tag{font-family:'Orbitron',sans-serif;font-size:.72rem;font-weight:700;color:var(--magenta);letter-spacing:4px;text-transform:uppercase;margin-bottom:.7rem}
+.section-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:800;line-height:1.15}
+.section-title span{color:var(--cyan)}
+.section-desc{color:var(--text-dim);font-size:.95rem;max-width:600px;margin:.8rem auto 0}
+.cat-tabs{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.cat-tab{
+  padding:.5rem 1.3rem;border-radius:50px;border:1px solid var(--border);
+  background:var(--glass);color:var(--text-dim);font-size:.82rem;font-weight:600;
+  cursor:pointer;transition:all .3s;letter-spacing:.5px;
+}
+.cat-tab:hover,.cat-tab.active{background:rgba(0,229,255,0.1);color:var(--cyan);border-color:rgba(0,229,255,0.3)}
+.products-section{background:var(--bg)}
+.products-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+  gap:1.8rem;max-width:1400px;margin:0 auto;
+}
+.product-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);position:relative;
+}
+.product-card.hidden{display:none}
+.product-card:hover{
+  transform:translateY(-6px);border-color:rgba(0,229,255,0.25);
+  box-shadow:0 16px 50px rgba(0,0,0,0.3),0 0 0 1px rgba(0,229,255,0.12);
+}
+.product-img{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.product-img .img-bg{position:absolute;inset:0;transition:opacity .4s}
+.product-card:hover .img-bg{opacity:.8}
+.mouse-svg{filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));transition:transform .4s}
+.product-card:hover .mouse-svg{transform:scale(1.06) rotate(-2deg)}
+.product-img img.product-photo{width:80%;height:80%;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));transition:transform .4s}
+.product-card:hover .product-photo{transform:scale(1.06) rotate(-2deg)}
+.product-badge{position:absolute;top:.8rem;left:.8rem;padding:.25rem .7rem;border-radius:6px;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.badge-hot{background:var(--magenta);color:#fff}
+.badge-new{background:var(--cyan);color:#000}
+.badge-sale{background:var(--gold);color:#000}
+.badge-best{background:var(--green);color:#000}
+.product-info{padding:1.3rem 1.3rem 1.4rem}
+.product-series{font-size:.68rem;color:var(--magenta);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:.25rem}
+.product-name{font-family:'Orbitron',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.45rem;line-height:1.3}
+.product-specs{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:.7rem}
+.spec-tag{padding:.2rem .5rem;border-radius:5px;font-size:.66rem;font-weight:600;background:rgba(0,229,255,0.07);color:var(--cyan);border:1px solid rgba(0,229,255,0.12)}
+.product-desc{font-size:.8rem;color:var(--text-dim);margin-bottom:.9rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:800}
+.product-price .old{text-decoration:line-through;color:var(--text-dim);font-size:.76rem;font-weight:400;margin-left:.4rem}
+.add-cart{
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--cyan),#00b8d4);color:#000;
+  font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  transition:all .3s;font-weight:700;
+}
+.add-cart:hover{transform:scale(1.1);box-shadow:0 4px 20px rgba(0,229,255,0.25)}
+.specs-section{background:var(--bg2)}
+.specs-table-wrap{max-width:1300px;margin:0 auto;overflow-x:auto;border-radius:14px;border:1px solid var(--border)}
+.specs-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.specs-table thead{background:rgba(0,229,255,0.06)}
+.specs-table th{font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);padding:.85rem .7rem;text-align:left;white-space:nowrap}
+.specs-table td{padding:.7rem;border-top:1px solid rgba(255,255,255,0.04);color:var(--text-dim)}
+.specs-table tr:hover td{background:rgba(0,229,255,0.02);color:var(--text)}
+.specs-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.specs-table .row-a9{} .specs-table .row-x1{background:rgba(0,229,255,0.02)} .specs-table .row-ghost{background:rgba(255,45,120,0.02)}
+.features-section{background:var(--bg)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.3rem;max-width:1200px;margin:0 auto}
+.feature-card{padding:1.8rem;border-radius:14px;background:var(--glass);border:1px solid var(--border);transition:all .4s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-card:hover{border-color:rgba(0,229,255,0.18);background:rgba(255,255,255,0.04)}
+.feature-icon{font-size:1.8rem;margin-bottom:1rem}
+.feature-card h3{font-family:'Orbitron',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:.5rem}
+.feature-card p{font-size:.82rem;color:var(--text-dim);line-height:1.55}
+.cta-banner{max-width:1200px;margin:0 auto;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#0a1628,#1a2540);border:1px solid var(--border);position:relative;padding:3.5rem 2.5rem;text-align:center}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(0,229,255,0.1),transparent 50%),radial-gradient(circle at 80% 50%,rgba(255,45,120,0.07),transparent 50%)}
+.cta-banner>*{position:relative;z-index:2}
+.cta-banner h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;margin-bottom:.8rem}
+.cta-banner p{color:var(--text-dim);font-size:1rem;margin-bottom:1.8rem;max-width:520px;margin-left:auto;margin-right:auto}
+.testimonials{background:var(--bg2)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.3rem;max-width:1100px;margin:0 auto}
+.testimonial-card{padding:1.8rem;border-radius:14px;background:var(--card-bg);border:1px solid var(--border)}
+.stars{color:var(--gold);font-size:.95rem;margin-bottom:.8rem;letter-spacing:2px}
+.testimonial-card blockquote{font-size:.86rem;color:var(--text-dim);line-height:1.65;margin-bottom:1rem;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:.7rem}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#000}
+.reviewer-info{font-size:.8rem}
+.reviewer-info strong{display:block;color:var(--text)}
+.reviewer-info span{color:var(--text-dim);font-size:.74rem}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
+.footer-brand .logo{font-size:1.2rem}
+.footer-brand p{color:var(--text-dim);font-size:.82rem;margin-top:.7rem;line-height:1.6}
+.footer-col h4{font-family:'Orbitron',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.8rem;color:var(--cyan)}
+.footer-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:.82rem;margin-bottom:.5rem;transition:color .3s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{max-width:1200px;margin:1.8rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--text-dim)}
+.social-links{display:flex;gap:.8rem}
+.social-links a{width:34px;height:34px;border-radius:9px;background:var(--glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);text-decoration:none;font-size:.85rem;transition:all .3s}
+.social-links a:hover{color:var(--cyan);border-color:var(--cyan);background:rgba(0,229,255,0.06)}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:10000;background:var(--bg3);border:1px solid var(--cyan);border-radius:12px;padding:.9rem 1.4rem;display:flex;align-items:center;gap:.7rem;transform:translateX(120%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 10px 40px rgba(0,0,0,0.5);max-width:360px}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.2rem}
+.toast-msg{font-size:.84rem;font-weight:500}
+
+/* Payment Page */
+.payment-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+.payment-overlay.open{opacity:1;visibility:visible}
+.payment-page{max-width:900px;margin:0 auto;padding:2rem;min-height:100vh}
+.payment-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--cyan);font-size:.85rem;font-weight:600;cursor:pointer;background:none;border:none;margin-bottom:1.5rem;transition:opacity .2s}
+.payment-back:hover{opacity:.7}
+.payment-title{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:.3rem}
+.payment-subtitle{color:var(--text-dim);font-size:.88rem;margin-bottom:2rem}
+
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:700px){.payment-grid{grid-template-columns:1fr}}
+
+.payment-order-summary{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.payment-order-summary h3{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:1rem;color:var(--cyan)}
+.pay-item{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:.82rem}
+.pay-item-name{flex:1;margin-right:.5rem}
+.pay-item-qty{color:var(--text-dim);margin-right:1rem;font-size:.75rem}
+.pay-item-price{font-family:'Orbitron',sans-serif;font-weight:700;font-size:.82rem;white-space:nowrap}
+.pay-total{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;margin-top:.5rem;border-top:1px solid var(--border)}
+.pay-total-label{font-weight:700;font-size:.9rem}
+.pay-total-price{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:800;color:var(--cyan)}
+.pay-free-ship{font-size:.72rem;color:var(--green);font-weight:600;text-align:right;margin-top:.3rem}
+
+.payment-methods{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.payment-methods h3{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:1rem;color:var(--cyan)}
+
+.pay-method-tabs{display:flex;gap:.6rem;margin-bottom:1.3rem}
+.pay-method-tab{flex:1;padding:.7rem;border-radius:10px;border:2px solid var(--border);background:var(--glass);color:var(--text-dim);font-size:.8rem;font-weight:600;cursor:pointer;text-align:center;transition:all .3s}
+.pay-method-tab:hover{border-color:rgba(0,229,255,0.2)}
+.pay-method-tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,0.06)}
+.pay-method-tab .tab-icon{font-size:1.3rem;display:block;margin-bottom:.3rem}
+
+.pay-method-content{display:none}
+.pay-method-content.active{display:block}
+
+/* Bank Transfer */
+.bank-info{background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:1.2rem;margin-bottom:1rem}
+.bank-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:.82rem}
+.bank-row .label{color:var(--text-dim)}
+.bank-row .value{font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:1px}
+.bank-row .value.copyable{cursor:pointer;color:var(--cyan);display:flex;align-items:center;gap:.4rem}
+.bank-row .value.copyable:hover{opacity:.8}
+.bank-row .value.copyable::after{content:'[copy]';font-family:'Be Vietnam Pro',sans-serif;font-size:.65rem;color:var(--text-dim);font-weight:400}
+.bank-transfer-code{text-align:center;margin:1rem 0;padding:1rem;background:rgba(255,196,0,0.06);border:1px solid rgba(255,196,0,0.2);border-radius:10px}
+.bank-transfer-code .code-label{font-size:.72rem;color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:.3rem}
+.bank-transfer-code .code-value{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold);letter-spacing:4px;cursor:pointer}
+.bank-transfer-code .code-note{font-size:.72rem;color:var(--text-dim);margin-top:.4rem}
+.bank-note{font-size:.78rem;color:var(--text-dim);line-height:1.6;margin-bottom:1rem;padding:.8rem;background:rgba(255,45,120,0.04);border-radius:8px;border-left:3px solid var(--magenta)}
+
+/* Customer Info Form */
+.cust-form{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.2rem}
+.cust-form label{font-size:.78rem;color:var(--text-dim);font-weight:600}
+.cust-form input,.cust-form select,.cust-form textarea{width:100%;padding:.65rem .9rem;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;font-size:.85rem;transition:border-color .3s;outline:none}
+.cust-form input:focus,.cust-form select:focus,.cust-form textarea:focus{border-color:var(--cyan)}
+.cust-form select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%237e7e98' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center}
+.cust-form select option{background:var(--bg2);color:var(--text)}
+.cust-form textarea{resize:vertical;min-height:60px}
+.field-group{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:500px){.field-group{grid-template-columns:1fr}}
+
+.pay-confirm-btn{width:100%;padding:.9rem;border-radius:12px;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:#000;transition:all .3s;margin-top:.5rem}
+.pay-confirm-btn:hover{box-shadow:0 8px 30px rgba(0,229,255,0.25);transform:translateY(-1px)}
+.pay-confirm-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Shipping Calculator Display */
+.shipping-calc{margin:1rem 0;padding:1rem;border-radius:10px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.12)}
+.shipping-calc .ship-row{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;padding:.3rem 0}
+.shipping-calc .ship-label{color:var(--text-dim)}
+.shipping-calc .ship-value{font-weight:700;font-family:'Orbitron',sans-serif;font-size:.85rem}
+.shipping-calc .ship-free{color:var(--green)}
+.shipping-calc .ship-fee{color:var(--gold)}
+.shipping-calc .ship-distance{font-size:.72rem;color:var(--text-dim);margin-top:.3rem}
+.shipping-calc .ship-from{font-size:.72rem;color:var(--cyan);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+
+/* Order Success */
+.order-success{text-align:center;padding:3rem 1rem}
+.order-success .success-icon{font-size:3.5rem;margin-bottom:1rem}
+.order-success h2{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:.5rem;color:var(--green)}
+.order-success .order-id{font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--cyan);margin-bottom:1.5rem}
+.order-success p{color:var(--text-dim);font-size:.88rem;line-height:1.6;max-width:500px;margin:0 auto 1.5rem}
+.order-success .btn-primary{display:inline-flex}
+
+/* Admin Panel */
+.admin-overlay{position:fixed;inset:0;background:var(--bg);z-index:5000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+.admin-overlay.open{opacity:1;visibility:visible}
+.admin-page{max-width:1100px;margin:0 auto;padding:2rem}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}
+.admin-header h2{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:800}
+.admin-stats{display:flex;gap:1rem;margin-bottom:2rem}
+.admin-stat{flex:1;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+.admin-stat .stat-val{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:800;color:var(--cyan)}
+.admin-stat .stat-lbl{font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.admin-orders{display:flex;flex-direction:column;gap:.8rem}
+.admin-order{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.admin-order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;flex-wrap:wrap;gap:.5rem}
+.admin-order-id{font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:var(--cyan)}
+.admin-order-date{font-size:.75rem;color:var(--text-dim)}
+.admin-order-method{display:inline-block;padding:.15rem .5rem;border-radius:5px;font-size:.68rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.method-bank{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2)}
+.method-cod{background:rgba(255,196,0,0.1);color:var(--gold);border:1px solid rgba(255,196,0,0.2)}
+.admin-order-customer{font-size:.82rem;color:var(--text-dim);margin-bottom:.4rem}
+.admin-order-items{font-size:.78rem;color:var(--text-dim);margin-bottom:.4rem}
+.admin-order-total{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:800;color:var(--green)}
+.admin-order-address{font-size:.75rem;color:var(--text-dim);margin-top:.3rem;font-style:italic}
+.admin-empty{text-align:center;padding:3rem;color:var(--text-dim)}
+.admin-clear{padding:.5rem 1rem;border-radius:8px;border:1px solid var(--magenta);background:none;color:var(--magenta);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.admin-clear:hover{background:rgba(255,45,120,0.1)}
+
+/* Cart Modal */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:2000;opacity:0;visibility:hidden;transition:all .3s}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-modal{position:fixed;top:0;right:0;bottom:0;width:min(440px,90vw);background:var(--bg2);border-left:1px solid var(--border);z-index:2001;transform:translateX(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column}
+.cart-modal.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem;border-bottom:1px solid var(--border)}
+.cart-header h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700}
+.cart-close{background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer;transition:color .3s;line-height:1}
+.cart-close:hover{color:var(--text)}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;color:var(--text-dim);padding:3rem 1rem;font-size:.9rem}
+.cart-empty .empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.4}
+.cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center}
+.cart-item-img{width:60px;height:60px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:'Orbitron',sans-serif;font-size:.78rem;font-weight:700;margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-series{font-size:.68rem;color:var(--magenta);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem}
+.cart-item-price{font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:var(--cyan)}
+.cart-item-qty{display:flex;align-items:center;gap:.4rem}
+.qty-btn{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--glass);color:var(--text);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.qty-val{font-family:'Orbitron',sans-serif;font-size:.82rem;font-weight:700;min-width:20px;text-align:center}
+.cart-item-remove{background:none;border:none;color:var(--text-dim);font-size:.85rem;cursor:pointer;padding:.3rem;transition:color .2s;margin-left:.3rem}
+.cart-item-remove:hover{color:var(--magenta)}
+.cart-footer{padding:1.3rem 1.5rem;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cart-total-label{font-size:.85rem;color:var(--text-dim)}
+.cart-total-price{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:800;color:var(--cyan)}
+.cart-checkout{width:100%;padding:.9rem;border-radius:12px;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:#000;transition:all .3s}
+.cart-checkout:hover{box-shadow:0 8px 30px rgba(0,229,255,0.25);transform:translateY(-1px)}
+.cart-checkout:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.cart-shipping{font-size:.72rem;color:var(--text-dim);text-align:center;margin-top:.6rem}
+.cart-shipping span{color:var(--green);font-weight:600}
+
+/* Product Detail Modal */
+.detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);z-index:3000;opacity:0;visibility:hidden;transition:all .3s;display:flex;align-items:center;justify-content:center;padding:2rem}
+.detail-overlay.open{opacity:1;visibility:visible}
+.detail-modal{background:var(--bg2);border:1px solid var(--border);border-radius:20px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;transform:scale(0.9) translateY(20px);transition:transform .4s cubic-bezier(.25,.46,.45,.94);position:relative}
+.detail-overlay.open .detail-modal{transform:scale(1) translateY(0)}
+.detail-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,0.5);border:1px solid var(--border);color:var(--text-dim);width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:1}
+.detail-close:hover{color:var(--text);border-color:var(--cyan)}
+.detail-top{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.detail-img{height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:20px 0 0 0}
+.detail-img .img-bg{position:absolute;inset:0}
+.detail-content{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+.detail-series{font-size:.72rem;color:var(--magenta);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+.detail-name{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:.6rem;line-height:1.25}
+.detail-desc{font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:1.2rem}
+.detail-specs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.detail-spec{padding:.35rem .7rem;border-radius:8px;font-size:.75rem;font-weight:600;background:rgba(0,229,255,0.07);color:var(--cyan);border:1px solid rgba(0,229,255,0.12)}
+.detail-price-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
+.detail-price{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:800}
+.detail-old-price{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:400;color:var(--text-dim);text-decoration:line-through}
+.detail-actions{display:flex;gap:.8rem}
+.detail-add-cart{flex:1;padding:.8rem 1.5rem;border-radius:12px;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),#00b8d4);color:#000;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.detail-add-cart:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,229,255,0.25)}
+.detail-bottom{padding:1.5rem 2rem;border-top:1px solid rgba(255,255,255,0.04)}
+.detail-spec-table{width:100%;font-size:.82rem}
+.detail-spec-table td{padding:.5rem .7rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+.detail-spec-table td:first-child{color:var(--text-dim);width:35%}
+.detail-spec-table td:last-child{font-weight:600}
+
+@media(max-width:900px){
+  .nav-links{display:none}.mobile-toggle{display:block}
+  .footer-inner{grid-template-columns:1fr 1fr}.hero-stats{gap:1.5rem}.stat-num{font-size:1.5rem}
+  .detail-top{grid-template-columns:1fr}.detail-img{border-radius:20px 20px 0 0;height:220px}
+}
+@media(max-width:600px){
+  .products-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:.8rem;text-align:center}
+  .hero-stats{flex-direction:column;gap:.8rem}.hero-cta{flex-direction:column;align-items:center}
+  .cat-tabs{gap:.4rem}.cat-tab{padding:.4rem 1rem;font-size:.75rem}
+}
+.reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="#" class="logo">Hnam<span>Store</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Sản Phẩm</a></li>
+    <li><a href="#specs">Thông Số</a></li>
+    <li><a href="#features">Công Nghệ</a></li>
+    <li><a href="#reviews">Đánh Giá</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <button class="cart-btn" onclick="openCart()">&#128722; Giỏ hàng <span class="cart-count" id="cartCount">0</span></button>
+    <button class="mobile-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Đại Lý Chính Hãng Việt Nam</div>
+    <h1><span class="line1">Chuột Gaming</span><span class="line2">ATK Blazing Sky</span></h1>
+    <p>Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">&#128433; Xem Sản Phẩm</a>
+      <a href="#specs" class="btn-outline">So Sánh Thông Số &rarr;</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">47g</div><div class="stat-label">Siêu nhẹ</div></div>
+      <div class="stat"><div class="stat-num">8000<span style="font-size:.9rem">Hz</span></div><div class="stat-label">Polling Rate</div></div>
+      <div class="stat"><div class="stat-num">42K</div><div class="stat-label">DPI</div></div>
+      <div class="stat"><div class="stat-num">750<span style="font-size:.9rem">IPS</span></div><div class="stat-label">Tracking</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="products-section" id="products">
+  <div class="section-header reveal">
+    <div class="section-tag">&#9889; Bộ Sưu Tập 2026</div>
+    <h2 class="section-title">Chuột Gaming <span>ATK</span></h2>
+    <p class="section-desc">Dragonfly A9 Series &middot; Blazing Sky X1 V1 &amp; V2 &middot; Blazing Sky Ghost Carbon Fiber</p>
+  </div>
+  <div class="cat-tabs" id="catTabs">
+    <button class="cat-tab active" onclick="filterCat('all',this)">Tất Cả</button>
+    <button class="cat-tab" onclick="filterCat('a9',this)">Dragonfly A9</button>
+    <button class="cat-tab" onclick="filterCat('x1',this)">Blazing Sky X1</button>
+    <button class="cat-tab" onclick="filterCat('ghost',this)">Ghost Carbon</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<section class="specs-section" id="specs">
+  <div class="section-header reveal">
+    <div class="section-tag">&#128202; So Sánh</div>
+    <h2 class="section-title">Bảng Thông Số <span>Chi Tiết</span></h2>
+  </div>
+  <div class="specs-table-wrap reveal">
+    <table class="specs-table">
+      <thead><tr><th>Model</th><th>Sensor</th><th>MCU</th><th>Trọng lượng</th><th>Polling</th><th>Pin</th><th>Kết nối</th><th>Switch</th><th>Coating</th></tr></thead>
+      <tbody>
+        <tr class="row-a9"><td>A9 SE</td><td>PAW3311</td><td>HiSilicon Sparkle</td><td>~53g</td><td>1000Hz</td><td>500mAh / ~120h</td><td>2.4G / BT / USB-C</td><td>Huano Blue V2</td><td>&mdash;</td></tr>
+        <tr class="row-a9"><td>A9</td><td>PAW3395 SE</td><td>HiSilicon Sparkle</td><td>~53g</td><td>1000Hz</td><td>500mAh / ~120h</td><td>2.4G / BT / USB-C</td><td>Huano Blue V2</td><td>&mdash;</td></tr>
+        <tr class="row-a9"><td>A9 Plus</td><td>PAW3395</td><td>HiSilicon Sparkle</td><td>~57g</td><td>1000Hz</td><td>800mAh / ~240h</td><td>NearLink / BT / USB-C</td><td>Huano Iceberry</td><td>Ice-Feel</td></tr>
+        <tr class="row-a9"><td>A9 Pro</td><td>PAW3395</td><td>PixArt Flagship</td><td>~53g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
+        <tr class="row-a9"><td>A9 Pro Max</td><td>PAW3395</td><td>PixArt Flagship</td><td>~57g</td><td>8000Hz</td><td>800mAh / ~240h</td><td>2.4G / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
+        <tr class="row-a9"><td>A9 Ultra</td><td>PAW3950 Ultra</td><td>Nordic 52840</td><td>~53g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
+        <tr class="row-a9"><td>A9 Air</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~47g</td><td>8000Hz</td><td>300mAh / ~300h</td><td>2.4G / USB-C</td><td>ATK SwiftLight</td><td>Nano Coating</td></tr>
+        <tr class="row-a9"><td>A9 Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~53g</td><td>8000Hz</td><td>800mAh / ~600h</td><td>2.4G / USB-C</td><td>ATK Optical</td><td>Nano Coating</td></tr>
+        <tr class="row-x1"><td>X1 V1 Pro</td><td>PAW3950</td><td>Nordic 52840</td><td>~49g</td><td>8000Hz</td><td>300mAh / ~75-150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
+        <tr class="row-x1"><td>X1 V1 Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 52840</td><td>~54g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
+        <tr class="row-x1"><td>X1 V2 Ultimate 2.0</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~54g</td><td>8000Hz</td><td>800mAh</td><td>2.4G / USB-C</td><td>ATK Swiftlight</td><td>Nano Coating</td></tr>
+        <tr class="row-x1"><td>X1 V2 Extreme 2.0</td><td>PAW3950 Ultra</td><td>Nordic 54H20</td><td>~54g</td><td>8000Hz</td><td>800mAh</td><td>2.4G / USB-C</td><td>ATK Swiftlight</td><td>Nano Coating</td></tr>
+        <tr class="row-ghost"><td>Ghost Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~48g</td><td>8000Hz</td><td>300mAh / ~210h</td><td>2.4G / BT / USB-C</td><td>ATK Lightblade</td><td>Nano Coating</td></tr>
+        <tr class="row-ghost"><td>Ghost Extreme</td><td>PAW3950 Ultra</td><td>Nordic 54H20</td><td>~48g</td><td>8000Hz</td><td>300mAh / ~210h</td><td>2.4G / USB-C</td><td>ATK Optical</td><td>Nano Coating</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="section-header reveal">
+    <div class="section-tag">&#128300; Công Nghệ</div>
+    <h2 class="section-title">Tại Sao Chọn <span>ATK?</span></h2>
+  </div>
+  <div class="features-grid" id="featuresGrid"></div>
+</section>
+
+<section style="padding:2.5rem 2rem">
+  <div class="cta-banner reveal">
+    <h2>Sẵn Sàng <span style="color:var(--cyan)">Nâng Cấp</span> Game?</h2>
+    <p>Miễn phí vận chuyển toàn quốc cho đơn từ 1.000.000đ. Bảo hành chính hãng 24 tháng.</p>
+    <a href="#products" class="btn-primary">&#128722; Mua Ngay</a>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-tag">&#128172; Đánh Giá</div>
+    <h2 class="section-title">Game Thủ <span>Nói Gì?</span></h2>
+  </div>
+  <div class="testimonial-grid" id="reviewsGrid"></div>
+</section>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">Hnam<span>Store</span></a>
+      <p>Đại lý chính hãng ATK Gaming Gear tại Việt Nam. Chuột gaming siêu nhẹ cho game thủ chuyên nghiệp &amp; casual.</p>
+    </div>
+    <div class="footer-col"><h4>Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
+    <div class="footer-col"><h4>Hỗ Trợ</h4><a href="#">Bảo hành</a><a href="#">Vận chuyển</a><a href="#">Đổi trả 30 ngày</a><a href="#">FAQ</a></div>
+    <div class="footer-col"><h4>Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 HnamStore &mdash; All Rights Reserved</span>
+    <div class="social-links"><a href="#" title="Facebook">f</a><a href="#" title="Tiktok">&#9834;</a><a href="#" title="YouTube">&#9654;</a><a href="#" title="Discord">&#9670;</a></div>
+  </div>
+</footer>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-modal" id="cartModal">
+  <div class="cart-header">
+    <h3>&#128722; Gio Hang</h3>
+    <button class="cart-close" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter">
+    <div class="cart-total">
+      <span class="cart-total-label">Tong cong:</span>
+      <span class="cart-total-price" id="cartTotal">0d</span>
+    </div>
+    <button class="cart-checkout" id="checkoutBtn" onclick="checkout()">Thanh Toan</button>
+    <div class="cart-shipping">Miễn phí ship cho đơn từ <span>1.000.000đ</span></div>
+  </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)">
+  <div class="detail-modal" id="detailModal"></div>
+</div>
+
+<!-- Payment Page -->
+<div class="payment-overlay" id="paymentOverlay">
+  <div class="payment-page" id="paymentPage"></div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-page" id="adminPage"></div>
+</div>
+
+<div class="toast" id="toast"><span class="toast-icon">&#10004;</span><span class="toast-msg" id="toastMsg"></span></div>
+
+<script>
+const products=[
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 SE',weight:'53g',sensor:'PAW3311',polling:'1000Hz',desc:'Phiên bản giá rẻ, cảm biến PAW3311, pin 500mAh ~120h. Kết nối 3 chế độ. Lựa chọn tốt nhất tầm giá.',price:490000,oldPrice:0,badge:'',color:'#2a4a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9',weight:'53g',sensor:'PAW3395 SE',polling:'1000Hz',desc:'Cảm biến PAW3395 SE nâng cấp, pin 500mAh ~120h, switch Huano Blue V2. Tầm trung giá tốt.',price:690000,oldPrice:0,badge:'',color:'#1e3a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Plus',weight:'57g',sensor:'PAW3395',polling:'1000Hz',desc:'Pin 800mAh ~240h, NearLink không dây, lớp phủ Ice-Feel, switch Huano Iceberry. Bền bỉ nhất dòng A9.',price:890000,oldPrice:0,badge:'',color:'#1a3050',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'800mAh / ~240h',connect:'NearLink / BT / USB-C',switchType:'Huano Iceberry',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro',weight:'53g',sensor:'PAW3395',polling:'8000Hz',desc:'Không dây 8KHz, switch Omron Optical, MCU PixArt, lớp phủ Ice-Feel. Dành cho esports chuyên nghiệp.',price:1190000,oldPrice:0,badge:'hot',color:'#0e2840',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'PixArt Flagship',battery:'500mAh / ~150h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro Max',weight:'57g',sensor:'PAW3395',polling:'8000Hz',desc:'A9 Pro + pin 800mAh ~240h. Chơi esports liên tục nhiều ngày. Switch Omron Optical.',price:1390000,oldPrice:0,badge:'',color:'#0a2035',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'PixArt Flagship',battery:'800mAh / ~240h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultra',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship A9: PAW3950 Ultra 42K DPI, Nordic 52840, 8KHz không dây + có dây, 3 chế độ kết nối, Ice-Feel.',price:1690000,oldPrice:0,badge:'best',color:'#081a30',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Pink.webp?v=1747310132',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Air',weight:'47g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Siêu nhẹ 47g, PAW3950 Ultra, Nordic 54L15, switch ATK SwiftLight. Lớp phủ Nano. Nhẹ nhất dòng A9.',price:1590000,oldPrice:0,badge:'new',color:'#0c2a48',img:'https://c1.neweggimages.com/productimage/nb640/C59VS2603270F0F8T80.jpg',mcu:'Nordic 54L15',battery:'300mAh / ~300h',connect:'2.4G / USB-C',switchType:'ATK SwiftLight',coating:'Nano Coating',size:'125\u00d763.5\u00d740mm'},
+  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultimate',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'PAW3950 Ultra, Nordic 54L15, pin 800mAh ~600h, switch ATK Optical, lớp phủ Nano. Không dây ApexShark thế hệ 3.',price:1490000,oldPrice:0,badge:'hot',color:'#0a1e3a',img:'https://gamergear.net/content/product/2025/10/2444/Dragonfly-A9-Ultimate-01.jpg',mcu:'Nordic 54L15',battery:'800mAh / ~600h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'~125\u00d764\u00d740mm'},
+  {cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Pro',weight:'49g',sensor:'PAW3950',polling:'8000Hz',desc:'Siêu nhẹ 49g, PAW3950 750 IPS, polling 8KHz. Omron Optical, lớp phủ Ice-Feel. Kích thước 127\u00d764\u00d740mm.',price:1290000,oldPrice:0,badge:'',color:'#2a1a4a',img:'https://www.deskhero.ca/cdn/shop/files/5_87c4f624-7d34-416a-b3bc-be3fb44bff99.png?v=1726605937&width=1920',mcu:'Nordic 52840',battery:'300mAh / ~75-150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
+  {cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Ultimate',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1 V1: PAW3950 Ultra, Nordic 52840, 42K DPI, lớp phủ Ice-Feel. Kết nối 3 chế độ.',price:1590000,oldPrice:0,badge:'',color:'#3a1a5a',img:'https://www.deskhero.ca/cdn/shop/files/4_0113cd05-f594-4501-9988-31a387b4699e.png?v=1726605939&width=1920',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
+  {cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Ultimate 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Nâng cấp Nordic 54L15, switch ATK Swiftlight Optical, lớp phủ Nano, firmware ApexShark MAX, pin 800mAh.',price:1790000,oldPrice:2090000,badge:'new',color:'#4a0a2a',img:'https://ausmodshop.com/cdn/shop/files/1500_778d99f5-4910-4793-bda8-2cf478ab6b97.webp?v=1770790008',mcu:'Nordic 54L15',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
+  {cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Extreme 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1: Nordic 54H20, độ trễ ~0.163ms, engine 20K+ FPS, dongle GEM 8K mới, pin 800mAh.',price:1990000,oldPrice:2390000,badge:'hot',color:'#5a0a3a',img:'https://ausmodshop.com/cdn/shop/files/1500_64959b4f-7619-4791-bbb7-a00d33002d35.webp?v=1770790008',mcu:'Nordic 54H20',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
+  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Khung carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. 3 chế độ kết nối. Kích thước 121\u00d761.3\u00d738mm.',price:2490000,oldPrice:0,badge:'new',color:'#0a3020',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Ghost + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng & siêu nhẹ. Lớp phủ Nano.',price:2890000,oldPrice:0,badge:'hot',color:'#1a2a20',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+];
+
+const features=[
+  {icon:'\ud83e\udeb6',title:'Siêu Nhẹ 47-57g',desc:'Trọng lượng cực thấp. A9 Air chỉ 47g, Ghost 48g với carbon fiber. Giảm mỏi tay, tăng tốc flick shot.'},
+  {icon:'\ud83d\udce1',title:'Polling Rate 8000Hz',desc:'Gấp 8x chuột thường. Cập nhật vị trí mỗi 0.125ms. Hỗ trợ cả có dây lẫn không dây từ dòng Pro trở lên.'},
+  {icon:'\ud83c\udfaf',title:'PAW3950 Ultra Sensor',desc:'Flagship PixArt: 42K DPI, 750 IPS tracking, 50G acceleration. Từ A9 Ultra, X1 và Ghost đều trang bị.'},
+  {icon:'\ud83d\udd0b',title:'Pin Đến 600 Giờ',desc:'A9 Ultimate pin 800mAh ~600h. A9 Air tối ưu 300mAh ~300h. Sạc nhanh USB-C 2-3 tiếng.'},
+  {icon:'\ud83e\uddca',title:'Ice-Feel & Nano Coating',desc:'Ice-Feel trên A9/X1 V1 chống mồ hôi. Nano Coating mới trên X1 V2, Ghost và A9 Air bền hơn, bám tay tốt hơn.'},
+  {icon:'\u2699\ufe0f',title:'ATK HUB & Web Driver',desc:'DPI, macro, polling rate, gán phím, cập nhật firmware. Hỗ trợ cả phần mềm cài đặt và web driver online.'},
+];
+
+const reviews=[
+  {name:'Minh Quân',tag:'Valorant / A9 Ultra',text:'A9 Ultra 8KHz tracking mượt không tưởng. 53g nhẹ mà chất lượng build chắc chắn. Omron Optical click giòn sướng tay.',rating:5,bg:'linear-gradient(135deg,#00e5ff,#00b8d4)'},
+  {name:'Thu Hà',tag:'CS2 / X1 V2 Extreme',text:'X1 V2 Extreme là con chuột tốt nhất từng dùng. Switch Swiftlight phản hồi cực nhanh, nano coating bám tay hoàn hảo dù chơi 5 tiếng.',rating:5,bg:'linear-gradient(135deg,#ff2d78,#ff6b9d)'},
+  {name:'Đức Anh',tag:'Esports Coach / Ghost',text:'Ghost carbon fiber 48g mà cứng đáng kinh ngạc. Thiết kế nhỏ hơn X1, vừa tay medium-small rất tốt. Khuyên dùng cho pro.',rating:5,bg:'linear-gradient(135deg,#00ff88,#00cc6a)'},
+];
+
+function formatPrice(n){return n.toLocaleString('vi-VN')+'\u0111'}
+function lighten(h,a){let r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);r=Math.min(255,r+Math.round(255*a));g=Math.min(255,g+Math.round(255*a));b=Math.min(255,b+Math.round(255*a));return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function getAccent(c){return c==='a9'?'#00e5ff':c==='x1'?'#ff2d78':'#00ff88'}
+
+function mouseShape(col,acc){
+  const id='m'+col.replace('#','');
+  return `<svg class="mouse-svg" width="150" height="100" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="150" y2="100"><stop offset="0%" stop-color="${col}"/><stop offset="100%" stop-color="${lighten(col,.12)}"/></linearGradient></defs>
+    <ellipse cx="75" cy="54" rx="54" ry="42" fill="url(#${id})"/>
+    <ellipse cx="75" cy="40" rx="44" ry="32" fill="${lighten(col,.06)}" opacity=".4"/>
+    <line x1="75" y1="14" x2="75" y2="44" stroke="${acc}" stroke-width="1.3" opacity=".5"/>
+    <circle cx="75" cy="16" r="3.5" fill="${acc}" opacity=".85"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>
+    <ellipse cx="75" cy="54" rx="54" ry="42" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+  </svg>`;
+}
+
+function badgeHTML(b){
+  if(!b)return '';
+  const m={hot:['\ud83d\udd25 Hot','badge-hot'],new:['\u2728 Moi','badge-new'],sale:['\ud83d\udcb0 Sale','badge-sale'],best:['\ud83c\udfc6 Best','badge-best']};
+  const d=m[b];return `<span class="product-badge ${d[1]}">${d[0]}</span>`;
+}
+
+function renderProducts(filter='all'){
+  const g=document.getElementById('productsGrid');
+  g.innerHTML=products.map((p,i)=>{
+    const h=filter!=='all'&&p.cat!==filter?'hidden':'';
+    return `<div class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s" onclick="openDetail(${i})">
+      <div class="product-img">
+        <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
+        ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" loading="lazy">`:mouseShape(p.color,getAccent(p.cat))}
+        ${badgeHTML(p.badge)}
+      </div>
+      <div class="product-info">
+        <div class="product-series">${p.series}</div>
+        <h3 class="product-name">${p.name}</h3>
+        <div class="product-specs"><span class="spec-tag">${p.weight}</span><span class="spec-tag">${p.sensor}</span><span class="spec-tag">${p.polling}</span></div>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-footer">
+          <div class="product-price">${formatPrice(p.price)}${p.oldPrice?`<span class="old">${formatPrice(p.oldPrice)}</span>`:''}</div>
+          <button class="add-cart" onclick="addToCart(${i});event.stopPropagation()" title="Them vao gio">+</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(initReveal);
+}
+
+function filterCat(cat,btn){
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+function renderFeatures(){
+  document.getElementById('featuresGrid').innerHTML=features.map((f,i)=>`
+    <div class="feature-card reveal" style="transition-delay:${i*0.07}s"><div class="feature-icon">${f.icon}</div><h3>${f.title}</h3><p>${f.desc}</p></div>
+  `).join('');
+}
+
+function renderReviews(){
+  document.getElementById('reviewsGrid').innerHTML=reviews.map((r,i)=>`
+    <div class="testimonial-card reveal" style="transition-delay:${i*0.1}s">
+      <div class="stars">${'\u2605'.repeat(r.rating)}${'\u2606'.repeat(5-r.rating)}</div>
+      <blockquote>"${r.text}"</blockquote>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:${r.bg}">${r.name[0]}</div><div class="reviewer-info"><strong>${r.name}</strong><span>${r.tag}</span></div></div>
+    </div>
+  `).join('');
+}
+
+// ===== CART SYSTEM =====
+let cart=[];
+
+function addToCart(i){
+  const existing=cart.find(item=>item.productIndex===i);
+  if(existing){existing.qty++;} else {cart.push({productIndex:i,qty:1});}
+  updateCartCount();
+  showToast(`${products[i].name} đã thêm vào giỏ!`);
+}
+
+function removeFromCart(cartIdx){
+  cart.splice(cartIdx,1);
+  updateCartCount();
+  renderCart();
+}
+
+function updateQty(cartIdx,delta){
+  cart[cartIdx].qty+=delta;
+  if(cart[cartIdx].qty<=0) cart.splice(cartIdx,1);
+  updateCartCount();
+  renderCart();
+}
+
+function updateCartCount(){
+  const total=cart.reduce((s,item)=>s+item.qty,0);
+  document.getElementById('cartCount').textContent=total;
+}
+
+function getCartTotal(){
+  return cart.reduce((s,item)=>s+products[item.productIndex].price*item.qty,0);
+}
+
+function renderCart(){
+  const container=document.getElementById('cartItems');
+  const footer=document.getElementById('cartFooter');
+  if(!cart.length){
+    container.innerHTML=`<div class="cart-empty"><div class="empty-icon">\ud83d\uded2</div><p>Giỏ hàng của bạn đang trống</p></div>`;
+    footer.style.display='none';
+    return;
+  }
+  footer.style.display='block';
+  container.innerHTML=cart.map((item,ci)=>{
+    const p=products[item.productIndex];
+    return `<div class="cart-item">
+      <div class="cart-item-img" style="background:radial-gradient(ellipse,${p.color}66,var(--bg3))">
+        ${p.img?`<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain">`:mouseShape(p.color,getAccent(p.cat))}
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-series">${p.series}</div>
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">${formatPrice(p.price*item.qty)}</div>
+      </div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="updateQty(${ci},-1)">&minus;</button>
+        <span class="qty-val">${item.qty}</span>
+        <button class="qty-btn" onclick="updateQty(${ci},1)">+</button>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${ci})" title="Xóa">&times;</button>
+    </div>`;
+  }).join('');
+  const total=getCartTotal();
+  document.getElementById('cartTotal').textContent=formatPrice(total);
+  document.getElementById('checkoutBtn').disabled=false;
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeCart(){
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function checkout(){
+  if(!cart.length) return;
+  closeCart();
+  openPaymentPage();
+}
+
+// ===== SHIPPING CALCULATOR =====
+const shippingTable={
+  'Bà Rịa - Vũng Tàu':{distance:0,fee:15000},
+  'TP. Hồ Chí Minh':{distance:125,fee:30000},
+  'Đồng Nai':{distance:100,fee:30000},
+  'Bình Dương':{distance:130,fee:30000},
+  'Long An':{distance:170,fee:30000},
+  'Bình Thuận':{distance:150,fee:30000},
+  'Tây Ninh':{distance:180,fee:30000},
+  'Lâm Đồng':{distance:200,fee:45000},
+  'Bình Phước':{distance:200,fee:45000},
+  'Ninh Thuận':{distance:250,fee:45000},
+  'Cần Thơ':{distance:300,fee:45000},
+  'Khánh Hòa':{distance:350,fee:45000},
+  'Đắk Lắk':{distance:400,fee:45000},
+  'Gia Lai':{distance:450,fee:45000},
+  'Đắk Nông':{distance:350,fee:45000},
+  'Tiền Giang':{distance:200,fee:30000},
+  'Bến Tre':{distance:230,fee:45000},
+  'Vĩnh Long':{distance:260,fee:45000},
+  'An Giang':{distance:350,fee:45000},
+  'Kiên Giang':{distance:400,fee:45000},
+  'Hậu Giang':{distance:320,fee:45000},
+  'Sóc Trăng':{distance:340,fee:45000},
+  'Bạc Liêu':{distance:370,fee:45000},
+  'Cà Mau':{distance:420,fee:45000},
+  'Trà Vinh':{distance:280,fee:45000},
+  'Đồng Tháp':{distance:280,fee:45000},
+  'Phú Yên':{distance:500,fee:60000},
+  'Bình Định':{distance:600,fee:60000},
+  'Quảng Ngãi':{distance:700,fee:60000},
+  'Quảng Nam':{distance:780,fee:60000},
+  'Đà Nẵng':{distance:830,fee:60000},
+  'Thừa Thiên Huế':{distance:930,fee:60000},
+  'Quảng Trị':{distance:990,fee:60000},
+  'Quảng Bình':{distance:1050,fee:75000},
+  'Hà Tĩnh':{distance:1120,fee:75000},
+  'Nghệ An':{distance:1200,fee:75000},
+  'Thanh Hóa':{distance:1350,fee:75000},
+  'Kon Tum':{distance:550,fee:60000},
+  'Hà Nội':{distance:1500,fee:75000},
+  'Hải Phòng':{distance:1550,fee:75000},
+  'Quảng Ninh':{distance:1600,fee:75000},
+  'Ninh Bình':{distance:1400,fee:75000},
+  'Nam Định':{distance:1450,fee:75000},
+  'Thái Bình':{distance:1470,fee:75000},
+  'Hà Nam':{distance:1460,fee:75000},
+  'Hưng Yên':{distance:1490,fee:75000},
+  'Hải Dương':{distance:1520,fee:75000},
+  'Bắc Ninh':{distance:1510,fee:75000},
+  'Bắc Giang':{distance:1550,fee:75000},
+  'Vĩnh Phúc':{distance:1530,fee:75000},
+  'Phú Thọ':{distance:1560,fee:75000},
+  'Thái Nguyên':{distance:1580,fee:75000},
+  'Lạng Sơn':{distance:1650,fee:75000},
+  'Cao Bằng':{distance:1700,fee:75000},
+  'Bắc Kạn':{distance:1650,fee:75000},
+  'Tuyên Quang':{distance:1600,fee:75000},
+  'Hà Giang':{distance:1700,fee:75000},
+  'Yên Bái':{distance:1600,fee:75000},
+  'Lào Cai':{distance:1700,fee:75000},
+  'Lai Châu':{distance:1800,fee:75000},
+  'Điện Biên':{distance:1850,fee:75000},
+  'Sơn La':{distance:1750,fee:75000},
+  'Hòa Bình':{distance:1550,fee:75000},
+  'Tỉnh khác':{distance:800,fee:60000},
+};
+
+function getShippingFee(city){
+  if(!city) return 0;
+  const entry=shippingTable[city];
+  return entry?entry.fee:60000;
+}
+
+function getShippingDistance(city){
+  if(!city) return 0;
+  const entry=shippingTable[city];
+  return entry?entry.distance:800;
+}
+
+function calcShippingDisplay(city,cartTotal){
+  if(!city) return {fee:0,text:'Chọn tỉnh/thành phố để tính phí ship',free:false};
+  const fee=getShippingFee(city);
+  const dist=getShippingDistance(city);
+  const free=cartTotal>=1000000;
+  if(free) return {fee:0,text:`Miễn phí vận chuyển (${dist}km từ Vũng Tàu)`,free:true};
+  return {fee,text:`${dist}km từ Vũng Tàu — ${formatPrice(fee)}`,free:false};
+}
+
+// ===== PAYMENT SYSTEM =====
+let currentOrderCode='';
+const usedCodes=JSON.parse(localStorage.getItem('atk_used_codes')||'[]');
+
+function generateOrderCode(){
+  let code;
+  do{ code=String(Math.floor(10000+Math.random()*90000)); }while(usedCodes.includes(code));
+  usedCodes.push(code);
+  localStorage.setItem('atk_used_codes',JSON.stringify(usedCodes));
+  return code;
+}
+
+function getCityOptions(){
+  return Object.keys(shippingTable).map(city=>`<option value="${city}">${city}</option>`).join('');
+}
+
+function updateShippingDisplay(selectId,displayId){
+  const city=document.getElementById(selectId).value;
+  const total=getCartTotal();
+  const info=calcShippingDisplay(city,total);
+  const el=document.getElementById(displayId);
+  if(!city){el.innerHTML=`<div class="ship-from">&#128205; Gửi từ: Vũng Tàu, Bà Rịa - Vũng Tàu</div><div class="ship-row"><span class="ship-label">Phí vận chuyển:</span><span class="ship-value" style="color:var(--text-dim)">—</span></div><div class="ship-distance">Chọn tỉnh/thành phố để tính phí ship</div>`;updatePayTotal();return;}
+  el.innerHTML=`<div class="ship-from">&#128205; Gửi từ: Vũng Tàu, Bà Rịa - Vũng Tàu</div><div class="ship-row"><span class="ship-label">Khoảng cách:</span><span class="ship-value">${getShippingDistance(city)} km</span></div><div class="ship-row"><span class="ship-label">Phí vận chuyển:</span><span class="ship-value ${info.free?'ship-free':'ship-fee'}">${info.free?'MIỄN PHÍ':formatPrice(info.fee)}</span></div>${info.free?'<div class="ship-distance">Đơn hàng từ 1.000.000đ được miễn phí vận chuyển</div>':''}`;
+  updatePayTotal();
+}
+
+function getActiveShippingFee(){
+  const bankTab=document.querySelector('#payBank.active');
+  const selectId=bankTab?'bankCity':'codCity';
+  const city=document.getElementById(selectId)?.value;
+  if(!city) return 0;
+  const total=getCartTotal();
+  if(total>=1000000) return 0;
+  return getShippingFee(city);
+}
+
+function updatePayTotal(){
+  const subtotal=getCartTotal();
+  const shipFee=getActiveShippingFee();
+  const grand=subtotal+shipFee;
+  const el=document.getElementById('payGrandTotal');
+  if(el) el.textContent=formatPrice(grand);
+  const shipEl=document.getElementById('payShipLine');
+  if(shipEl) shipEl.textContent=shipFee?formatPrice(shipFee):'Miễn phí';
+}
+
+function openPaymentPage(){
+  currentOrderCode=generateOrderCode();
+  const total=getCartTotal();
+  const freeShip=total>=1000000;
+  const cityOpts=getCityOptions();
+  const page=document.getElementById('paymentPage');
+  page.innerHTML=`
+    <button class="payment-back" onclick="closePayment()">&larr; Quay lại</button>
+    <h1 class="payment-title">Thanh Toán</h1>
+    <p class="payment-subtitle">Mã đơn hàng: <strong style="color:var(--cyan);font-family:'Orbitron',sans-serif">#${currentOrderCode}</strong></p>
+    <div class="payment-grid">
+      <div>
+        <div class="payment-order-summary">
+          <h3>Đơn Hàng Của Bạn</h3>
+          ${cart.map(item=>{
+            const p=products[item.productIndex];
+            return `<div class="pay-item">
+              <span class="pay-item-name">${p.name}</span>
+              <span class="pay-item-qty">x${item.qty}</span>
+              <span class="pay-item-price">${formatPrice(p.price*item.qty)}</span>
+            </div>`;
+          }).join('')}
+          <div class="pay-item" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.7rem">
+            <span class="pay-item-name" style="color:var(--text-dim)">Tạm tính:</span>
+            <span class="pay-item-price" style="color:var(--text-dim)">${formatPrice(total)}</span>
+          </div>
+          <div class="pay-item">
+            <span class="pay-item-name" style="color:var(--text-dim)">Phí vận chuyển:</span>
+            <span class="pay-item-price" style="color:var(--text-dim)" id="payShipLine">${freeShip?'Miễn phí':'—'}</span>
+          </div>
+          <div class="pay-total">
+            <span class="pay-total-label">Tổng thanh toán:</span>
+            <span class="pay-total-price" id="payGrandTotal">${formatPrice(total)}</span>
+          </div>
+          ${freeShip?'<div class="pay-free-ship">&#10003; Miễn phí vận chuyển (đơn từ 1.000.000đ)</div>':''}
+        </div>
+      </div>
+      <div>
+        <div class="payment-methods">
+          <h3>Phương Thức Thanh Toán</h3>
+          <div class="pay-method-tabs">
+            <button class="pay-method-tab active" onclick="switchPayMethod('bank',this)">
+              <span class="tab-icon">&#127975;</span>Chuyển Khoản
+            </button>
+            <button class="pay-method-tab" onclick="switchPayMethod('cod',this)">
+              <span class="tab-icon">&#128666;</span>Ship COD
+            </button>
+          </div>
+
+          <!-- Bank Transfer -->
+          <div class="pay-method-content active" id="payBank">
+            <div class="bank-info">
+              <div class="bank-row"><span class="label">Ngân hàng:</span><span class="value">VIB</span></div>
+              <div class="bank-row"><span class="label">Số tài khoản:</span><span class="value copyable" onclick="copyText('020080425')">020080425</span></div>
+              <div class="bank-row"><span class="label">Chủ tài khoản:</span><span class="value">Hnam2504</span></div>
+            </div>
+            <div class="bank-transfer-code">
+              <div class="code-label">Nội dung chuyển khoản</div>
+              <div class="code-value" onclick="copyText('ATK${currentOrderCode}')" title="Nhấn để copy">ATK${currentOrderCode}</div>
+              <div class="code-note">Vui lòng ghi đúng nội dung để xác nhận đơn hàng</div>
+            </div>
+            <div class="bank-note">Sau khi chuyển khoản, vui lòng điền thông tin bên dưới và bấm "Xác Nhận". Đơn hàng sẽ được xử lý trong vòng 15 phút.</div>
+            <div class="cust-form">
+              <label>Họ và tên *</label>
+              <input type="text" id="bankName" placeholder="Nguyễn Văn A">
+              <label>Số điện thoại *</label>
+              <input type="tel" id="bankPhone" placeholder="0909 xxx xxx">
+              <label>Tỉnh / Thành phố *</label>
+              <select id="bankCity" onchange="updateShippingDisplay('bankCity','bankShipCalc')">
+                <option value="">-- Chọn tỉnh/thành phố --</option>
+                ${cityOpts}
+              </select>
+              <div class="shipping-calc" id="bankShipCalc">
+                <div class="ship-from">&#128205; Gửi từ: Vũng Tàu, Bà Rịa - Vũng Tàu</div>
+                <div class="ship-row"><span class="ship-label">Phí vận chuyển:</span><span class="ship-value" style="color:var(--text-dim)">—</span></div>
+                <div class="ship-distance">Chọn tỉnh/thành phố để tính phí ship</div>
+              </div>
+              <label>Địa chỉ nhận hàng *</label>
+              <textarea id="bankAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện"></textarea>
+              <label>Ghi chú</label>
+              <input type="text" id="bankNote" placeholder="Ghi chú thêm (tùy chọn)">
+            </div>
+            <button class="pay-confirm-btn" onclick="confirmBank()">Xác Nhận Đã Chuyển Khoản</button>
+          </div>
+
+          <!-- COD -->
+          <div class="pay-method-content" id="payCod">
+            <div class="cust-form">
+              <label>Họ và tên *</label>
+              <input type="text" id="codName" placeholder="Nguyễn Văn A">
+              <label>Số điện thoại *</label>
+              <input type="tel" id="codPhone" placeholder="0909 xxx xxx">
+              <label>Tỉnh / Thành phố *</label>
+              <select id="codCity" onchange="updateShippingDisplay('codCity','codShipCalc')">
+                <option value="">-- Chọn tỉnh/thành phố --</option>
+                ${cityOpts}
+              </select>
+              <div class="shipping-calc" id="codShipCalc">
+                <div class="ship-from">&#128205; Gửi từ: Vũng Tàu, Bà Rịa - Vũng Tàu</div>
+                <div class="ship-row"><span class="ship-label">Phí vận chuyển:</span><span class="ship-value" style="color:var(--text-dim)">—</span></div>
+                <div class="ship-distance">Chọn tỉnh/thành phố để tính phí ship</div>
+              </div>
+              <label>Địa chỉ nhận hàng *</label>
+              <textarea id="codAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện"></textarea>
+              <label>Ghi chú</label>
+              <input type="text" id="codNote" placeholder="Ghi chú thêm (tùy chọn)">
+            </div>
+            <button class="pay-confirm-btn" onclick="confirmCod()">Đặt Hàng COD</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('paymentOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function switchPayMethod(method,btn){
+  document.querySelectorAll('.pay-method-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pay-method-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(method==='bank'?'payBank':'payCod').classList.add('active');
+}
+
+function closePayment(){
+  document.getElementById('paymentOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>showToast('Đã copy: '+text)).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    showToast('Đã copy: '+text);
+  });
+}
+
+function saveOrder(order){
+  const orders=JSON.parse(localStorage.getItem('atk_orders')||'[]');
+  orders.unshift(order);
+  localStorage.setItem('atk_orders',JSON.stringify(orders));
+}
+
+function confirmBank(){
+  const name=document.getElementById('bankName').value.trim();
+  const phone=document.getElementById('bankPhone').value.trim();
+  const city=document.getElementById('bankCity').value;
+  const address=document.getElementById('bankAddress').value.trim();
+  const note=document.getElementById('bankNote').value.trim();
+  if(!name||!phone||!city||!address){showToast('Vui lòng điền đầy đủ thông tin!');return;}
+  const subtotal=getCartTotal();
+  const shipFee=subtotal>=1000000?0:getShippingFee(city);
+  const shipDist=getShippingDistance(city);
+  const order={
+    id:currentOrderCode,
+    date:new Date().toLocaleString('vi-VN'),
+    method:'bank',
+    customer:{name,phone,address:address+', '+city,note},
+    items:cart.map(item=>({name:products[item.productIndex].name,qty:item.qty,price:products[item.productIndex].price})),
+    subtotal,
+    shippingFee:shipFee,
+    shippingDistance:shipDist+'km',
+    total:subtotal+shipFee,
+    transferContent:'ATK'+currentOrderCode
+  };
+  saveOrder(order);
+  showOrderSuccess('bank');
+}
+
+function confirmCod(){
+  const name=document.getElementById('codName').value.trim();
+  const phone=document.getElementById('codPhone').value.trim();
+  const city=document.getElementById('codCity').value;
+  const address=document.getElementById('codAddress').value.trim();
+  const note=document.getElementById('codNote').value.trim();
+  if(!name||!phone||!city||!address){showToast('Vui lòng điền đầy đủ thông tin!');return;}
+  const subtotal=getCartTotal();
+  const shipFee=subtotal>=1000000?0:getShippingFee(city);
+  const shipDist=getShippingDistance(city);
+  const order={
+    id:currentOrderCode,
+    date:new Date().toLocaleString('vi-VN'),
+    method:'cod',
+    customer:{name,phone,address:address+', '+city,note},
+    items:cart.map(item=>({name:products[item.productIndex].name,qty:item.qty,price:products[item.productIndex].price})),
+    subtotal,
+    shippingFee:shipFee,
+    shippingDistance:shipDist+'km',
+    total:subtotal+shipFee
+  };
+  saveOrder(order);
+  showOrderSuccess('cod');
+}
+
+function showOrderSuccess(method){
+  const page=document.getElementById('paymentPage');
+  const methodText=method==='bank'
+    ?'Đơn hàng đã được ghi nhận. Vui lòng chuyển khoản theo thông tin đã cung cấp. Chúng tôi sẽ xác nhận trong vòng 15 phút.'
+    :'Đơn hàng COD đã được ghi nhận. Chúng tôi sẽ liên hệ bạn qua SĐT để xác nhận và giao hàng.';
+  page.innerHTML=`
+    <div class="order-success">
+      <div class="success-icon">&#127881;</div>
+      <h2>Đặt Hàng Thành Công!</h2>
+      <div class="order-id">Mã đơn: #${currentOrderCode}</div>
+      <p>${methodText}</p>
+      <p style="font-size:.82rem">Liên hệ: <a href="tel:0776765608" style="color:var(--cyan)">0776765608</a> | <a href="mailto:oneplusoneequalsthree2504@gmail.com" style="color:var(--cyan)">oneplusoneequalsthree2504@gmail.com</a></p>
+      <button class="btn-primary" onclick="closePayment();location.href='#products'">Tiếp Tục Mua Sắm</button>
+    </div>
+  `;
+  cart=[];
+  updateCartCount();
+}
+
+// ===== ADMIN PANEL =====
+// Access: type "admin" 3 times rapidly or press Ctrl+Shift+A
+let adminKeyBuffer='';
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdmin();return;}
+  adminKeyBuffer+=e.key.toLowerCase();
+  if(adminKeyBuffer.includes('adminadminadmin')){adminKeyBuffer='';openAdmin();}
+  setTimeout(()=>{adminKeyBuffer=''},3000);
+});
+
+function openAdmin(){
+  renderAdmin();
+  document.getElementById('adminOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeAdmin(){
+  document.getElementById('adminOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderAdmin(){
+  const orders=JSON.parse(localStorage.getItem('atk_orders')||'[]');
+  const totalRevenue=orders.reduce((s,o)=>s+o.total,0);
+  const bankOrders=orders.filter(o=>o.method==='bank');
+  const codOrders=orders.filter(o=>o.method==='cod');
+  const page=document.getElementById('adminPage');
+  page.innerHTML=`
+    <div class="admin-header">
+      <h2>&#128274; Admin - Đơn Hàng</h2>
+      <div style="display:flex;gap:.6rem">
+        <button class="admin-clear" onclick="exportOrders()">&#128229; Xuất JSON</button>
+        <button class="admin-clear" onclick="if(confirm('Xóa tất cả đơn hàng?')){localStorage.removeItem('atk_orders');renderAdmin();}">&#128465; Xóa tất cả</button>
+        <button class="payment-back" onclick="closeAdmin()" style="margin:0">&times; Đóng</button>
+      </div>
+    </div>
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="stat-val">${orders.length}</div><div class="stat-lbl">Tổng đơn</div></div>
+      <div class="admin-stat"><div class="stat-val">${bankOrders.length}</div><div class="stat-lbl">Chuyển khoản</div></div>
+      <div class="admin-stat"><div class="stat-val">${codOrders.length}</div><div class="stat-lbl">COD</div></div>
+      <div class="admin-stat"><div class="stat-val">${formatPrice(totalRevenue)}</div><div class="stat-lbl">Doanh thu</div></div>
+    </div>
+    <div class="admin-orders">
+      ${orders.length?orders.map(o=>`
+        <div class="admin-order">
+          <div class="admin-order-header">
+            <div>
+              <span class="admin-order-id">#${o.id}</span>
+              <span class="admin-order-method ${o.method==='bank'?'method-bank':'method-cod'}">${o.method==='bank'?'Chuyển khoản':'COD'}</span>
+            </div>
+            <span class="admin-order-date">${o.date}</span>
+          </div>
+          <div class="admin-order-customer">&#128100; ${o.customer.name} | &#128222; ${o.customer.phone}</div>
+          <div class="admin-order-items">${o.items.map(it=>`${it.name} x${it.qty} = ${formatPrice(it.price*it.qty)}`).join(' | ')}</div>
+          ${o.shippingFee!=null?`<div class="admin-order-items">&#128666; Ship: ${o.shippingDistance||'—'} — ${o.shippingFee?formatPrice(o.shippingFee):'Miễn phí'}</div>`:''}
+          <div class="admin-order-total">Tổng: ${formatPrice(o.total)}${o.subtotal&&o.subtotal!==o.total?' (hàng: '+formatPrice(o.subtotal)+')':''}</div>
+          <div class="admin-order-address">&#128205; ${o.customer.address}</div>
+          ${o.customer.note?`<div class="admin-order-address">&#128221; ${o.customer.note}</div>`:''}
+          ${o.transferContent?`<div class="admin-order-address" style="color:var(--gold)">Nội dung CK: ${o.transferContent}</div>`:''}
+        </div>
+      `).join(''):'<div class="admin-empty">Chưa có đơn hàng nào</div>'}
+    </div>
+  `;
+}
+
+function exportOrders(){
+  const orders=JSON.parse(localStorage.getItem('atk_orders')||'[]');
+  if(!orders.length){showToast('Không có đơn hàng để xuất!');return;}
+  const blob=new Blob([JSON.stringify(orders,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='hnamstore_orders_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();URL.revokeObjectURL(a.href);
+  showToast('Đã xuất '+orders.length+' đơn hàng!');
+}
+
+// ===== PRODUCT DETAIL MODAL =====
+function openDetail(i){
+  const p=products[i];
+  const modal=document.getElementById('detailModal');
+  modal.innerHTML=`
+    <button class="detail-close" onclick="closeDetail(event,true)">&times;</button>
+    <div class="detail-top">
+      <div class="detail-img">
+        <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}66,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
+        ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" style="width:85%;height:85%;object-fit:contain;position:relative;z-index:1">`:mouseShape(p.color,getAccent(p.cat))}
+        ${badgeHTML(p.badge)}
+      </div>
+      <div class="detail-content">
+        <div class="detail-series">${p.series}</div>
+        <h2 class="detail-name">${p.name}</h2>
+        <p class="detail-desc">${p.desc}</p>
+        <div class="detail-specs">
+          <span class="detail-spec">${p.weight}</span>
+          <span class="detail-spec">${p.sensor}</span>
+          <span class="detail-spec">${p.polling}</span>
+          <span class="detail-spec">${p.switchType}</span>
+        </div>
+        <div class="detail-price-row">
+          <span class="detail-price">${formatPrice(p.price)}</span>
+          ${p.oldPrice?`<span class="detail-old-price">${formatPrice(p.oldPrice)}</span>`:''}
+        </div>
+        <div class="detail-actions">
+          <button class="detail-add-cart" onclick="addToCart(${i})">+ Them Vao Gio</button>
+        </div>
+      </div>
+    </div>
+    <div class="detail-bottom">
+      <table class="detail-spec-table">
+        <tr><td>Sensor</td><td>${p.sensor}</td></tr>
+        <tr><td>MCU</td><td>${p.mcu}</td></tr>
+        <tr><td>Trong luong</td><td>~${p.weight}</td></tr>
+        <tr><td>Polling Rate</td><td>${p.polling}</td></tr>
+        <tr><td>Pin</td><td>${p.battery}</td></tr>
+        <tr><td>Ket noi</td><td>${p.connect}</td></tr>
+        <tr><td>Switch</td><td>${p.switchType}</td></tr>
+        <tr><td>Coating</td><td>${p.coating}</td></tr>
+        <tr><td>Kich thuoc</td><td>${p.size}</td></tr>
+      </table>
+    </div>
+  `;
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeDetail(e,force){
+  if(force||e.target===document.getElementById('detailOverlay')){
+    document.getElementById('detailOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+
+// Close modals with Escape key
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    if(document.getElementById('adminOverlay').classList.contains('open')){closeAdmin();return;}
+    if(document.getElementById('paymentOverlay').classList.contains('open')){closePayment();return;}
+    if(document.getElementById('detailOverlay').classList.contains('open')){closeDetail(null,true);return;}
+    if(document.getElementById('cartModal').classList.contains('open')){closeCart();return;}
+  }
+});
+
+function showToast(m){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800)}
+
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)});
+function toggleMenu(){const l=document.querySelector('.nav-links');if(l.style.display==='flex'){l.style.display='none'}else{l.style.cssText='display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(7,7,12,0.98);padding:1.2rem 2rem;gap:.8rem;border-bottom:1px solid var(--border)'}}
+
+const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+function initReveal(){document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el))}
+
+renderProducts();renderFeatures();renderReviews();requestAnimationFrame(initReveal);
+</script>
+</body>
+</html>
