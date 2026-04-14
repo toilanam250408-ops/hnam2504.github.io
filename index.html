@@ -126,6 +126,19 @@ section{padding:5rem 2rem}
   cursor:pointer;transition:all .3s;letter-spacing:.5px;
 }
 .cat-tab:hover,.cat-tab.active{background:rgba(0,229,255,0.1);color:var(--cyan);border-color:rgba(0,229,255,0.3)}
+
+/* Search Bar */
+.search-wrap{max-width:500px;margin:0 auto 1.8rem;position:relative}
+.search-input{width:100%;padding:.75rem 1.2rem .75rem 2.8rem;border-radius:50px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;font-size:.88rem;outline:none;transition:all .3s}
+.search-input:focus{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,0.1);background:rgba(255,255,255,0.05)}
+.search-input::placeholder{color:var(--text-dim)}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:.95rem;pointer-events:none;transition:color .3s}
+.search-input:focus~.search-icon{color:var(--cyan)}
+.search-clear{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-dim);font-size:1.1rem;cursor:pointer;display:none;padding:.2rem .4rem;transition:color .2s}
+.search-clear.show{display:block}
+.search-clear:hover{color:var(--text)}
+.search-no-result{text-align:center;padding:2rem;color:var(--text-dim);font-size:.9rem;display:none}
+.search-no-result.show{display:block}
 .products-section{background:var(--bg)}
 .products-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
@@ -452,6 +465,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
     <button class="cat-tab" onclick="filterCat('x1',this)">Blazing Sky X1</button>
     <button class="cat-tab" onclick="filterCat('ghost',this)">Ghost Carbon</button>
   </div>
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm chuột gaming..." oninput="handleSearch()">
+    <span class="search-icon">&#128269;</span>
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">&times;</button>
+  </div>
+  <div class="search-no-result" id="searchNoResult">Không tìm thấy sản phẩm nào phù hợp</div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
@@ -638,10 +657,49 @@ function renderProducts(filter='all'){
   requestAnimationFrame(initReveal);
 }
 
+let currentFilter='all';
+
 function filterCat(cat,btn){
   document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
+  currentFilter=cat;
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchClear').classList.remove('show');
+  document.getElementById('searchNoResult').classList.remove('show');
   renderProducts(cat);
+}
+
+function handleSearch(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  const clearBtn=document.getElementById('searchClear');
+  const noResult=document.getElementById('searchNoResult');
+  clearBtn.classList.toggle('show',q.length>0);
+
+  // Reset category tabs to "Tất Cả" when searching
+  if(q.length>0){
+    document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelector('.cat-tab').classList.add('active');
+    currentFilter='all';
+  }
+
+  const cards=document.querySelectorAll('.product-card');
+  let found=0;
+  products.forEach((p,i)=>{
+    const match=!q||p.name.toLowerCase().includes(q)||p.sensor.toLowerCase().includes(q)||p.series.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.weight.toLowerCase().includes(q)||p.polling.toLowerCase().includes(q)||p.switchType.toLowerCase().includes(q);
+    const card=cards[i];
+    if(card){
+      if(match){card.classList.remove('hidden');card.classList.add('visible');found++;}
+      else{card.classList.add('hidden');}
+    }
+  });
+  noResult.classList.toggle('show',found===0&&q.length>0);
+}
+
+function clearSearch(){
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchClear').classList.remove('show');
+  document.getElementById('searchNoResult').classList.remove('show');
+  renderProducts(currentFilter);
 }
 
 function renderFeatures(){
