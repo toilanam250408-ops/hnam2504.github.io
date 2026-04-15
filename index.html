@@ -414,6 +414,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 }
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Language Switcher */
+.lang-switch{display:flex;align-items:center;border-radius:50px;overflow:hidden;border:1px solid var(--border);background:var(--glass);height:32px}
+.lang-btn{padding:.3rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.5px;border:none;cursor:pointer;background:transparent;color:var(--text-dim);transition:all .3s;height:100%;display:flex;align-items:center;gap:.3rem}
+.lang-btn.active{background:rgba(0,229,255,0.15);color:var(--cyan)}
+.lang-btn:hover:not(.active){color:var(--text)}
 </style>
 </head>
 <body>
@@ -421,14 +427,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 <nav class="navbar" id="navbar">
   <a href="#" class="logo">Hnam<span>Store</span></a>
   <ul class="nav-links">
-    <li><a href="#products">Sản Phẩm</a></li>
-    <li><a href="#specs">Thông Số</a></li>
-    <li><a href="#features">Công Nghệ</a></li>
-    <li><a href="#reviews">Đánh Giá</a></li>
-    <li><a href="#contact">Liên Hệ</a></li>
+    <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
+    <li><a href="#specs" data-lang="nav_specs">Thông Số</a></li>
+    <li><a href="#features" data-lang="nav_tech">Công Nghệ</a></li>
+    <li><a href="#reviews" data-lang="nav_reviews">Đánh Giá</a></li>
+    <li><a href="#contact" data-lang="nav_contact">Liên Hệ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:.8rem">
-    <button class="cart-btn" onclick="openCart()">&#128722; Giỏ hàng <span class="cart-count" id="cartCount">0</span></button>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="langVi" onclick="setLang('vi')">VI</button>
+      <button class="lang-btn" id="langEn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="cart-btn" onclick="openCart()">&#128722; <span data-lang="cart_btn">Giỏ hàng</span> <span class="cart-count" id="cartCount">0</span></button>
     <button class="mobile-toggle" onclick="toggleMenu()">&#9776;</button>
   </div>
 </nav>
@@ -437,14 +447,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <h1><span class="line1">Chuột Gaming</span><span class="line2">ATK Blazing Sky</span></h1>
-    <p>Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.</p>
+    <h1><span class="line1" data-lang="hero_line1">Chuột Gaming</span><span class="line2">ATK Blazing Sky</span></h1>
+    <p data-lang="hero_desc">Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.</p>
     <div class="hero-cta">
-      <a href="#products" class="btn-primary">&#128433; Xem Sản Phẩm</a>
-      <a href="#specs" class="btn-outline">So Sánh Thông Số &rarr;</a>
+      <a href="#products" class="btn-primary">&#128433; <span data-lang="hero_cta1">Xem Sản Phẩm</span></a>
+      <a href="#specs" class="btn-outline"><span data-lang="hero_cta2">So Sánh Thông Số</span> &rarr;</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">47g</div><div class="stat-label">Siêu nhẹ</div></div>
+      <div class="stat"><div class="stat-num">47g</div><div class="stat-label" data-lang="stat_light">Siêu nhẹ</div></div>
       <div class="stat"><div class="stat-num">8000<span style="font-size:.9rem">Hz</span></div><div class="stat-label">Polling Rate</div></div>
       <div class="stat"><div class="stat-num">42K</div><div class="stat-label">DPI</div></div>
       <div class="stat"><div class="stat-num">750<span style="font-size:.9rem">IPS</span></div><div class="stat-label">Tracking</div></div>
@@ -454,29 +464,29 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 
 <section class="products-section" id="products">
   <div class="section-header reveal">
-    <div class="section-tag">&#9889; Bộ Sưu Tập 2026</div>
-    <h2 class="section-title">Chuột Gaming <span>ATK</span></h2>
+    <div class="section-tag" data-lang="prod_tag">&#9889; Bộ Sưu Tập 2026</div>
+    <h2 class="section-title" data-lang="prod_title">Chuột Gaming <span>ATK</span></h2>
     <p class="section-desc">Dragonfly A9 Series &middot; Blazing Sky X1 V1 &amp; V2 &middot; Blazing Sky Ghost Carbon Fiber</p>
   </div>
   <div class="cat-tabs" id="catTabs">
-    <button class="cat-tab active" onclick="filterCat('all',this)">Tất Cả</button>
+    <button class="cat-tab active" onclick="filterCat('all',this)" data-lang="tab_all">Tất Cả</button>
     <button class="cat-tab" onclick="filterCat('a9',this)">Dragonfly A9</button>
     <button class="cat-tab" onclick="filterCat('x1',this)">Blazing Sky X1</button>
     <button class="cat-tab" onclick="filterCat('ghost',this)">Ghost Carbon</button>
   </div>
   <div class="search-wrap">
-    <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm chuột gaming..." oninput="handleSearch()">
+    <input type="text" class="search-input" id="searchInput" data-lang-placeholder="search_placeholder" placeholder="Tìm kiếm chuột gaming..." oninput="handleSearch()">
     <span class="search-icon">&#128269;</span>
     <button class="search-clear" id="searchClear" onclick="clearSearch()">&times;</button>
   </div>
-  <div class="search-no-result" id="searchNoResult">Không tìm thấy sản phẩm nào phù hợp</div>
+  <div class="search-no-result" id="searchNoResult" data-lang="search_noresult">Không tìm thấy sản phẩm nào phù hợp</div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
 <section class="specs-section" id="specs">
   <div class="section-header reveal">
-    <div class="section-tag">&#128202; So Sánh</div>
-    <h2 class="section-title">Bảng Thông Số <span>Chi Tiết</span></h2>
+    <div class="section-tag" data-lang="specs_tag">&#128202; So Sánh</div>
+    <h2 class="section-title" data-lang="specs_title">Bảng Thông Số <span>Chi Tiết</span></h2>
   </div>
   <div class="specs-table-wrap reveal">
     <table class="specs-table">
@@ -503,24 +513,24 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 
 <section class="features-section" id="features">
   <div class="section-header reveal">
-    <div class="section-tag">&#128300; Công Nghệ</div>
-    <h2 class="section-title">Tại Sao Chọn <span>ATK?</span></h2>
+    <div class="section-tag" data-lang="feat_tag">&#128300; Công Nghệ</div>
+    <h2 class="section-title" data-lang="feat_title">Tại Sao Chọn <span>ATK?</span></h2>
   </div>
   <div class="features-grid" id="featuresGrid"></div>
 </section>
 
 <section style="padding:2.5rem 2rem">
   <div class="cta-banner reveal">
-    <h2>Sẵn Sàng <span style="color:var(--cyan)">Nâng Cấp</span> Game?</h2>
-    <p>Miễn phí vận chuyển toàn quốc cho đơn từ 1.000.000đ. Bảo hành chính hãng 24 tháng.</p>
+    <h2 data-lang="cta_title">Sẵn Sàng <span style="color:var(--cyan)">Nâng Cấp</span> Game?</h2>
+    <p data-lang="cta_desc">Miễn phí vận chuyển toàn quốc cho đơn từ 1.000.000đ. Bảo hành chính hãng 24 tháng.</p>
     <a href="#products" class="btn-primary">&#128722; Mua Ngay</a>
   </div>
 </section>
 
 <section class="testimonials" id="reviews">
   <div class="section-header reveal">
-    <div class="section-tag">&#128172; Đánh Giá</div>
-    <h2 class="section-title">Game Thủ <span>Nói Gì?</span></h2>
+    <div class="section-tag" data-lang="rev_tag">&#128172; Đánh Giá</div>
+    <h2 class="section-title" data-lang="rev_title">Game Thủ <span>Nói Gì?</span></h2>
   </div>
   <div class="testimonial-grid" id="reviewsGrid"></div>
 </section>
@@ -529,11 +539,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="#" class="logo">Hnam<span>Store</span></a>
-      <p>Đại lý chính hãng ATK Gaming Gear tại Việt Nam. Chuột gaming siêu nhẹ cho game thủ chuyên nghiệp &amp; casual.</p>
+      <p data-lang="footer_desc">Đại lý chính hãng ATK Gaming Gear tại Việt Nam. Chuột gaming siêu nhẹ cho game thủ chuyên nghiệp &amp; casual.</p>
     </div>
-    <div class="footer-col"><h4>Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
-    <div class="footer-col"><h4>Hỗ Trợ</h4><a href="#">Bảo hành</a><a href="#">Vận chuyển</a><a href="#">Đổi trả 30 ngày</a><a href="#">FAQ</a></div>
-    <div class="footer-col"><h4>Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
+    <div class="footer-col"><h4 data-lang="nav_products">Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
+    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="#" data-lang="footer_warranty">Bảo hành</a><a href="#" data-lang="footer_shipping">Vận chuyển</a><a href="#" data-lang="footer_return">Đổi trả 30 ngày</a><a href="#">FAQ</a></div>
+    <div class="footer-col"><h4 data-lang="nav_contact">Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 HnamStore &mdash; All Rights Reserved</span>
@@ -1297,7 +1307,120 @@ function toggleMenu(){const l=document.querySelector('.nav-links');if(l.style.di
 const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 function initReveal(){document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el))}
 
+// ===== LANGUAGE SYSTEM =====
+let currentLang=localStorage.getItem('hnam_lang')||'vi';
+
+const translations={
+  vi:{
+    nav_products:'Sản Phẩm',nav_specs:'Thông Số',nav_tech:'Công Nghệ',nav_reviews:'Đánh Giá',nav_contact:'Liên Hệ',
+    cart_btn:'Giỏ hàng',
+    hero_line1:'Chuột Gaming',
+    hero_desc:'Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.',
+    hero_cta1:'Xem Sản Phẩm',hero_cta2:'So Sánh Thông Số',
+    stat_light:'Siêu nhẹ',
+    prod_tag:'\u26a1 Bộ Sưu Tập 2026',prod_title:'Chuột Gaming <span>ATK</span>',
+    tab_all:'Tất Cả',
+    search_placeholder:'Tìm kiếm chuột gaming...',search_noresult:'Không tìm thấy sản phẩm nào phù hợp',
+    specs_tag:'\ud83d\udcca So Sánh',specs_title:'Bảng Thông Số <span>Chi Tiết</span>',
+    feat_tag:'\ud83d\udd2c Công Nghệ',feat_title:'Tại Sao Chọn <span>ATK?</span>',
+    cta_title:'Sẵn Sàng <span style="color:var(--cyan)">Nâng Cấp</span> Game?',
+    cta_desc:'Miễn phí vận chuyển toàn quốc cho đơn từ 1.000.000đ. Bảo hành chính hãng 24 tháng.',
+    rev_tag:'\ud83d\udcac Đánh Giá',rev_title:'Game Thủ <span>Nói Gì?</span>',
+    footer_desc:'Đại lý chính hãng ATK Gaming Gear tại Việt Nam. Chuột gaming siêu nhẹ cho game thủ chuyên nghiệp & casual.',
+    footer_support:'Hỗ Trợ',footer_warranty:'Bảo hành',footer_shipping:'Vận chuyển',footer_return:'Đổi trả 30 ngày',
+    add_cart_title:'Thêm vào giỏ',detail_add:'+ Thêm Vào Giỏ',
+    cart_header:'\ud83d\uded2 Giỏ Hàng',cart_empty:'Giỏ hàng của bạn đang trống',cart_total_label:'Tổng cộng:',
+    cart_checkout:'Thanh Toán',cart_freeship:'Miễn phí ship cho đơn từ <span>1.000.000đ</span>',
+  },
+  en:{
+    nav_products:'Products',nav_specs:'Specs',nav_tech:'Technology',nav_reviews:'Reviews',nav_contact:'Contact',
+    cart_btn:'Cart',
+    hero_line1:'Gaming Mouse',
+    hero_desc:'Ultra-light esports mouse from 47g — PAW3950 Ultra 42K DPI sensor — 8000Hz polling rate. Dragonfly A9, Blazing Sky X1 & Ghost Carbon Fiber.',
+    hero_cta1:'View Products',hero_cta2:'Compare Specs',
+    stat_light:'Ultra-light',
+    prod_tag:'\u26a1 Collection 2026',prod_title:'Gaming Mouse <span>ATK</span>',
+    tab_all:'All',
+    search_placeholder:'Search gaming mouse...',search_noresult:'No products found',
+    specs_tag:'\ud83d\udcca Compare',specs_title:'Detailed <span>Specifications</span>',
+    feat_tag:'\ud83d\udd2c Technology',feat_title:'Why Choose <span>ATK?</span>',
+    cta_title:'Ready to <span style="color:var(--cyan)">Level Up</span> Your Game?',
+    cta_desc:'Free shipping nationwide for orders over 1,000,000\u0111. 24-month official warranty.',
+    rev_tag:'\ud83d\udcac Reviews',rev_title:'What <span>Gamers Say?</span>',
+    footer_desc:'Official ATK Gaming Gear dealer in Vietnam. Ultra-light gaming mouse for pro & casual gamers.',
+    footer_support:'Support',footer_warranty:'Warranty',footer_shipping:'Shipping',footer_return:'30-day Returns',
+    add_cart_title:'Add to cart',detail_add:'+ Add to Cart',
+    cart_header:'\ud83d\uded2 Cart',cart_empty:'Your cart is empty',cart_total_label:'Total:',
+    cart_checkout:'Checkout',cart_freeship:'Free shipping for orders over <span>1,000,000\u0111</span>',
+  }
+};
+
+const featuresEn=[
+  {icon:'\ud83e\udeb6',title:'Ultra-Light 47-57g',desc:'Extremely low weight. A9 Air only 47g, Ghost 48g with carbon fiber. Reduce hand fatigue, boost flick shots.'},
+  {icon:'\ud83d\udce1',title:'8000Hz Polling Rate',desc:'8x faster than standard mice. Position updates every 0.125ms. Supports both wired & wireless from Pro series up.'},
+  {icon:'\ud83c\udfaf',title:'PAW3950 Ultra Sensor',desc:'PixArt flagship: 42K DPI, 750 IPS tracking, 50G acceleration. Equipped on A9 Ultra, X1 and Ghost.'},
+  {icon:'\ud83d\udd0b',title:'Up to 600h Battery',desc:'A9 Ultimate 800mAh ~600h. A9 Air optimized 300mAh ~300h. USB-C fast charging in 2-3 hours.'},
+  {icon:'\ud83e\uddca',title:'Ice-Feel & Nano Coating',desc:'Ice-Feel on A9/X1 V1 prevents sweat. New Nano Coating on X1 V2, Ghost & A9 Air is more durable with better grip.'},
+  {icon:'\u2699\ufe0f',title:'ATK HUB & Web Driver',desc:'DPI, macro, polling rate, key remap, firmware update. Supports both desktop software and online web driver.'},
+];
+
+const reviewsEn=[
+  {name:'Minh Quân',tag:'Valorant / A9 Ultra',text:'A9 Ultra 8KHz tracking is unbelievably smooth. 53g light but solid build quality. Omron Optical clicks feel crisp and satisfying.',rating:5,bg:'linear-gradient(135deg,#00e5ff,#00b8d4)'},
+  {name:'Thu Hà',tag:'CS2 / X1 V2 Extreme',text:'X1 V2 Extreme is the best mouse I\'ve ever used. Swiftlight switch has incredibly fast response, nano coating grips perfectly even after 5 hours.',rating:5,bg:'linear-gradient(135deg,#ff2d78,#ff6b9d)'},
+  {name:'Đức Anh',tag:'Esports Coach / Ghost',text:'Ghost carbon fiber 48g yet amazingly rigid. Smaller design than X1, fits medium-small hands very well. Highly recommend for pros.',rating:5,bg:'linear-gradient(135deg,#00ff88,#00cc6a)'},
+];
+
+function setLang(lang){
+  currentLang=lang;
+  localStorage.setItem('hnam_lang',lang);
+  document.getElementById('langVi').classList.toggle('active',lang==='vi');
+  document.getElementById('langEn').classList.toggle('active',lang==='en');
+  document.documentElement.lang=lang;
+  document.title=lang==='vi'?'HnamStore Vietnam — Chuột Gaming Siêu Nhẹ':'HnamStore Vietnam — Ultra-Light Gaming Mouse';
+
+  const t=translations[lang];
+  // Update all data-lang elements
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    const key=el.getAttribute('data-lang');
+    if(t[key]!=null) el.innerHTML=t[key];
+  });
+  // Update placeholders
+  document.querySelectorAll('[data-lang-placeholder]').forEach(el=>{
+    const key=el.getAttribute('data-lang-placeholder');
+    if(t[key]!=null) el.placeholder=t[key];
+  });
+
+  // Re-render dynamic content
+  renderFeatures();
+  renderReviews();
+  renderProducts(currentFilter);
+}
+
+// Override renderFeatures/renderReviews to use current language
+const _origRenderFeatures=renderFeatures;
+renderFeatures=function(){
+  const f=currentLang==='en'?featuresEn:features;
+  document.getElementById('featuresGrid').innerHTML=f.map((feat,i)=>`
+    <div class="feature-card reveal" style="transition-delay:${i*0.07}s"><div class="feature-icon">${feat.icon}</div><h3>${feat.title}</h3><p>${feat.desc}</p></div>
+  `).join('');
+  requestAnimationFrame(initReveal);
+};
+
+const _origRenderReviews=renderReviews;
+renderReviews=function(){
+  const r=currentLang==='en'?reviewsEn:reviews;
+  document.getElementById('reviewsGrid').innerHTML=r.map((rev,i)=>`
+    <div class="testimonial-card reveal" style="transition-delay:${i*0.1}s">
+      <div class="stars">${'\u2605'.repeat(rev.rating)}${'\u2606'.repeat(5-rev.rating)}</div>
+      <blockquote>"${rev.text}"</blockquote>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:${rev.bg}">${rev.name[0]}</div><div class="reviewer-info"><strong>${rev.name}</strong><span>${rev.tag}</span></div></div>
+    </div>
+  `).join('');
+  requestAnimationFrame(initReveal);
+};
+
 renderProducts();renderFeatures();renderReviews();requestAnimationFrame(initReveal);
+if(currentLang==='en') setLang('en');
 </script>
 </body>
 </html>
