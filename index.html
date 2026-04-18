@@ -415,6 +415,30 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Pro Player Pick */
+.pros-section{background:linear-gradient(180deg,var(--bg),var(--bg2));padding:5rem 2rem;position:relative;overflow:hidden}
+.pros-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(255,45,120,0.08),transparent 70%);pointer-events:none}
+.pros-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem;max-width:1200px;margin:0 auto;position:relative;z-index:2}
+.pro-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;transition:all .4s}
+.pro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--magenta),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pro-card:hover::before{transform:scaleX(1)}
+.pro-card:hover{transform:translateY(-4px);border-color:rgba(255,45,120,0.25);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.pro-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.pro-avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.3rem;color:#000;flex-shrink:0;border:2px solid rgba(255,255,255,0.08)}
+.pro-info h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.2rem}
+.pro-info .pro-real{font-size:.72rem;color:var(--text-dim);margin-bottom:.25rem}
+.pro-info .pro-team{font-size:.78rem;color:var(--cyan);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.pro-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+.pro-tag{padding:.25rem .6rem;border-radius:6px;font-size:.68rem;font-weight:700;background:rgba(255,45,120,0.08);color:var(--magenta);border:1px solid rgba(255,45,120,0.15);letter-spacing:.3px}
+.pro-tag.game{background:rgba(0,229,255,0.08);color:var(--cyan);border-color:rgba(0,229,255,0.15)}
+.pro-tag.flag{background:rgba(255,196,0,0.08);color:var(--gold);border-color:rgba(255,196,0,0.15)}
+.pro-gear{display:flex;align-items:center;gap:.6rem;padding:.7rem;background:rgba(0,229,255,0.04);border-radius:10px;border:1px solid rgba(0,229,255,0.08)}
+.pro-gear-icon{font-size:1.3rem}
+.pro-gear-text{font-size:.78rem;line-height:1.4}
+.pro-gear-text .label{color:var(--text-dim);font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.15rem}
+.pro-gear-text .gear{color:var(--text);font-weight:700}
+.pro-quote{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.04);font-size:.8rem;color:var(--text-dim);font-style:italic;line-height:1.55}
+
 /* Announcement Bar */
 .announcement-bar{background:linear-gradient(90deg,var(--cyan),var(--magenta));color:#000;overflow:hidden;height:36px;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:1001}
 .announce-track{display:flex;animation:announceScroll 25s linear infinite;white-space:nowrap}
@@ -508,6 +532,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
     <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
     <li><a href="#specs" data-lang="nav_specs">Thông Số</a></li>
     <li><a href="#features" data-lang="nav_tech">Công Nghệ</a></li>
+    <li><a href="#pros" data-lang="nav_pros">Pro Player</a></li>
     <li><a href="#reviews" data-lang="nav_reviews">Đánh Giá</a></li>
     <li><a href="#contact" data-lang="nav_contact">Liên Hệ</a></li>
   </ul>
@@ -615,6 +640,16 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   </div>
 </section>
 
+<!-- Pro Player Pick -->
+<section class="pros-section" id="pros">
+  <div class="section-header reveal">
+    <div class="section-tag" data-lang="pros_tag">&#127942; Pro Player Pick</div>
+    <h2 class="section-title" data-lang="pros_title">Tuyển Thủ <span>Chuyên Nghiệp</span></h2>
+    <p class="section-desc" data-lang="pros_desc">Các pro player esports quốc tế đang sử dụng gear ATK trong thi đấu</p>
+  </div>
+  <div class="pros-grid" id="prosGrid"></div>
+</section>
+
 <section class="testimonials" id="reviews">
   <div class="section-header reveal">
     <div class="section-tag" data-lang="rev_tag">&#128172; Đánh Giá</div>
@@ -719,6 +754,9 @@ const products=[
   {cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Extreme 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1: Nordic 54H20, độ trễ ~0.163ms, engine 20K+ FPS, dongle GEM 8K mới, pin 800mAh.',descEn:'Flagship X1: Nordic 54H20, ~0.163ms latency, 20K+ FPS engine, new GEM 8K dongle, 800mAh battery.',price:1990000,oldPrice:2390000,badge:'hot',color:'#5a0a3a',img:'https://ausmodshop.com/cdn/shop/files/1500_64959b4f-7619-4791-bbb7-a00d33002d35.webp?v=1770790008',mcu:'Nordic 54H20',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
   {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Khung carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. 3 chế độ kết nối. Kích thước 121\u00d761.3\u00d738mm.',descEn:'Hollow carbon fiber frame 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode. Size 121\u00d761.3\u00d738mm.',price:2490000,oldPrice:0,badge:'new',color:'#0a3020',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
   {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Ghost + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng & siêu nhẹ. Lớp phủ Nano.',descEn:'Ghost + Nordic 54H20 MCU, 8KHz in both modes. Carbon fiber ultra-rigid & ultra-light. Nano Coating.',price:2890000,oldPrice:0,badge:'hot',color:'#1a2a20',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Silver',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Silver giới hạn. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Limited Silver edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'new',color:'#3a3a3a',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Red',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Red nổi bật. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Bold Red edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'',color:'#4a0a1a',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme Purple',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Purple ánh kim. Ghost Extreme + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng.',descEn:'Metallic Purple edition. Ghost Extreme + Nordic 54H20 MCU, 8KHz in both modes. Ultra-rigid carbon fiber.',price:2990000,oldPrice:0,badge:'new',color:'#3a0a5a',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
 ];
 
 const features=[
@@ -734,6 +772,9 @@ const reviews=[
   {name:'Minh Quân',tag:'Valorant / A9 Ultra',text:'A9 Ultra 8KHz tracking mượt không tưởng. 53g nhẹ mà chất lượng build chắc chắn. Omron Optical click giòn sướng tay.',rating:5,bg:'linear-gradient(135deg,#00e5ff,#00b8d4)'},
   {name:'Thu Hà',tag:'CS2 / X1 V2 Extreme',text:'X1 V2 Extreme là con chuột tốt nhất từng dùng. Switch Swiftlight phản hồi cực nhanh, nano coating bám tay hoàn hảo dù chơi 5 tiếng.',rating:5,bg:'linear-gradient(135deg,#ff2d78,#ff6b9d)'},
   {name:'Đức Anh',tag:'Esports Coach / Ghost',text:'Ghost carbon fiber 48g mà cứng đáng kinh ngạc. Thiết kế nhỏ hơn X1, vừa tay medium-small rất tốt. Khuyên dùng cho pro.',rating:5,bg:'linear-gradient(135deg,#00ff88,#00cc6a)'},
+  {name:'Hoàng Long',tag:'Apex Legends / A9 Air',text:'A9 Air 47g đổi cuộc chơi luôn. Flick shot nhẹ, pin 300 tiếng dùng cả tuần không sạc. Build quality ATK đỉnh.',rating:5,bg:'linear-gradient(135deg,#ffc400,#ff9500)'},
+  {name:'Bảo Trân',tag:'Valorant / X1 V1 Pro',text:'Chuyển từ Razer sang X1 V1 Pro không tiếc. 49g cảm giác không có chuột trên tay, tracking chính xác cực kỳ.',rating:5,bg:'linear-gradient(135deg,#a259ff,#ff59e6)'},
+  {name:'Trần Duy',tag:'Streamer / A9 Plus',text:'A9 Plus pin 240h quá xịn cho streamer. Ice-Feel coating không bị nhớp khi stream lâu. Giá mềm mà chất lượng cao.',rating:5,bg:'linear-gradient(135deg,#00b8d4,#006d8f)'},
 ];
 
 function formatPrice(n){return n.toLocaleString('vi-VN')+'\u0111'}
@@ -844,6 +885,37 @@ function renderReviews(){
       <div class="reviewer"><div class="reviewer-avatar" style="background:${r.bg}">${r.name[0]}</div><div class="reviewer-info"><strong>${r.name}</strong><span>${r.tag}</span></div></div>
     </div>
   `).join('');
+}
+
+function renderPros(){
+  const el=document.getElementById('prosGrid');
+  if(!el)return;
+  el.innerHTML=proPlayers.map((p,i)=>`
+    <div class="pro-card reveal" style="transition-delay:${i*0.1}s">
+      <div class="pro-header">
+        <div class="pro-avatar" style="background:${p.avatar}">${p.initial}</div>
+        <div class="pro-info">
+          <h3>${p.ign}</h3>
+          <div class="pro-real">${p.realName}</div>
+          <div class="pro-team">${p.team}</div>
+        </div>
+      </div>
+      <div class="pro-tags">
+        <span class="pro-tag game">${p.game}</span>
+        <span class="pro-tag">${p.role}</span>
+        <span class="pro-tag flag">${p.flag}</span>
+      </div>
+      <div class="pro-gear">
+        <div class="pro-gear-icon">&#127918;</div>
+        <div class="pro-gear-text">
+          <div class="label">${currentLang==='en'?'Gear':'Thiết bị'}</div>
+          <div class="gear">${p.gear}</div>
+        </div>
+      </div>
+      <p class="pro-quote">"${currentLang==='en'?p.quoteEn:p.quoteVi}"</p>
+    </div>
+  `).join('');
+  requestAnimationFrame(initReveal);
 }
 
 // ===== CART SYSTEM =====
@@ -1483,10 +1555,44 @@ const featuresEn=[
   {icon:'\u2699\ufe0f',title:'ATK HUB & Web Driver',desc:'DPI, macro, polling rate, key remap, firmware update. Supports both desktop software and online web driver.'},
 ];
 
+const proPlayers=[
+  {
+    ign:'Chronicle',realName:'Timofey Khromov',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddea\ud83c\uddfa EMEA',role:'IGL / Sentinel',
+    gear:'ATK Blazing Sky ZERO',gearColor:'Frosted Purple',
+    avatar:'linear-gradient(135deg,#ffc400,#ff6b00)',initial:'C',
+    quoteVi:'ATK cho tôi cảm giác tracking chính xác và nhất quán ở level cao nhất. Polling 8KHz tạo khác biệt thực sự trong clutch moments.',
+    quoteEn:'ATK gives me precise and consistent tracking at the highest level. 8KHz polling makes a real difference in clutch moments.'
+  },
+  {
+    ign:'aspas',realName:'Erick Santos',team:'Leviatán',game:'Valorant',flag:'\ud83c\udde7\ud83c\uddf7 Brazil',role:'Duelist / Jett',
+    gear:'ATK RS6 Ultra Aspas Edition',gearColor:'Signature Series',
+    avatar:'linear-gradient(135deg,#00ff88,#00b8d4)',initial:'A',
+    quoteVi:'Có bàn phím signature ATK riêng là niềm vinh dự. Hall Effect switch phản hồi cực nhanh phù hợp với playstyle Duelist của tôi.',
+    quoteEn:'Having my own ATK signature keyboard is an honor. Hall Effect switches with ultra-fast response fit my Duelist playstyle perfectly.'
+  },
+  {
+    ign:'Derke',realName:'Nikita Sirmitev',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddeb\ud83c\uddee Finland',role:'Duelist',
+    gear:'ATK Blazing Sky F1 Pro Max',gearColor:'Black Edition',
+    avatar:'linear-gradient(135deg,#ff2d78,#a259ff)',initial:'D',
+    quoteVi:'F1 Pro Max siêu nhẹ giúp flick shot chính xác hơn. Build quality ATK không thua kém các brand lớn.',
+    quoteEn:'F1 Pro Max ultra-light makes flick shots more precise. ATK build quality rivals major brands.'
+  },
+  {
+    ign:'Sayf',realName:'Saif Jibraeel',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddf8\ud83c\uddea Sweden',role:'Flex',
+    gear:'ATK Blazing Sky X1',gearColor:'White Edition',
+    avatar:'linear-gradient(135deg,#00e5ff,#0078ff)',initial:'S',
+    quoteVi:'X1 shell ambidextrous hoàn hảo cho claw grip. 49g cảm giác nhẹ như không có gì trên tay.',
+    quoteEn:'X1 ambidextrous shell is perfect for claw grip. 49g feels like nothing in hand.'
+  },
+];
+
 const reviewsEn=[
   {name:'Minh Quân',tag:'Valorant / A9 Ultra',text:'A9 Ultra 8KHz tracking is unbelievably smooth. 53g light but solid build quality. Omron Optical clicks feel crisp and satisfying.',rating:5,bg:'linear-gradient(135deg,#00e5ff,#00b8d4)'},
   {name:'Thu Hà',tag:'CS2 / X1 V2 Extreme',text:'X1 V2 Extreme is the best mouse I\'ve ever used. Swiftlight switch has incredibly fast response, nano coating grips perfectly even after 5 hours.',rating:5,bg:'linear-gradient(135deg,#ff2d78,#ff6b9d)'},
   {name:'Đức Anh',tag:'Esports Coach / Ghost',text:'Ghost carbon fiber 48g yet amazingly rigid. Smaller design than X1, fits medium-small hands very well. Highly recommend for pros.',rating:5,bg:'linear-gradient(135deg,#00ff88,#00cc6a)'},
+  {name:'Hoàng Long',tag:'Apex Legends / A9 Air',text:'A9 Air 47g is a game-changer. Light flick shots, 300h battery lasts all week without charging. ATK build quality is top-tier.',rating:5,bg:'linear-gradient(135deg,#ffc400,#ff9500)'},
+  {name:'Bảo Trân',tag:'Valorant / X1 V1 Pro',text:'No regrets switching from Razer to X1 V1 Pro. 49g feels like there\'s nothing in my hand, extremely precise tracking.',rating:5,bg:'linear-gradient(135deg,#a259ff,#ff59e6)'},
+  {name:'Trần Duy',tag:'Streamer / A9 Plus',text:'A9 Plus 240h battery is amazing for streamers. Ice-Feel coating doesn\'t get sticky during long streams. Great value quality.',rating:5,bg:'linear-gradient(135deg,#00b8d4,#006d8f)'},
 ];
 
 function setLang(lang){
@@ -1512,7 +1618,10 @@ function setLang(lang){
   // Re-render dynamic content
   renderFeatures();
   renderReviews();
+  renderPros();
   renderProducts(currentFilter);
+  renderCarousel();
+  renderAnnounce();
 }
 
 // Override renderFeatures/renderReviews to use current language
@@ -1641,6 +1750,14 @@ translations.en.news_title='\ud83d\udce8 Subscribe to Newsletter';
 translations.en.news_desc='Get notified about new products, promotions, and exclusive discount codes.';
 translations.en.news_placeholder='Enter your email...';
 translations.en.news_btn='Subscribe';
+translations.vi.pros_tag='\ud83c\udfc6 Pro Player Pick';
+translations.vi.pros_title='Tuyển Thủ <span>Chuyên Nghiệp</span>';
+translations.vi.pros_desc='Các pro player esports quốc tế đang sử dụng gear ATK trong thi đấu';
+translations.en.pros_tag='\ud83c\udfc6 Pro Player Pick';
+translations.en.pros_title='Professional <span>Esports Players</span>';
+translations.en.pros_desc='International esports pros using ATK gear in competitive tournaments';
+translations.vi.nav_pros='Pro Player';
+translations.en.nav_pros='Pro Player';
 
 // Escape key for policy modal
 const _origEsc=document.onkeydown;
@@ -1648,7 +1765,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
 });
 
-renderProducts();renderFeatures();renderReviews();renderCarousel();requestAnimationFrame(initReveal);
+renderProducts();renderFeatures();renderReviews();renderPros();renderCarousel();requestAnimationFrame(initReveal);
 if(currentLang==='en') setLang('en');
 </script>
 </body>
