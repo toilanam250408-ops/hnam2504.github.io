@@ -698,7 +698,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   </div>
   <div class="pros-grid" id="prosGrid"></div>
   <div class="pros-cta">
-    <button class="pros-view-all" onclick="openProsPage()" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
+    <button class="pros-view-all" onclick="window.open('/proplayer','_blank')" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
   </div>
 </section>
 
@@ -733,7 +733,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <a href="#" class="logo">Hnam<span>Store</span></a>
     </div>
     <div class="footer-col"><h4 data-lang="nav_products">Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
-    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="#" onclick="openPolicy('warranty');return false" data-lang="footer_warranty">Bảo hành</a><a href="#" onclick="openPolicy('shipping');return false" data-lang="footer_shipping">Vận chuyển</a><a href="#" onclick="openPolicy('return');return false" data-lang="footer_return">Đổi trả 30 ngày</a><a href="#" onclick="openPolicy('faq');return false">FAQ</a></div>
+    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="/policy/warranty" target="_blank" data-lang="footer_warranty">Bảo hành</a><a href="/policy/shipping" target="_blank" data-lang="footer_shipping">Vận chuyển</a><a href="/policy/return" target="_blank" data-lang="footer_return">Đổi trả 30 ngày</a><a href="/policy/faq" target="_blank">FAQ</a></div>
     <div class="footer-col"><h4 data-lang="nav_contact">Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
   </div>
   <div class="footer-bottom">
@@ -860,7 +860,7 @@ function renderProducts(filter='all'){
   const g=document.getElementById('productsGrid');
   g.innerHTML=products.map((p,i)=>{
     const h=filter!=='all'&&p.cat!==filter?'hidden':'';
-    return `<div class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s" onclick="openDetail(${i})">
+    return `<div class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s" onclick="window.open('/'+'${p.slug}','_blank')">
       <div class="product-img">
         <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
         ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" loading="lazy">`:mouseShape(p.color,getAccent(p.cat))}
@@ -950,7 +950,7 @@ function renderPros(){
   // Only show first 4 on home page
   const preview=proPlayers.slice(0,4);
   el.innerHTML=preview.map((p,i)=>`
-    <div class="pro-card reveal" style="transition-delay:${i*0.1}s" onclick="openProsPage()">
+    <div class="pro-card reveal" style="transition-delay:${i*0.1}s" onclick="window.open('/proplayer','_blank')">
       <div class="pro-header">
         <div class="pro-avatar" style="background:${p.avatar}">${p.initial}</div>
         <div class="pro-info">
@@ -1925,90 +1925,19 @@ renderProducts();renderFeatures();renderReviews();renderPros();renderCarousel();
 if(currentLang==='en') setLang('en');
 
 // ===== ROUTER =====
-function navigate(path,replace){
-  if(replace) history.replaceState({path},'',path);
-  else history.pushState({path},'',path);
-  handleRoute();
-}
-
+// Handle direct URL access (when user opens /atka9air in new tab)
 function handleRoute(){
-  // Close any open overlays first
-  closeProsPage();
-  closeDetail(null,true);
-  closePolicy();
-
   const path=location.pathname.replace(/\/$/,'')||'/';
   const seg=path.split('/').filter(Boolean);
-
-  if(seg.length===0){
-    // Home — already rendered
-    return;
-  }
-
+  if(seg.length===0) return; // Home
   const first=seg[0].toLowerCase();
 
-  if(first==='proplayer'){
-    openProsPage(true);
-    return;
-  }
+  if(first==='proplayer'){openProsPage();return;}
+  if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
 
-  if(first==='policy'&&seg[1]){
-    openPolicy(seg[1],true);
-    return;
-  }
-
-  // Try to match product slug
   const productIdx=products.findIndex(p=>p.slug===first);
-  if(productIdx>=0){
-    openDetail(productIdx,true);
-    return;
-  }
-
-  // Unknown route — go home
-  navigate('/',true);
+  if(productIdx>=0){openDetail(productIdx);return;}
 }
-
-// Override handlers to use routing
-const _origOpenPros=openProsPage;
-openProsPage=function(fromRoute){
-  _origOpenPros();
-  if(!fromRoute) history.pushState({path:'/proplayer'},'','/proplayer');
-};
-
-const _origCloseProsPage=closeProsPage;
-closeProsPage=function(){
-  const wasOpen=document.getElementById('prosPageOverlay').classList.contains('open');
-  _origCloseProsPage();
-  if(wasOpen&&location.pathname!=='/') history.pushState({path:'/'},'','/');
-};
-
-const _origOpenDetail=openDetail;
-openDetail=function(i,fromRoute){
-  _origOpenDetail(i);
-  if(!fromRoute&&products[i]&&products[i].slug) history.pushState({path:'/'+products[i].slug},'','/'+products[i].slug);
-};
-
-const _origCloseDetail=closeDetail;
-closeDetail=function(e,force){
-  const wasOpen=document.getElementById('detailOverlay').classList.contains('open');
-  _origCloseDetail(e,force);
-  if(wasOpen&&(!e||force)&&location.pathname!=='/') history.pushState({path:'/'},'','/');
-};
-
-const _origOpenPolicy=openPolicy;
-openPolicy=function(type,fromRoute){
-  _origOpenPolicy(type);
-  if(!fromRoute) history.pushState({path:'/policy/'+type},'','/policy/'+type);
-};
-
-const _origClosePolicy=closePolicy;
-closePolicy=function(){
-  const wasOpen=document.getElementById('policyOverlay').classList.contains('open');
-  _origClosePolicy();
-  if(wasOpen&&location.pathname.startsWith('/policy')) history.pushState({path:'/'},'','/');
-};
-
-window.addEventListener('popstate',handleRoute);
 handleRoute();
 </script>
 </body>
