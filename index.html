@@ -415,6 +415,79 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Announcement Bar */
+.announcement-bar{background:linear-gradient(90deg,var(--cyan),var(--magenta));color:#000;overflow:hidden;height:36px;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:1001}
+.announce-track{display:flex;animation:announceScroll 25s linear infinite;white-space:nowrap}
+.announce-item{display:inline-flex;align-items:center;gap:.4rem;padding:0 2.5rem;font-size:.78rem;font-weight:700;letter-spacing:.3px}
+@keyframes announceScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.announcement-bar~.navbar{top:36px}
+.announcement-bar[style*="display:none"]~.navbar{top:0}
+body.has-announce .hero{padding-top:calc(6rem + 36px)}
+
+/* Chat Float Button */
+.chat-float{position:fixed;bottom:2rem;left:1.5rem;z-index:9998;display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
+.chat-fab{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:all .3s;position:relative}
+.chat-fab:hover{transform:scale(1.1)}
+.chat-fab-zalo{background:#0068ff;color:#fff}
+.chat-fab-messenger{background:linear-gradient(135deg,#00c6ff,#0078ff,#a259ff);color:#fff}
+.chat-fab-phone{background:var(--green);color:#000}
+.chat-fab .fab-tooltip{position:absolute;left:calc(100% + .7rem);background:var(--bg3);color:var(--text);font-size:.72rem;font-weight:600;padding:.35rem .7rem;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s;border:1px solid var(--border)}
+.chat-fab:hover .fab-tooltip{opacity:1}
+.chat-toggle{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:#000;font-size:1.5rem;box-shadow:0 4px 25px rgba(0,229,255,0.3);transition:all .3s;position:relative}
+.chat-toggle:hover{transform:scale(1.08)}
+.chat-toggle .pulse{position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--cyan);animation:chatPulse 2s infinite;opacity:0}
+@keyframes chatPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
+.chat-buttons{display:flex;flex-direction:column;gap:.5rem;max-height:0;overflow:hidden;transition:max-height .4s ease}
+.chat-buttons.open{max-height:200px}
+
+/* Policy Modal */
+.policy-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);z-index:6000;opacity:0;visibility:hidden;transition:all .3s;display:flex;align-items:center;justify-content:center;padding:2rem}
+.policy-overlay.open{opacity:1;visibility:visible}
+.policy-modal{background:var(--bg2);border:1px solid var(--border);border-radius:20px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:2.5rem;position:relative;transform:scale(0.9);transition:transform .4s}
+.policy-overlay.open .policy-modal{transform:scale(1)}
+.policy-modal h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:1.2rem;color:var(--cyan)}
+.policy-modal h3{font-size:.92rem;font-weight:700;margin:1.2rem 0 .5rem;color:var(--text)}
+.policy-modal p,.policy-modal li{font-size:.84rem;color:var(--text-dim);line-height:1.7}
+.policy-modal ul{padding-left:1.2rem;margin-bottom:.8rem}
+.policy-modal .policy-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,0.5);border:1px solid var(--border);color:var(--text-dim);width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.policy-modal .policy-close:hover{color:var(--text);border-color:var(--cyan)}
+
+/* Newsletter */
+.newsletter-section{background:var(--bg2);padding:3rem 2rem}
+.newsletter-inner{max-width:600px;margin:0 auto;text-align:center}
+.newsletter-inner h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+.newsletter-inner p{font-size:.84rem;color:var(--text-dim);margin-bottom:1.2rem}
+.newsletter-form{display:flex;gap:.6rem;max-width:450px;margin:0 auto}
+.newsletter-form input{flex:1;padding:.7rem 1rem;border-radius:50px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;font-size:.85rem;outline:none;transition:border-color .3s}
+.newsletter-form input:focus{border-color:var(--cyan)}
+.newsletter-form button{padding:.7rem 1.5rem;border-radius:50px;border:none;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:#000;font-weight:700;font-size:.82rem;cursor:pointer;letter-spacing:.5px;text-transform:uppercase;transition:all .3s;white-space:nowrap}
+.newsletter-form button:hover{box-shadow:0 4px 20px rgba(0,229,255,0.25)}
+@media(max-width:500px){.newsletter-form{flex-direction:column}}
+
+/* Product Stock & Wishlist */
+.product-stock{font-size:.7rem;margin-bottom:.5rem;font-weight:600}
+.stock-low{color:var(--magenta)}
+.stock-ok{color:var(--green)}
+.wishlist-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--glass);color:var(--text-dim);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;position:absolute;top:.8rem;right:.8rem;z-index:2}
+.wishlist-btn:hover,.wishlist-btn.active{color:var(--magenta);border-color:var(--magenta);background:rgba(255,45,120,0.1)}
+
+/* Banner Carousel */
+.carousel-section{padding:2rem 2rem 0}
+.carousel-wrap{max-width:1200px;margin:0 auto;border-radius:16px;overflow:hidden;position:relative;height:200px}
+.carousel-track{display:flex;transition:transform .6s ease;height:100%}
+.carousel-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem 3rem;position:relative}
+.carousel-slide::before{content:'';position:absolute;inset:0}
+.carousel-slide-content{position:relative;z-index:2;text-align:center}
+.carousel-slide-content h3{font-family:'Orbitron',sans-serif;font-size:clamp(1rem,2.5vw,1.5rem);font-weight:800;margin-bottom:.4rem}
+.carousel-slide-content p{font-size:.88rem;color:rgba(255,255,255,0.85)}
+.carousel-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--text-dim);border:none;cursor:pointer;transition:all .3s;padding:0}
+.carousel-dot.active{background:var(--cyan);transform:scale(1.3)}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:3}
+.carousel-btn:hover{background:rgba(0,229,255,0.2);border-color:var(--cyan)}
+.carousel-prev{left:.8rem}
+.carousel-next{right:.8rem}
+
 /* Language Switcher */
 .lang-switch{display:flex;align-items:center;border-radius:50px;overflow:hidden;border:1px solid var(--border);background:var(--glass);height:32px}
 .lang-btn{padding:.3rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.5px;border:none;cursor:pointer;background:transparent;color:var(--text-dim);transition:all .3s;height:100%;display:flex;align-items:center;gap:.3rem}
@@ -423,6 +496,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 </style>
 </head>
 <body>
+
+<!-- Announcement Bar (hidden for now) -->
+<div class="announcement-bar" id="announceBar" style="display:none">
+  <div class="announce-track" id="announceTrack"></div>
+</div>
 
 <nav class="navbar" id="navbar">
   <a href="#" class="logo">Hnam<span>Store</span></a>
@@ -460,6 +538,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
       <div class="stat"><div class="stat-num">750<span style="font-size:.9rem">IPS</span></div><div class="stat-label">Tracking</div></div>
     </div>
   </div>
+</section>
+
+<!-- Banner Carousel -->
+<section class="carousel-section">
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carouselTrack"></div>
+    <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+    <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#10095;</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
 <section class="products-section" id="products">
@@ -535,6 +623,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
   <div class="testimonial-grid" id="reviewsGrid"></div>
 </section>
 
+<!-- Newsletter -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <h3 data-lang="news_title">&#128232; Đăng Ký Nhận Tin</h3>
+    <p data-lang="news_desc">Nhận thông báo sản phẩm mới, khuyến mãi và mã giảm giá độc quyền.</p>
+    <div class="newsletter-form">
+      <input type="email" id="newsEmail" data-lang-placeholder="news_placeholder" placeholder="Nhập email của bạn...">
+      <button onclick="subscribeNewsletter()" data-lang="news_btn">Đăng Ký</button>
+    </div>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -542,7 +642,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
       <p data-lang="footer_desc">Đại lý chính hãng ATK Gaming Gear tại Việt Nam. Chuột gaming siêu nhẹ cho game thủ chuyên nghiệp &amp; casual.</p>
     </div>
     <div class="footer-col"><h4 data-lang="nav_products">Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
-    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="#" data-lang="footer_warranty">Bảo hành</a><a href="#" data-lang="footer_shipping">Vận chuyển</a><a href="#" data-lang="footer_return">Đổi trả 30 ngày</a><a href="#">FAQ</a></div>
+    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="#" onclick="openPolicy('warranty');return false" data-lang="footer_warranty">Bảo hành</a><a href="#" onclick="openPolicy('shipping');return false" data-lang="footer_shipping">Vận chuyển</a><a href="#" onclick="openPolicy('return');return false" data-lang="footer_return">Đổi trả 30 ngày</a><a href="#" onclick="openPolicy('faq');return false">FAQ</a></div>
     <div class="footer-col"><h4 data-lang="nav_contact">Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
   </div>
   <div class="footer-bottom">
@@ -572,6 +672,24 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 <!-- Product Detail Modal -->
 <div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)">
   <div class="detail-modal" id="detailModal"></div>
+</div>
+
+<!-- Chat Float -->
+<div class="chat-float" id="chatFloat">
+  <div class="chat-buttons" id="chatButtons">
+    <a href="https://zalo.me/0776765608" target="_blank" class="chat-fab chat-fab-zalo" title="Zalo">Z<span class="fab-tooltip">Chat Zalo</span></a>
+    <a href="https://m.me/hnam2504" target="_blank" class="chat-fab chat-fab-messenger" title="Messenger">&#128172;<span class="fab-tooltip">Messenger</span></a>
+    <a href="tel:0776765608" class="chat-fab chat-fab-phone" title="Gọi ngay">&#128222;<span class="fab-tooltip">0776765608</span></a>
+  </div>
+  <button class="chat-toggle" onclick="toggleChat()">&#128172;<span class="pulse"></span></button>
+</div>
+
+<!-- Policy Modal -->
+<div class="policy-overlay" id="policyOverlay" onclick="if(event.target===this)closePolicy()">
+  <div class="policy-modal" id="policyModal">
+    <button class="policy-close" onclick="closePolicy()">&times;</button>
+    <div id="policyContent"></div>
+  </div>
 </div>
 
 <!-- Payment Page -->
@@ -650,12 +768,14 @@ function renderProducts(filter='all'){
         <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
         ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" loading="lazy">`:mouseShape(p.color,getAccent(p.cat))}
         ${badgeHTML(p.badge)}
+        <button class="wishlist-btn ${wishlist.includes(i)?'active':''}" onclick="toggleWishlist(${i});event.stopPropagation()" title="${currentLang==='en'?'Wishlist':'Yêu thích'}">${wishlist.includes(i)?'&#10084;':'&#9825;'}</button>
       </div>
       <div class="product-info">
         <div class="product-series">${p.series}</div>
         <h3 class="product-name">${p.name}</h3>
         <div class="product-specs"><span class="spec-tag">${p.weight}</span><span class="spec-tag">${p.sensor}</span><span class="spec-tag">${p.polling}</span></div>
         <p class="product-desc">${currentLang==='en'&&p.descEn?p.descEn:p.desc}</p>
+        <div class="product-stock ${getStock(i)<=5?'stock-low':'stock-ok'}">${getStock(i)<=5?(currentLang==='en'?'Only '+getStock(i)+' left!':'Chỉ còn '+getStock(i)+' sản phẩm!'):(currentLang==='en'?'In stock':'Còn hàng')} </div>
         <div class="product-footer">
           <div class="product-price">${formatPrice(p.price)}${p.oldPrice?`<span class="old">${formatPrice(p.oldPrice)}</span>`:''}</div>
           <button class="add-cart" onclick="addToCart(${i});event.stopPropagation()" title="${currentLang==='en'?'Add to cart':'Thêm vào giỏ'}">+</button>
@@ -1419,7 +1539,117 @@ renderReviews=function(){
   requestAnimationFrame(initReveal);
 };
 
-renderProducts();renderFeatures();renderReviews();requestAnimationFrame(initReveal);
+// ===== ANNOUNCEMENT BAR =====
+const announcements={
+  vi:['&#128666; Giao nhanh 1-3 ngày','&#127873; Miễn phí ship từ 1 triệu','&#128179; Trả góp 0%','&#128736; Bảo hành 24 tháng','&#128172; Tư vấn chuyên nghiệp'],
+  en:['&#128666; Fast delivery 1-3 days','&#127873; Free ship over 1M VND','&#128179; 0% installment','&#128736; 24-month warranty','&#128172; Expert consulting']
+};
+function renderAnnounce(){
+  const items=announcements[currentLang]||announcements.vi;
+  const html=items.map(t=>`<span class="announce-item">${t}</span>`).join('');
+  document.getElementById('announceTrack').innerHTML=html+html;
+}
+renderAnnounce();
+
+// ===== BANNER CAROUSEL =====
+const carouselSlides=[
+  {bg:'linear-gradient(135deg,#0a1628,#1a2540)',title:'ATK Dragonfly A9 Air',titleEn:'ATK Dragonfly A9 Air',sub:'Siêu nhẹ 47g — Nhẹ nhất dòng A9',subEn:'Ultra-light 47g — Lightest in A9 series'},
+  {bg:'linear-gradient(135deg,#2a0a3a,#4a1a5a)',title:'ATK X1 V2 Extreme 2.0',titleEn:'ATK X1 V2 Extreme 2.0',sub:'Nordic 54H20 — Độ trễ chỉ 0.163ms',subEn:'Nordic 54H20 — Only 0.163ms latency'},
+  {bg:'linear-gradient(135deg,#0a3020,#1a4a30)',title:'ATK Ghost Carbon Fiber',titleEn:'ATK Ghost Carbon Fiber',sub:'48g — Khung carbon fiber rỗng siêu cứng',subEn:'48g — Hollow carbon fiber ultra-rigid frame'},
+];
+let carouselIdx=0;
+function renderCarousel(){
+  const track=document.getElementById('carouselTrack');
+  const dots=document.getElementById('carouselDots');
+  track.innerHTML=carouselSlides.map(s=>`<div class="carousel-slide" style="background:${s.bg}"><div class="carousel-slide-content"><h3>${currentLang==='en'?s.titleEn:s.title}</h3><p>${currentLang==='en'?s.subEn:s.sub}</p></div></div>`).join('');
+  dots.innerHTML=carouselSlides.map((_,i)=>`<button class="carousel-dot ${i===carouselIdx?'active':''}" onclick="goCarousel(${i})"></button>`).join('');
+  track.style.transform=`translateX(-${carouselIdx*100}%)`;
+}
+function moveCarousel(d){carouselIdx=(carouselIdx+d+carouselSlides.length)%carouselSlides.length;renderCarousel();}
+function goCarousel(i){carouselIdx=i;renderCarousel();}
+setInterval(()=>moveCarousel(1),5000);
+renderCarousel();
+
+// ===== CHAT FLOAT =====
+function toggleChat(){document.getElementById('chatButtons').classList.toggle('open')}
+
+// ===== POLICY PAGES =====
+const policies={
+  warranty:{
+    vi:{title:'&#128736; Chính Sách Bảo Hành',content:'<h3>Thời gian bảo hành</h3><p>Tất cả sản phẩm chuột ATK được bảo hành <strong>24 tháng</strong> kể từ ngày mua hàng.</p><h3>Điều kiện bảo hành</h3><ul><li>Sản phẩm còn trong thời hạn bảo hành</li><li>Lỗi do nhà sản xuất (không phải do người dùng)</li><li>Tem bảo hành còn nguyên vẹn</li><li>Có hóa đơn mua hàng hoặc mã đơn hàng</li></ul><h3>Không bảo hành</h3><ul><li>Hư hỏng do va đập, rơi vỡ, ngấm nước</li><li>Tự ý tháo lắp, sửa chữa</li><li>Hết thời hạn bảo hành</li></ul><h3>Quy trình</h3><p>Liên hệ qua Zalo/SĐT <strong>0776765608</strong> → Gửi sản phẩm về Vũng Tàu → Kiểm tra & sửa chữa trong 3-7 ngày → Gửi lại miễn phí.</p>'},
+    en:{title:'&#128736; Warranty Policy',content:'<h3>Warranty Period</h3><p>All ATK mouse products come with a <strong>24-month warranty</strong> from the date of purchase.</p><h3>Warranty Conditions</h3><ul><li>Product is within warranty period</li><li>Manufacturing defects (not user-caused)</li><li>Warranty seal intact</li><li>Proof of purchase or order ID required</li></ul><h3>Not Covered</h3><ul><li>Damage from impact, drops, water exposure</li><li>Unauthorized disassembly or repair</li><li>Expired warranty period</li></ul><h3>Process</h3><p>Contact via Zalo/Phone <strong>0776765608</strong> → Ship product to Vung Tau → Inspect & repair in 3-7 days → Free return shipping.</p>'}
+  },
+  shipping:{
+    vi:{title:'&#128666; Chính Sách Vận Chuyển',content:'<h3>Thời gian giao hàng</h3><ul><li><strong>Nội thành Vũng Tàu:</strong> 1 ngày</li><li><strong>TP.HCM, Đồng Nai, Bình Dương:</strong> 1-2 ngày</li><li><strong>Miền Nam:</strong> 2-3 ngày</li><li><strong>Miền Trung:</strong> 3-4 ngày</li><li><strong>Miền Bắc:</strong> 4-5 ngày</li></ul><h3>Phí vận chuyển</h3><ul><li><strong>Miễn phí</strong> cho đơn hàng từ <strong>1.000.000đ</strong></li><li>Dưới 1 triệu: 15.000đ - 75.000đ tùy khu vực</li></ul><h3>Đơn vị vận chuyển</h3><p>Giao hàng qua GHN, GHTK, J&T Express. Có mã tracking theo dõi đơn hàng.</p>'},
+    en:{title:'&#128666; Shipping Policy',content:'<h3>Delivery Time</h3><ul><li><strong>Vung Tau city:</strong> 1 day</li><li><strong>HCMC, Dong Nai, Binh Duong:</strong> 1-2 days</li><li><strong>Southern Vietnam:</strong> 2-3 days</li><li><strong>Central Vietnam:</strong> 3-4 days</li><li><strong>Northern Vietnam:</strong> 4-5 days</li></ul><h3>Shipping Fee</h3><ul><li><strong>Free shipping</strong> for orders over <strong>1,000,000 VND</strong></li><li>Under 1M: 15,000-75,000 VND by region</li></ul><h3>Carriers</h3><p>Shipped via GHN, GHTK, J&T Express. Tracking code provided for all orders.</p>'}
+  },
+  return:{
+    vi:{title:'&#128259; Chính Sách Đổi Trả',content:'<h3>Thời gian đổi trả</h3><p>Chấp nhận đổi trả trong vòng <strong>30 ngày</strong> kể từ ngày nhận hàng.</p><h3>Điều kiện</h3><ul><li>Sản phẩm còn nguyên tem, hộp, phụ kiện đầy đủ</li><li>Chưa qua sử dụng hoặc lỗi từ nhà sản xuất</li><li>Có hóa đơn hoặc mã đơn hàng</li></ul><h3>Quy trình đổi trả</h3><ul><li>Liên hệ Zalo/SĐT <strong>0776765608</strong></li><li>Gửi ảnh/video sản phẩm lỗi</li><li>Gửi hàng về → Kiểm tra → Đổi mới hoặc hoàn tiền trong 3-5 ngày</li></ul><h3>Hoàn tiền</h3><p>Hoàn tiền qua chuyển khoản ngân hàng trong 1-3 ngày làm việc sau khi xác nhận.</p>'},
+    en:{title:'&#128259; Return Policy',content:'<h3>Return Window</h3><p>Returns accepted within <strong>30 days</strong> from delivery date.</p><h3>Conditions</h3><ul><li>Product with original seal, box, and accessories intact</li><li>Unused or manufacturer defect</li><li>Proof of purchase or order ID required</li></ul><h3>Return Process</h3><ul><li>Contact via Zalo/Phone <strong>0776765608</strong></li><li>Send photos/video of defective product</li><li>Ship back → Inspection → Replacement or refund in 3-5 days</li></ul><h3>Refunds</h3><p>Refunds via bank transfer within 1-3 business days after confirmation.</p>'}
+  },
+  faq:{
+    vi:{title:'&#10067; Câu Hỏi Thường Gặp',content:'<h3>Sản phẩm có chính hãng không?</h3><p>Có. Tất cả sản phẩm đều là hàng chính hãng ATK, nhập khẩu trực tiếp, có tem bảo hành.</p><h3>Thanh toán bằng cách nào?</h3><p>Chuyển khoản ngân hàng (VIB) hoặc thanh toán khi nhận hàng (COD).</p><h3>Có hỗ trợ trả góp không?</h3><p>Hiện tại chưa hỗ trợ trả góp. Chúng tôi sẽ cập nhật trong tương lai.</p><h3>Đặt hàng rồi bao lâu nhận được?</h3><p>Tùy khu vực: 1-5 ngày. Xem chi tiết tại chính sách vận chuyển.</p><h3>Muốn tư vấn chọn chuột thì liên hệ ở đâu?</h3><p>Chat Zalo hoặc gọi <strong>0776765608</strong>. Tư vấn miễn phí theo tay cầm, game và ngân sách.</p>'},
+    en:{title:'&#10067; FAQ',content:'<h3>Are products authentic?</h3><p>Yes. All products are genuine ATK, directly imported, with official warranty.</p><h3>Payment methods?</h3><p>Bank transfer (VIB) or Cash on Delivery (COD).</p><h3>Installment payment?</h3><p>Not available yet. We will update in the future.</p><h3>How long does delivery take?</h3><p>1-5 days depending on region. See shipping policy for details.</p><h3>Where to get buying advice?</h3><p>Chat on Zalo or call <strong>0776765608</strong>. Free consultation based on grip style, game, and budget.</p>'}
+  }
+};
+
+function openPolicy(type){
+  const p=policies[type];
+  if(!p)return;
+  const lang=currentLang||'vi';
+  const data=p[lang]||p.vi;
+  document.getElementById('policyContent').innerHTML=`<h2>${data.title}</h2>${data.content}`;
+  document.getElementById('policyOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePolicy(){
+  document.getElementById('policyOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ===== WISHLIST =====
+let wishlist=JSON.parse(localStorage.getItem('hnam_wishlist')||'[]');
+function toggleWishlist(i){
+  const idx=wishlist.indexOf(i);
+  if(idx>-1){wishlist.splice(idx,1);showToast(currentLang==='en'?'Removed from wishlist':'Đã xóa khỏi yêu thích');}
+  else{wishlist.push(i);showToast(currentLang==='en'?products[i].name+' added to wishlist':products[i].name+' đã thêm vào yêu thích');}
+  localStorage.setItem('hnam_wishlist',JSON.stringify(wishlist));
+  renderProducts(currentFilter);
+}
+
+// ===== STOCK SIMULATION =====
+let stockData=JSON.parse(localStorage.getItem('hnam_stock')||'null');
+if(!stockData){stockData=products.map(()=>Math.floor(Math.random()*18)+3);localStorage.setItem('hnam_stock',JSON.stringify(stockData));}
+function getStock(i){return stockData[i]||10;}
+
+// ===== NEWSLETTER =====
+function subscribeNewsletter(){
+  const email=document.getElementById('newsEmail').value.trim();
+  if(!email||!email.includes('@')){showToast(currentLang==='en'?'Please enter a valid email':'Vui lòng nhập email hợp lệ');return;}
+  const subs=JSON.parse(localStorage.getItem('hnam_subs')||'[]');
+  if(subs.includes(email)){showToast(currentLang==='en'?'Email already subscribed':'Email đã đăng ký rồi');return;}
+  subs.push(email);localStorage.setItem('hnam_subs',JSON.stringify(subs));
+  document.getElementById('newsEmail').value='';
+  showToast(currentLang==='en'?'Subscribed successfully! Thank you':'Đăng ký thành công! Cảm ơn bạn');
+}
+
+// Add newsletter translations
+translations.vi.news_title='\ud83d\udce8 Đăng Ký Nhận Tin';
+translations.vi.news_desc='Nhận thông báo sản phẩm mới, khuyến mãi và mã giảm giá độc quyền.';
+translations.vi.news_placeholder='Nhập email của bạn...';
+translations.vi.news_btn='Đăng Ký';
+translations.en.news_title='\ud83d\udce8 Subscribe to Newsletter';
+translations.en.news_desc='Get notified about new products, promotions, and exclusive discount codes.';
+translations.en.news_placeholder='Enter your email...';
+translations.en.news_btn='Subscribe';
+
+// Escape key for policy modal
+const _origEsc=document.onkeydown;
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
+});
+
+renderProducts();renderFeatures();renderReviews();renderCarousel();requestAnimationFrame(initReveal);
 if(currentLang==='en') setLang('en');
 </script>
 </body>
