@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HnamStore Vietnam — Chuột Gaming Siêu Nhẹ</title>
+<script type="text/javascript">
+// SPA route decoder — converts /?/path back to /path for history API
+(function(l){
+  if(l.search[1]==='/'){
+    var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');
+    window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash);
+  }
+}(window.location));
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -788,23 +797,23 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 
 <script>
 const products=[
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 SE',weight:'53g',sensor:'PAW3311',polling:'1000Hz',desc:'Phiên bản giá rẻ, cảm biến PAW3311, pin 500mAh ~120h. Kết nối 3 chế độ. Lựa chọn tốt nhất tầm giá.',descEn:'Budget-friendly, PAW3311 sensor, 500mAh ~120h battery. Tri-mode connectivity. Best choice for the price.',price:490000,oldPrice:0,badge:'',color:'#2a4a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9',weight:'53g',sensor:'PAW3395 SE',polling:'1000Hz',desc:'Cảm biến PAW3395 SE nâng cấp, pin 500mAh ~120h, switch Huano Blue V2. Tầm trung giá tốt.',descEn:'Upgraded PAW3395 SE sensor, 500mAh ~120h battery, Huano Blue V2 switch. Great mid-range value.',price:690000,oldPrice:0,badge:'',color:'#1e3a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Plus',weight:'57g',sensor:'PAW3395',polling:'1000Hz',desc:'Pin 800mAh ~240h, NearLink không dây, lớp phủ Ice-Feel, switch Huano Iceberry. Bền bỉ nhất dòng A9.',descEn:'800mAh ~240h battery, NearLink wireless, Ice-Feel coating, Huano Iceberry switch. Most durable in A9 series.',price:890000,oldPrice:0,badge:'',color:'#1a3050',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'800mAh / ~240h',connect:'NearLink / BT / USB-C',switchType:'Huano Iceberry',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro',weight:'53g',sensor:'PAW3395',polling:'8000Hz',desc:'Không dây 8KHz, switch Omron Optical, MCU PixArt, lớp phủ Ice-Feel. Dành cho esports chuyên nghiệp.',descEn:'8KHz wireless, Omron Optical switch, PixArt MCU, Ice-Feel coating. Built for competitive esports.',price:1190000,oldPrice:0,badge:'hot',color:'#0e2840',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'PixArt Flagship',battery:'500mAh / ~150h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro Max',weight:'57g',sensor:'PAW3395',polling:'8000Hz',desc:'A9 Pro + pin 800mAh ~240h. Chơi esports liên tục nhiều ngày. Switch Omron Optical.',descEn:'A9 Pro + 800mAh ~240h battery. Play esports for days non-stop. Omron Optical switch.',price:1390000,oldPrice:0,badge:'',color:'#0a2035',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'PixArt Flagship',battery:'800mAh / ~240h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultra',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship A9: PAW3950 Ultra 42K DPI, Nordic 52840, 8KHz không dây + có dây, 3 chế độ kết nối, Ice-Feel.',descEn:'Flagship A9: PAW3950 Ultra 42K DPI, Nordic 52840, 8KHz wireless + wired, tri-mode connectivity, Ice-Feel.',price:1690000,oldPrice:0,badge:'best',color:'#081a30',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Pink.webp?v=1747310132',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Air',weight:'47g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Siêu nhẹ 47g, PAW3950 Ultra, Nordic 54L15, switch ATK SwiftLight. Lớp phủ Nano. Nhẹ nhất dòng A9.',descEn:'Ultra-light 47g, PAW3950 Ultra, Nordic 54L15, ATK SwiftLight switch. Nano Coating. Lightest in A9 series.',price:1590000,oldPrice:0,badge:'new',color:'#0c2a48',img:'https://c1.neweggimages.com/productimage/nb640/C59VS2603270F0F8T80.jpg',mcu:'Nordic 54L15',battery:'300mAh / ~300h',connect:'2.4G / USB-C',switchType:'ATK SwiftLight',coating:'Nano Coating',size:'125\u00d763.5\u00d740mm'},
-  {cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultimate',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'PAW3950 Ultra, Nordic 54L15, pin 800mAh ~600h, switch ATK Optical, lớp phủ Nano. Không dây ApexShark thế hệ 3.',descEn:'PAW3950 Ultra, Nordic 54L15, 800mAh ~600h battery, ATK Optical switch, Nano Coating. 3rd Gen ApexShark wireless.',price:1490000,oldPrice:0,badge:'hot',color:'#0a1e3a',img:'https://gamergear.net/content/product/2025/10/2444/Dragonfly-A9-Ultimate-01.jpg',mcu:'Nordic 54L15',battery:'800mAh / ~600h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'~125\u00d764\u00d740mm'},
-  {cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Pro',weight:'49g',sensor:'PAW3950',polling:'8000Hz',desc:'Siêu nhẹ 49g, PAW3950 750 IPS, polling 8KHz. Omron Optical, lớp phủ Ice-Feel. Kích thước 127\u00d764\u00d740mm.',descEn:'Ultra-light 49g, PAW3950 750 IPS, 8KHz polling. Omron Optical, Ice-Feel coating. Size 127\u00d764\u00d740mm.',price:1290000,oldPrice:0,badge:'',color:'#2a1a4a',img:'https://www.deskhero.ca/cdn/shop/files/5_87c4f624-7d34-416a-b3bc-be3fb44bff99.png?v=1726605937&width=1920',mcu:'Nordic 52840',battery:'300mAh / ~75-150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
-  {cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Ultimate',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1 V1: PAW3950 Ultra, Nordic 52840, 42K DPI, lớp phủ Ice-Feel. Kết nối 3 chế độ.',descEn:'Flagship X1 V1: PAW3950 Ultra, Nordic 52840, 42K DPI, Ice-Feel coating. Tri-mode connectivity.',price:1590000,oldPrice:0,badge:'',color:'#3a1a5a',img:'https://www.deskhero.ca/cdn/shop/files/4_0113cd05-f594-4501-9988-31a387b4699e.png?v=1726605939&width=1920',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
-  {cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Ultimate 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Nâng cấp Nordic 54L15, switch ATK Swiftlight Optical, lớp phủ Nano, firmware ApexShark MAX, pin 800mAh.',descEn:'Upgraded Nordic 54L15, ATK Swiftlight Optical switch, Nano Coating, ApexShark MAX firmware, 800mAh battery.',price:1790000,oldPrice:2090000,badge:'new',color:'#4a0a2a',img:'https://ausmodshop.com/cdn/shop/files/1500_778d99f5-4910-4793-bda8-2cf478ab6b97.webp?v=1770790008',mcu:'Nordic 54L15',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
-  {cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Extreme 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1: Nordic 54H20, độ trễ ~0.163ms, engine 20K+ FPS, dongle GEM 8K mới, pin 800mAh.',descEn:'Flagship X1: Nordic 54H20, ~0.163ms latency, 20K+ FPS engine, new GEM 8K dongle, 800mAh battery.',price:1990000,oldPrice:2390000,badge:'hot',color:'#5a0a3a',img:'https://ausmodshop.com/cdn/shop/files/1500_64959b4f-7619-4791-bbb7-a00d33002d35.webp?v=1770790008',mcu:'Nordic 54H20',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
-  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Khung carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. 3 chế độ kết nối. Kích thước 121\u00d761.3\u00d738mm.',descEn:'Hollow carbon fiber frame 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode. Size 121\u00d761.3\u00d738mm.',price:2490000,oldPrice:0,badge:'new',color:'#0a3020',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
-  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Ghost + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng & siêu nhẹ. Lớp phủ Nano.',descEn:'Ghost + Nordic 54H20 MCU, 8KHz in both modes. Carbon fiber ultra-rigid & ultra-light. Nano Coating.',price:2890000,oldPrice:0,badge:'hot',color:'#1a2a20',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
-  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Silver',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Silver giới hạn. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Limited Silver edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'new',color:'#8a8a8a',img:'https://ryugear.in/cdn/shop/files/SaveClip.App_616368291_122172254552401806_8235931325755550515_n.jpg?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
-  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Red',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Red nổi bật. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Bold Red edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'',color:'#8a1a2a',img:'https://ryugear.in/cdn/shop/files/SaveClip.App_616501740_122172254576401806_4901758076229030741_n.jpg?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
-  {cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme Purple',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Purple ánh kim. Ghost Extreme + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng.',descEn:'Metallic Purple edition. Ghost Extreme + Nordic 54H20 MCU, 8KHz in both modes. Ultra-rigid carbon fiber.',price:2990000,oldPrice:0,badge:'new',color:'#5a1a7a',img:'https://ryugear.in/cdn/shop/files/1500_db4d672c-ccaa-46b8-ad4b-b136cbd724f1_1.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {slug:'atka9se',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 SE',weight:'53g',sensor:'PAW3311',polling:'1000Hz',desc:'Phiên bản giá rẻ, cảm biến PAW3311, pin 500mAh ~120h. Kết nối 3 chế độ. Lựa chọn tốt nhất tầm giá.',descEn:'Budget-friendly, PAW3311 sensor, 500mAh ~120h battery. Tri-mode connectivity. Best choice for the price.',price:490000,oldPrice:0,badge:'',color:'#2a4a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9',weight:'53g',sensor:'PAW3395 SE',polling:'1000Hz',desc:'Cảm biến PAW3395 SE nâng cấp, pin 500mAh ~120h, switch Huano Blue V2. Tầm trung giá tốt.',descEn:'Upgraded PAW3395 SE sensor, 500mAh ~120h battery, Huano Blue V2 switch. Great mid-range value.',price:690000,oldPrice:0,badge:'',color:'#1e3a5a',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'500mAh / ~120h',connect:'2.4G / BT / USB-C',switchType:'Huano Blue V2',coating:'\u2014',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9plus',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Plus',weight:'57g',sensor:'PAW3395',polling:'1000Hz',desc:'Pin 800mAh ~240h, NearLink không dây, lớp phủ Ice-Feel, switch Huano Iceberry. Bền bỉ nhất dòng A9.',descEn:'800mAh ~240h battery, NearLink wireless, Ice-Feel coating, Huano Iceberry switch. Most durable in A9 series.',price:890000,oldPrice:0,badge:'',color:'#1a3050',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'HiSilicon Sparkle',battery:'800mAh / ~240h',connect:'NearLink / BT / USB-C',switchType:'Huano Iceberry',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9pro',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro',weight:'53g',sensor:'PAW3395',polling:'8000Hz',desc:'Không dây 8KHz, switch Omron Optical, MCU PixArt, lớp phủ Ice-Feel. Dành cho esports chuyên nghiệp.',descEn:'8KHz wireless, Omron Optical switch, PixArt MCU, Ice-Feel coating. Built for competitive esports.',price:1190000,oldPrice:0,badge:'hot',color:'#0e2840',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Black.webp?v=1747310132',mcu:'PixArt Flagship',battery:'500mAh / ~150h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9promax',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Pro Max',weight:'57g',sensor:'PAW3395',polling:'8000Hz',desc:'A9 Pro + pin 800mAh ~240h. Chơi esports liên tục nhiều ngày. Switch Omron Optical.',descEn:'A9 Pro + 800mAh ~240h battery. Play esports for days non-stop. Omron Optical switch.',price:1390000,oldPrice:0,badge:'',color:'#0a2035',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_White.webp?v=1747310132',mcu:'PixArt Flagship',battery:'800mAh / ~240h',connect:'2.4G / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9ultra',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultra',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship A9: PAW3950 Ultra 42K DPI, Nordic 52840, 8KHz không dây + có dây, 3 chế độ kết nối, Ice-Feel.',descEn:'Flagship A9: PAW3950 Ultra 42K DPI, Nordic 52840, 8KHz wireless + wired, tri-mode connectivity, Ice-Feel.',price:1690000,oldPrice:0,badge:'best',color:'#081a30',img:'https://ausmodshop.com/cdn/shop/files/ATK_Dragonfly_A9_Pink.webp?v=1747310132',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'~125\u00d764\u00d740mm'},
+  {slug:'atka9air',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Air',weight:'47g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Siêu nhẹ 47g, PAW3950 Ultra, Nordic 54L15, switch ATK SwiftLight. Lớp phủ Nano. Nhẹ nhất dòng A9.',descEn:'Ultra-light 47g, PAW3950 Ultra, Nordic 54L15, ATK SwiftLight switch. Nano Coating. Lightest in A9 series.',price:1590000,oldPrice:0,badge:'new',color:'#0c2a48',img:'https://c1.neweggimages.com/productimage/nb640/C59VS2603270F0F8T80.jpg',mcu:'Nordic 54L15',battery:'300mAh / ~300h',connect:'2.4G / USB-C',switchType:'ATK SwiftLight',coating:'Nano Coating',size:'125\u00d763.5\u00d740mm'},
+  {slug:'atka9ultimate',cat:'a9',series:'Dragonfly A9 Series',name:'ATK Dragonfly A9 Ultimate',weight:'53g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'PAW3950 Ultra, Nordic 54L15, pin 800mAh ~600h, switch ATK Optical, lớp phủ Nano. Không dây ApexShark thế hệ 3.',descEn:'PAW3950 Ultra, Nordic 54L15, 800mAh ~600h battery, ATK Optical switch, Nano Coating. 3rd Gen ApexShark wireless.',price:1490000,oldPrice:0,badge:'hot',color:'#0a1e3a',img:'https://gamergear.net/content/product/2025/10/2444/Dragonfly-A9-Ultimate-01.jpg',mcu:'Nordic 54L15',battery:'800mAh / ~600h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'~125\u00d764\u00d740mm'},
+  {slug:'atkx1v1pro',cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Pro',weight:'49g',sensor:'PAW3950',polling:'8000Hz',desc:'Siêu nhẹ 49g, PAW3950 750 IPS, polling 8KHz. Omron Optical, lớp phủ Ice-Feel. Kích thước 127\u00d764\u00d740mm.',descEn:'Ultra-light 49g, PAW3950 750 IPS, 8KHz polling. Omron Optical, Ice-Feel coating. Size 127\u00d764\u00d740mm.',price:1290000,oldPrice:0,badge:'',color:'#2a1a4a',img:'https://www.deskhero.ca/cdn/shop/files/5_87c4f624-7d34-416a-b3bc-be3fb44bff99.png?v=1726605937&width=1920',mcu:'Nordic 52840',battery:'300mAh / ~75-150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
+  {slug:'atkx1v1ultimate',cat:'x1',series:'Blazing Sky X1 V1',name:'ATK Blazing Sky X1 V1 Ultimate',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1 V1: PAW3950 Ultra, Nordic 52840, 42K DPI, lớp phủ Ice-Feel. Kết nối 3 chế độ.',descEn:'Flagship X1 V1: PAW3950 Ultra, Nordic 52840, 42K DPI, Ice-Feel coating. Tri-mode connectivity.',price:1590000,oldPrice:0,badge:'',color:'#3a1a5a',img:'https://www.deskhero.ca/cdn/shop/files/4_0113cd05-f594-4501-9988-31a387b4699e.png?v=1726605939&width=1920',mcu:'Nordic 52840',battery:'500mAh / ~150h',connect:'2.4G / BT / USB-C',switchType:'Omron Optical',coating:'Ice-Feel',size:'127\u00d764\u00d740mm'},
+  {slug:'atkx1v2ultimate',cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Ultimate 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Nâng cấp Nordic 54L15, switch ATK Swiftlight Optical, lớp phủ Nano, firmware ApexShark MAX, pin 800mAh.',descEn:'Upgraded Nordic 54L15, ATK Swiftlight Optical switch, Nano Coating, ApexShark MAX firmware, 800mAh battery.',price:1790000,oldPrice:2090000,badge:'new',color:'#4a0a2a',img:'https://ausmodshop.com/cdn/shop/files/1500_778d99f5-4910-4793-bda8-2cf478ab6b97.webp?v=1770790008',mcu:'Nordic 54L15',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
+  {slug:'atkx1v2extreme',cat:'x1',series:'Blazing Sky X1 V2',name:'ATK X1 V2 Extreme 2.0',weight:'54g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Flagship X1: Nordic 54H20, độ trễ ~0.163ms, engine 20K+ FPS, dongle GEM 8K mới, pin 800mAh.',descEn:'Flagship X1: Nordic 54H20, ~0.163ms latency, 20K+ FPS engine, new GEM 8K dongle, 800mAh battery.',price:1990000,oldPrice:2390000,badge:'hot',color:'#5a0a3a',img:'https://ausmodshop.com/cdn/shop/files/1500_64959b4f-7619-4791-bbb7-a00d33002d35.webp?v=1770790008',mcu:'Nordic 54H20',battery:'800mAh',connect:'2.4G / USB-C',switchType:'ATK Swiftlight',coating:'Nano Coating',size:'127\u00d764\u00d740mm'},
+  {slug:'atkghostultimate',cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Khung carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. 3 chế độ kết nối. Kích thước 121\u00d761.3\u00d738mm.',descEn:'Hollow carbon fiber frame 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode. Size 121\u00d761.3\u00d738mm.',price:2490000,oldPrice:0,badge:'new',color:'#0a3020',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {slug:'atkghostextreme',cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Ghost + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng & siêu nhẹ. Lớp phủ Nano.',descEn:'Ghost + Nordic 54H20 MCU, 8KHz in both modes. Carbon fiber ultra-rigid & ultra-light. Nano Coating.',price:2890000,oldPrice:0,badge:'hot',color:'#1a2a20',img:'https://ryugear.in/cdn/shop/files/4_9567d06e-bc42-47a1-86fe-d0fac3677883.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {slug:'atkghostultimatesilver',cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Silver',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Silver giới hạn. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Limited Silver edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'new',color:'#8a8a8a',img:'https://ryugear.in/cdn/shop/files/SaveClip.App_616368291_122172254552401806_8235931325755550515_n.jpg?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {slug:'atkghostultimatered',cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Ultimate Red',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Red nổi bật. Carbon fiber rỗng 48g, PAW3950 Ultra, Nordic 54L15, pin 300mAh ~210h. Tri-mode.',descEn:'Bold Red edition. Hollow carbon fiber 48g, PAW3950 Ultra, Nordic 54L15, 300mAh ~210h battery. Tri-mode.',price:2590000,oldPrice:0,badge:'',color:'#8a1a2a',img:'https://ryugear.in/cdn/shop/files/SaveClip.App_616501740_122172254576401806_4901758076229030741_n.jpg?v=1770280947',mcu:'Nordic 54L15',battery:'300mAh / ~210h',connect:'2.4G / BT / USB-C',switchType:'ATK Lightblade',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
+  {slug:'atkghostextremepurple',cat:'ghost',series:'Blazing Sky Ghost',name:'ATK Ghost Extreme Purple',weight:'48g',sensor:'PAW3950 Ultra',polling:'8000Hz',desc:'Phiên bản Purple ánh kim. Ghost Extreme + MCU Nordic 54H20, 8KHz cả 2 chế độ. Carbon fiber siêu cứng.',descEn:'Metallic Purple edition. Ghost Extreme + Nordic 54H20 MCU, 8KHz in both modes. Ultra-rigid carbon fiber.',price:2990000,oldPrice:0,badge:'new',color:'#5a1a7a',img:'https://ryugear.in/cdn/shop/files/1500_db4d672c-ccaa-46b8-ad4b-b136cbd724f1_1.webp?v=1770280947',mcu:'Nordic 54H20',battery:'300mAh / ~210h',connect:'2.4G / USB-C',switchType:'ATK Optical',coating:'Nano Coating',size:'121\u00d761.3\u00d738mm'},
 ];
 
 const features=[
@@ -1914,6 +1923,93 @@ document.addEventListener('keydown',function(e){
 
 renderProducts();renderFeatures();renderReviews();renderPros();renderCarousel();requestAnimationFrame(initReveal);
 if(currentLang==='en') setLang('en');
+
+// ===== ROUTER =====
+function navigate(path,replace){
+  if(replace) history.replaceState({path},'',path);
+  else history.pushState({path},'',path);
+  handleRoute();
+}
+
+function handleRoute(){
+  // Close any open overlays first
+  closeProsPage();
+  closeDetail(null,true);
+  closePolicy();
+
+  const path=location.pathname.replace(/\/$/,'')||'/';
+  const seg=path.split('/').filter(Boolean);
+
+  if(seg.length===0){
+    // Home — already rendered
+    return;
+  }
+
+  const first=seg[0].toLowerCase();
+
+  if(first==='proplayer'){
+    openProsPage(true);
+    return;
+  }
+
+  if(first==='policy'&&seg[1]){
+    openPolicy(seg[1],true);
+    return;
+  }
+
+  // Try to match product slug
+  const productIdx=products.findIndex(p=>p.slug===first);
+  if(productIdx>=0){
+    openDetail(productIdx,true);
+    return;
+  }
+
+  // Unknown route — go home
+  navigate('/',true);
+}
+
+// Override handlers to use routing
+const _origOpenPros=openProsPage;
+openProsPage=function(fromRoute){
+  _origOpenPros();
+  if(!fromRoute) history.pushState({path:'/proplayer'},'','/proplayer');
+};
+
+const _origCloseProsPage=closeProsPage;
+closeProsPage=function(){
+  const wasOpen=document.getElementById('prosPageOverlay').classList.contains('open');
+  _origCloseProsPage();
+  if(wasOpen&&location.pathname!=='/') history.pushState({path:'/'},'','/');
+};
+
+const _origOpenDetail=openDetail;
+openDetail=function(i,fromRoute){
+  _origOpenDetail(i);
+  if(!fromRoute&&products[i]&&products[i].slug) history.pushState({path:'/'+products[i].slug},'','/'+products[i].slug);
+};
+
+const _origCloseDetail=closeDetail;
+closeDetail=function(e,force){
+  const wasOpen=document.getElementById('detailOverlay').classList.contains('open');
+  _origCloseDetail(e,force);
+  if(wasOpen&&(!e||force)&&location.pathname!=='/') history.pushState({path:'/'},'','/');
+};
+
+const _origOpenPolicy=openPolicy;
+openPolicy=function(type,fromRoute){
+  _origOpenPolicy(type);
+  if(!fromRoute) history.pushState({path:'/policy/'+type},'','/policy/'+type);
+};
+
+const _origClosePolicy=closePolicy;
+closePolicy=function(){
+  const wasOpen=document.getElementById('policyOverlay').classList.contains('open');
+  _origClosePolicy();
+  if(wasOpen&&location.pathname.startsWith('/policy')) history.pushState({path:'/'},'','/');
+};
+
+window.addEventListener('popstate',handleRoute);
+handleRoute();
 </script>
 </body>
 </html>
