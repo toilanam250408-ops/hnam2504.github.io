@@ -415,6 +415,46 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Pros Full Page */
+.pros-page-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+.pros-page-overlay.open{opacity:1;visibility:visible}
+.pros-page{max-width:1200px;margin:0 auto;padding:2rem}
+.pros-page-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:1rem}
+.pros-page-title{flex:1}
+.pros-page-title h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:.5rem}
+.pros-page-title h1 span{background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pros-page-title p{color:var(--text-dim);font-size:.9rem}
+.pros-page-back{background:none;border:1px solid var(--border);color:var(--cyan);padding:.6rem 1.2rem;border-radius:50px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.pros-page-back:hover{background:rgba(0,229,255,0.08);border-color:var(--cyan)}
+.pros-page-stats{display:flex;gap:1rem;margin:1.5rem 0 2rem;flex-wrap:wrap}
+.pros-stat{flex:1;min-width:140px;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+.pros-stat .val{font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan)}
+.pros-stat .lbl{font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.pros-full-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem}
+.pro-full-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .4s;position:relative}
+.pro-full-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--magenta),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pro-full-card:hover::before{transform:scaleX(1)}
+.pro-full-card:hover{transform:translateY(-4px);border-color:rgba(255,45,120,0.25)}
+.pro-full-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pro-full-img img{width:100%;height:100%;object-fit:cover}
+.pro-full-img .pro-initial-lg{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;font-size:3rem;color:#000;border:4px solid rgba(255,255,255,0.1)}
+.pro-full-img .pro-team-badge{position:absolute;top:.8rem;right:.8rem;padding:.35rem .7rem;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.1)}
+.pro-full-body{padding:1.3rem}
+.pro-full-body .pro-name-row{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.2rem;flex-wrap:wrap}
+.pro-full-body .pro-ign{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:800}
+.pro-full-body .pro-flag{font-size:.9rem}
+.pro-full-body .pro-real-name{font-size:.78rem;color:var(--text-dim);margin-bottom:.7rem}
+.pro-full-body .pro-role-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.pro-full-body .pro-gear-row{display:flex;align-items:center;gap:.6rem;padding:.8rem;background:rgba(255,45,120,0.05);border-radius:10px;border:1px solid rgba(255,45,120,0.1);margin-bottom:.9rem}
+.pro-full-body .pro-gear-row .icon{font-size:1.5rem}
+.pro-full-body .pro-gear-row .gear-name{font-family:'Orbitron',sans-serif;font-weight:700;font-size:.82rem;color:var(--magenta)}
+.pro-full-body .pro-gear-row .gear-sub{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+.pro-full-body .pro-quote-full{font-size:.82rem;color:var(--text-dim);line-height:1.6;font-style:italic;padding-top:.9rem;border-top:1px solid rgba(255,255,255,0.04)}
+
+.pros-cta{text-align:center;margin-top:2rem}
+.pros-view-all{padding:.9rem 2.2rem;border-radius:50px;border:2px solid var(--magenta);background:transparent;color:var(--magenta);font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:.6rem}
+.pros-view-all:hover{background:rgba(255,45,120,0.08);box-shadow:0 6px 25px rgba(255,45,120,0.2);transform:translateY(-2px)}
+
 /* Pro Player Pick */
 .pros-section{background:linear-gradient(180deg,var(--bg),var(--bg2));padding:5rem 2rem;position:relative;overflow:hidden}
 .pros-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(255,45,120,0.08),transparent 70%);pointer-events:none}
@@ -648,7 +688,15 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
     <p class="section-desc" data-lang="pros_desc">Các pro player esports quốc tế đang sử dụng gear ATK trong thi đấu</p>
   </div>
   <div class="pros-grid" id="prosGrid"></div>
+  <div class="pros-cta">
+    <button class="pros-view-all" onclick="openProsPage()" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
+  </div>
 </section>
+
+<!-- Pros Full Page -->
+<div class="pros-page-overlay" id="prosPageOverlay">
+  <div class="pros-page" id="prosPage"></div>
+</div>
 
 <section class="testimonials" id="reviews">
   <div class="section-header reveal">
@@ -890,12 +938,14 @@ function renderReviews(){
 function renderPros(){
   const el=document.getElementById('prosGrid');
   if(!el)return;
-  el.innerHTML=proPlayers.map((p,i)=>`
-    <div class="pro-card reveal" style="transition-delay:${i*0.1}s">
+  // Only show first 4 on home page
+  const preview=proPlayers.slice(0,4);
+  el.innerHTML=preview.map((p,i)=>`
+    <div class="pro-card reveal" style="transition-delay:${i*0.1}s" onclick="openProsPage()">
       <div class="pro-header">
         <div class="pro-avatar" style="background:${p.avatar}">${p.initial}</div>
         <div class="pro-info">
-          <h3>${p.ign}</h3>
+          <h3>${p.ign} <span style="font-size:.85rem;margin-left:.2rem">${p.flag}</span></h3>
           <div class="pro-real">${p.realName}</div>
           <div class="pro-team">${p.team}</div>
         </div>
@@ -903,7 +953,6 @@ function renderPros(){
       <div class="pro-tags">
         <span class="pro-tag game">${p.game}</span>
         <span class="pro-tag">${p.role}</span>
-        <span class="pro-tag flag">${p.flag}</span>
       </div>
       <div class="pro-gear">
         <div class="pro-gear-icon">&#127918;</div>
@@ -912,10 +961,67 @@ function renderPros(){
           <div class="gear">${p.gear}</div>
         </div>
       </div>
-      <p class="pro-quote">"${currentLang==='en'?p.quoteEn:p.quoteVi}"</p>
     </div>
   `).join('');
   requestAnimationFrame(initReveal);
+}
+
+function openProsPage(){
+  const teams=[...new Set(proPlayers.map(p=>p.team))];
+  const countries=[...new Set(proPlayers.map(p=>p.country))];
+  const el=document.getElementById('prosPage');
+  const t=currentLang==='en';
+  el.innerHTML=`
+    <div class="pros-page-header">
+      <div class="pros-page-title">
+        <h1>${t?'Pro Player <span>Pick</span>':'Tuyển Thủ <span>Chuyên Nghiệp</span>'}</h1>
+        <p>${t?'International esports professionals using ATK gear in competitive tournaments':'Các pro player esports quốc tế đang sử dụng gear ATK trong thi đấu chuyên nghiệp'}</p>
+      </div>
+      <button class="pros-page-back" onclick="closeProsPage()">&larr; ${t?'Back':'Quay lại'}</button>
+    </div>
+    <div class="pros-page-stats">
+      <div class="pros-stat"><div class="val">${proPlayers.length}</div><div class="lbl">${t?'Pro Players':'Pro Player'}</div></div>
+      <div class="pros-stat"><div class="val">${teams.length}</div><div class="lbl">${t?'Teams':'Đội Tuyển'}</div></div>
+      <div class="pros-stat"><div class="val">${countries.length}</div><div class="lbl">${t?'Countries':'Quốc Gia'}</div></div>
+      <div class="pros-stat"><div class="val">VCT</div><div class="lbl">${t?'Champions Tour':'Champions Tour'}</div></div>
+    </div>
+    <div class="pros-full-grid">
+      ${proPlayers.map((p,i)=>`
+        <div class="pro-full-card reveal" style="transition-delay:${(i%4)*0.08}s">
+          <div class="pro-full-img" style="background:${p.avatar}">
+            ${p.photo?`<img src="${p.photo}" alt="${p.ign}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="pro-initial-lg" style="display:none">${p.initial}</div>`:`<div class="pro-initial-lg">${p.initial}</div>`}
+            <div class="pro-team-badge">${p.team}</div>
+          </div>
+          <div class="pro-full-body">
+            <div class="pro-name-row">
+              <span class="pro-ign">${p.ign}</span>
+              <span class="pro-flag">${p.flag} ${p.country}</span>
+            </div>
+            <div class="pro-real-name">${p.realName}</div>
+            <div class="pro-role-row">
+              <span class="pro-tag game">${p.game}</span>
+              <span class="pro-tag">${p.role}</span>
+            </div>
+            <div class="pro-gear-row">
+              <span class="icon">&#127918;</span>
+              <div>
+                <div class="gear-name">${p.gear}</div>
+                <div class="gear-sub">${p.gearColor}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  document.getElementById('prosPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(initReveal);
+}
+
+function closeProsPage(){
+  document.getElementById('prosPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 // ===== CART SYSTEM =====
@@ -1557,32 +1663,68 @@ const featuresEn=[
 
 const proPlayers=[
   {
-    ign:'Chronicle',realName:'Timofey Khromov',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddea\ud83c\uddfa EMEA',role:'IGL / Sentinel',
+    ign:'Chronicle',realName:'Timofey Khromov',team:'Team Vitality',teamColor:'#ffd100',game:'Valorant',flag:'\ud83c\uddea\ud83c\uddfa',country:'Russia / EMEA',role:'IGL / Sentinel',
     gear:'ATK Blazing Sky ZERO',gearColor:'Frosted Purple',
-    avatar:'linear-gradient(135deg,#ffc400,#ff6b00)',initial:'C',
+    photo:'https://owcdn.net/img/65d68c42d9ab5.png',
+    avatar:'linear-gradient(135deg,#ffd100,#ffa500)',initial:'C',
     quoteVi:'ATK cho tôi cảm giác tracking chính xác và nhất quán ở level cao nhất. Polling 8KHz tạo khác biệt thực sự trong clutch moments.',
     quoteEn:'ATK gives me precise and consistent tracking at the highest level. 8KHz polling makes a real difference in clutch moments.'
   },
   {
-    ign:'aspas',realName:'Erick Santos',team:'Leviatán',game:'Valorant',flag:'\ud83c\udde7\ud83c\uddf7 Brazil',role:'Duelist / Jett',
-    gear:'ATK RS6 Ultra Aspas Edition',gearColor:'Signature Series',
+    ign:'aspas',realName:'Erick Santos',team:'MIBR',teamColor:'#000',game:'Valorant',flag:'\ud83c\udde7\ud83c\uddf7',country:'Brazil',role:'Duelist / Jett',
+    gear:'ATK RS6 Ultra Aspas Edition',gearColor:'Signature Keyboard',
+    photo:'https://owcdn.net/img/65c0bf9c3b2e9.png',
     avatar:'linear-gradient(135deg,#00ff88,#00b8d4)',initial:'A',
     quoteVi:'Có bàn phím signature ATK riêng là niềm vinh dự. Hall Effect switch phản hồi cực nhanh phù hợp với playstyle Duelist của tôi.',
     quoteEn:'Having my own ATK signature keyboard is an honor. Hall Effect switches with ultra-fast response fit my Duelist playstyle perfectly.'
   },
   {
-    ign:'Derke',realName:'Nikita Sirmitev',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddeb\ud83c\uddee Finland',role:'Duelist',
+    ign:'Derke',realName:'Nikita Sirmitev',team:'Team Vitality',teamColor:'#ffd100',game:'Valorant',flag:'\ud83c\uddeb\ud83c\uddee',country:'Finland',role:'Duelist',
     gear:'ATK Blazing Sky F1 Pro Max',gearColor:'Black Edition',
+    photo:'https://owcdn.net/img/658ccd1ab0c33.png',
     avatar:'linear-gradient(135deg,#ff2d78,#a259ff)',initial:'D',
     quoteVi:'F1 Pro Max siêu nhẹ giúp flick shot chính xác hơn. Build quality ATK không thua kém các brand lớn.',
     quoteEn:'F1 Pro Max ultra-light makes flick shots more precise. ATK build quality rivals major brands.'
   },
   {
-    ign:'Sayf',realName:'Saif Jibraeel',team:'Team Vitality',game:'Valorant',flag:'\ud83c\uddf8\ud83c\uddea Sweden',role:'Flex',
+    ign:'Sayf',realName:'Saif Jibraeel',team:'Team Vitality',teamColor:'#ffd100',game:'Valorant',flag:'\ud83c\uddf8\ud83c\uddea',country:'Sweden',role:'Flex',
     gear:'ATK Blazing Sky X1',gearColor:'White Edition',
+    photo:'https://owcdn.net/img/64f4d1e0ba3f8.png',
     avatar:'linear-gradient(135deg,#00e5ff,#0078ff)',initial:'S',
     quoteVi:'X1 shell ambidextrous hoàn hảo cho claw grip. 49g cảm giác nhẹ như không có gì trên tay.',
     quoteEn:'X1 ambidextrous shell is perfect for claw grip. 49g feels like nothing in hand.'
+  },
+  {
+    ign:'Boaster',realName:'Jake Howlett',team:'Fnatic',teamColor:'#ff5900',game:'Valorant',flag:'\ud83c\uddec\ud83c\udde7',country:'United Kingdom',role:'IGL',
+    gear:'ATK Blazing Sky F1',gearColor:'Pro Esports',
+    photo:'https://owcdn.net/img/64169ccf0a1fb.png',
+    avatar:'linear-gradient(135deg,#ff5900,#ffa500)',initial:'B',
+    quoteVi:'Thi đấu ở level đỉnh cao cần gear tin cậy. ATK Blazing Sky F1 cho tôi sự ổn định trong mọi trận đấu.',
+    quoteEn:'Competing at the highest level needs reliable gear. ATK Blazing Sky F1 gives me consistency in every match.'
+  },
+  {
+    ign:'Sacy',realName:'Gustavo Rossi',team:'MIBR',teamColor:'#000',game:'Valorant',flag:'\ud83c\udde7\ud83c\uddf7',country:'Brazil',role:'Initiator',
+    gear:'ATK RS6 Ultra Aspas Edition',gearColor:'Signature Keyboard',
+    photo:'https://owcdn.net/img/63ff0b7d8c1e2.png',
+    avatar:'linear-gradient(135deg,#00b8d4,#006d8f)',initial:'S',
+    quoteVi:'Hall Effect switch của ATK phản hồi nhanh giúp tôi đánh strat phức tạp với độ chính xác cao.',
+    quoteEn:'ATK\'s Hall Effect switches respond quickly, helping me execute complex strats with high precision.'
+  },
+  {
+    ign:'silentzz',realName:'Agustin Ibarra',team:'KRÜ Esports',teamColor:'#00d9ff',game:'Valorant',flag:'\ud83c\udde6\ud83c\uddf7',country:'Argentina',role:'Controller',
+    gear:'ATK RS6 Ultra Night Hunter',gearColor:'Dark Edition',
+    photo:'https://owcdn.net/img/6503f44b82e9b.png',
+    avatar:'linear-gradient(135deg,#00d9ff,#0078ff)',initial:'S',
+    quoteVi:'RS6 Ultra Night Hunter cho trải nghiệm cực kỳ mượt mà. Thiết kế đẹp và hiệu năng đỉnh cao.',
+    quoteEn:'RS6 Ultra Night Hunter delivers an incredibly smooth experience. Beautiful design with top-tier performance.'
+  },
+  {
+    ign:'spikeziN',realName:'Matias Delipetro',team:'Leviatán',teamColor:'#ff1a66',game:'Valorant',flag:'\ud83c\udde6\ud83c\uddf7',country:'Argentina',role:'Duelist',
+    gear:'ATK EDGE 60HE',gearColor:'Compact 60%',
+    photo:'https://owcdn.net/img/64a69c07d9f88.png',
+    avatar:'linear-gradient(135deg,#ff1a66,#a259ff)',initial:'S',
+    quoteVi:'EDGE 60HE nhỏ gọn phù hợp cho setup tournament. Hall Effect cực nhạy, hoàn hảo cho Duelist.',
+    quoteEn:'EDGE 60HE compact layout is perfect for tournament setups. Ultra-sensitive Hall Effect, ideal for Duelists.'
   },
 ];
 
@@ -1758,11 +1900,16 @@ translations.en.pros_title='Professional <span>Esports Players</span>';
 translations.en.pros_desc='International esports pros using ATK gear in competitive tournaments';
 translations.vi.nav_pros='Pro Player';
 translations.en.nav_pros='Pro Player';
+translations.vi.pros_view_all='\ud83d\udc64 Xem Tất Cả Pro Player \u2192';
+translations.en.pros_view_all='\ud83d\udc64 View All Pro Players \u2192';
 
 // Escape key for policy modal
 const _origEsc=document.onkeydown;
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'&&document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
+  if(e.key==='Escape'){
+    if(document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
+    if(document.getElementById('prosPageOverlay').classList.contains('open')){closeProsPage();return;}
+  }
 });
 
 renderProducts();renderFeatures();renderReviews();renderPros();renderCarousel();requestAnimationFrame(initReveal);
