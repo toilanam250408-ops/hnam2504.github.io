@@ -543,6 +543,103 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .specs-page-overlay.open{opacity:1;visibility:visible}
 .specs-page{max-width:1300px;margin:0 auto;padding:2rem}
 
+/* Product Full Page (phongcachxanh-style) */
+.product-page-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto;padding-top:60px}
+.product-page-overlay.open{opacity:1;visibility:visible}
+.product-page{max-width:1300px;margin:0 auto;padding:1.5rem 2rem 4rem}
+.pp-breadcrumb{font-size:.78rem;color:var(--text-dim);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pp-breadcrumb a{color:var(--cyan);text-decoration:none;cursor:pointer}
+.pp-breadcrumb a:hover{text-decoration:underline}
+.pp-breadcrumb .sep{color:var(--text-dim);opacity:.5}
+.pp-breadcrumb .current{color:var(--text)}
+
+.pp-main{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;margin-bottom:3rem}
+@media(max-width:850px){.pp-main{grid-template-columns:1fr;gap:1.5rem}}
+
+/* Image gallery */
+.pp-gallery{position:sticky;top:80px;align-self:start}
+.pp-main-img{aspect-ratio:1;border-radius:18px;background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:.8rem}
+.pp-main-img img{width:100%;height:100%;object-fit:cover}
+.pp-main-img .pp-zoom-icon{position:absolute;bottom:1rem;right:1rem;background:rgba(0,0,0,0.6);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);font-size:.95rem;border:1px solid rgba(255,255,255,0.1)}
+.pp-thumbs{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.3rem}
+.pp-thumb{flex-shrink:0;width:70px;height:70px;border-radius:10px;border:2px solid var(--border);background:var(--bg2);overflow:hidden;cursor:pointer;transition:border-color .2s}
+.pp-thumb:hover,.pp-thumb.active{border-color:var(--cyan)}
+.pp-thumb img{width:100%;height:100%;object-fit:cover}
+
+/* Product info */
+.pp-info{padding-top:.5rem}
+.pp-brand{font-size:.95rem;color:var(--magenta);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:.7rem}
+.pp-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.pp-rating-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;font-size:.82rem;color:var(--text-dim)}
+.pp-rating-row .stars{color:var(--gold);font-size:.95rem;letter-spacing:1px}
+.pp-stock-row{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .8rem;border-radius:6px;font-size:.78rem;font-weight:700;margin-bottom:1.5rem}
+.pp-stock-row.in-stock{background:rgba(0,255,136,0.08);color:var(--green);border:1px solid rgba(0,255,136,0.2)}
+.pp-stock-row.low-stock{background:rgba(255,45,120,0.08);color:var(--magenta);border:1px solid rgba(255,45,120,0.2)}
+.pp-price-box{padding:1.3rem;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(255,45,120,0.04));border:1px solid var(--border);border-radius:14px;margin-bottom:1.3rem}
+.pp-price{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.3rem;flex-wrap:wrap}
+.pp-price-current{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan)}
+.pp-price-old{font-family:'Orbitron',sans-serif;font-size:1.1rem;color:var(--text-dim);text-decoration:line-through;font-weight:400}
+.pp-save-badge{background:var(--magenta);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:5px;letter-spacing:.5px}
+.pp-vat-note{font-size:.72rem;color:var(--text-dim)}
+
+.pp-key-features{margin-bottom:1.5rem}
+.pp-key-features h4{font-family:'Orbitron',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem}
+.pp-key-list{list-style:none;padding:0}
+.pp-key-list li{display:flex;align-items:center;gap:.6rem;padding:.5rem 0;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+.pp-key-list li:last-child{border-bottom:none}
+.pp-key-list li::before{content:'\2713';color:var(--cyan);font-weight:700;font-size:.9rem}
+
+.pp-actions{display:flex;gap:.7rem;margin-bottom:1.3rem}
+.pp-qty-input{display:flex;align-items:center;border:1px solid var(--border);border-radius:12px;background:var(--glass);overflow:hidden}
+.pp-qty-input button{background:none;border:none;color:var(--text);width:38px;height:48px;cursor:pointer;font-size:1.1rem;transition:color .2s}
+.pp-qty-input button:hover{color:var(--cyan)}
+.pp-qty-input input{width:40px;height:48px;background:transparent;border:none;color:var(--text);text-align:center;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.9rem;outline:none}
+.pp-add-btn{flex:1;padding:.85rem 1.5rem;border-radius:12px;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.5px;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),#00b8d4);color:#000;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.pp-add-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,229,255,0.25)}
+.pp-buy-btn{flex:1;padding:.85rem 1.5rem;border-radius:12px;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.5px;text-transform:uppercase;background:linear-gradient(135deg,var(--magenta),#ff6b9d);color:#fff;transition:all .3s}
+.pp-buy-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(255,45,120,0.25)}
+
+.pp-trust-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-bottom:.5rem}
+.pp-trust-badge{display:flex;align-items:center;gap:.6rem;padding:.7rem;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;font-size:.78rem}
+.pp-trust-badge .icon{font-size:1.3rem}
+.pp-trust-badge .text strong{display:block;font-weight:700;font-size:.78rem;margin-bottom:.1rem}
+.pp-trust-badge .text span{color:var(--text-dim);font-size:.7rem}
+
+/* Tabs section */
+.pp-tabs-section{max-width:1300px;margin:0 auto;padding:0 2rem}
+.pp-tabs{display:flex;gap:.5rem;border-bottom:1px solid var(--border);margin-bottom:2rem;overflow-x:auto}
+.pp-tab{background:none;border:none;padding:.8rem 1.5rem;font-family:'Orbitron',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.pp-tab:hover{color:var(--text)}
+.pp-tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+.pp-tab-content{display:none;animation:fadeInUp .4s ease}
+.pp-tab-content.active{display:block}
+.pp-desc-content{font-size:.92rem;color:var(--text);line-height:1.7;max-width:900px}
+.pp-desc-content h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;margin:1.5rem 0 .8rem;color:var(--cyan)}
+.pp-desc-content p{margin-bottom:1rem;color:var(--text-dim)}
+.pp-desc-content ul{list-style:none;padding:0;margin-bottom:1rem}
+.pp-desc-content ul li{display:flex;gap:.6rem;padding:.4rem 0;color:var(--text-dim);font-size:.88rem}
+.pp-desc-content ul li::before{content:'\25B6';color:var(--magenta);font-size:.7rem;margin-top:.35rem;flex-shrink:0}
+.pp-spec-grid{max-width:900px}
+.pp-spec-grid table{width:100%;border-collapse:collapse}
+.pp-spec-grid td{padding:.8rem 1rem;border-bottom:1px solid rgba(255,255,255,0.04);font-size:.88rem}
+.pp-spec-grid td:first-child{color:var(--text-dim);width:30%;font-weight:600}
+.pp-spec-grid td:last-child{font-weight:700}
+.pp-spec-grid tr:hover td{background:rgba(0,229,255,0.02)}
+
+/* Related products */
+.pp-related{max-width:1300px;margin:3rem auto 0;padding:0 2rem}
+.pp-related h3{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:1.5rem}
+.pp-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+@media(max-width:600px){
+  .product-page{padding:1rem .8rem 2rem}
+  .pp-tabs-section,.pp-related{padding:0 .8rem}
+  .pp-title{font-size:1.3rem}
+  .pp-price-current{font-size:1.5rem}
+  .pp-trust-badges{grid-template-columns:1fr}
+  .pp-related-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .pp-tab{padding:.6rem 1rem;font-size:.72rem}
+}
+
 /* Pros Full Page */
 .pros-page-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
 .pros-page-overlay.open{opacity:1;visibility:visible}
@@ -827,6 +924,11 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 <!-- Reviews Full Page -->
 <div class="specs-page-overlay" id="reviewsPageOverlay">
   <div class="specs-page" id="reviewsPage"></div>
+</div>
+
+<!-- Product Full Page (phongcachxanh-style) -->
+<div class="product-page-overlay" id="productPageOverlay">
+  <div id="productPage"></div>
 </div>
 
 <section class="specs-cta-section" id="reviews">
@@ -1214,6 +1316,230 @@ function openReviewsPage(){
 function closeReviewsPage(){
   document.getElementById('reviewsPageOverlay').classList.remove('open');
   document.body.style.overflow='';
+}
+
+// ===== PRODUCT FULL PAGE (phongcachxanh-style) =====
+let currentProductIdx=null;
+let currentProductQty=1;
+
+function openProductPage(idx){
+  const p=products[idx];
+  if(!p)return;
+  currentProductIdx=idx;
+  currentProductQty=1;
+  const t=currentLang==='en';
+  const stock=getStock(idx);
+  const desc=t&&p.descEn?p.descEn:p.desc;
+  const catName=p.cat==='a9'?'Dragonfly A9':p.cat==='x1'?'Blazing Sky X1':'Blazing Sky Ghost';
+  const savings=p.oldPrice?p.oldPrice-p.price:0;
+  const savePct=p.oldPrice?Math.round((1-p.price/p.oldPrice)*100):0;
+
+  // Related products: same category, exclude current
+  const related=products.map((rp,ri)=>({...rp,idx:ri})).filter(rp=>rp.cat===p.cat&&rp.idx!==idx).slice(0,4);
+
+  document.getElementById('productPage').innerHTML=`
+    <div class="product-page">
+      <div class="pp-breadcrumb">
+        <a onclick="closeProductPage()">${t?'Home':'Trang chủ'}</a>
+        <span class="sep">/</span>
+        <a onclick="closeProductPage();setTimeout(()=>{location.hash='#products'},100)">${catName}</a>
+        <span class="sep">/</span>
+        <span class="current">${p.name}</span>
+      </div>
+
+      <div class="pp-main">
+        <!-- Image gallery -->
+        <div class="pp-gallery">
+          <div class="pp-main-img">
+            ${p.img?`<img src="${p.img}" alt="${p.name}" id="ppMainImg">`:''}
+            <div class="pp-zoom-icon">&#128270;</div>
+          </div>
+          <div class="pp-thumbs">
+            <div class="pp-thumb active"><img src="${p.img}" alt=""></div>
+            <div class="pp-thumb"><img src="${p.img}" alt=""></div>
+            <div class="pp-thumb"><img src="${p.img}" alt=""></div>
+            <div class="pp-thumb"><img src="${p.img}" alt=""></div>
+          </div>
+        </div>
+
+        <!-- Product info -->
+        <div class="pp-info">
+          <div class="pp-brand">${p.series}</div>
+          <h1 class="pp-title">${p.name}</h1>
+
+          <div class="pp-rating-row">
+            <span class="stars">\u2605\u2605\u2605\u2605\u2605</span>
+            <span>5.0</span>
+            <span>\u00b7</span>
+            <span>${t?'Verified Reviews':'Đánh giá xác thực'}</span>
+          </div>
+
+          <div class="pp-stock-row ${stock<=5?'low-stock':'in-stock'}">
+            ${stock<=5?(t?'\u26a0 Only '+stock+' left in stock':'\u26a0 Chỉ còn '+stock+' sản phẩm'):(t?'\u2713 In stock — Ready to ship':'\u2713 Còn hàng — Sẵn sàng giao')}
+          </div>
+
+          <div class="pp-price-box">
+            <div class="pp-price">
+              <span class="pp-price-current">${formatPrice(p.price)}</span>
+              ${p.oldPrice?`<span class="pp-price-old">${formatPrice(p.oldPrice)}</span><span class="pp-save-badge">-${savePct}%</span>`:''}
+            </div>
+            <div class="pp-vat-note">${t?'Price includes VAT \u00b7 24-month warranty':'Giá đã bao gồm VAT \u00b7 Bảo hành 24 tháng'}${savings?` \u00b7 ${t?'Save':'Tiết kiệm'} ${formatPrice(savings)}`:''}</div>
+          </div>
+
+          <div class="pp-key-features">
+            <h4>${t?'Key Features':'Đặc điểm nổi bật'}</h4>
+            <ul class="pp-key-list">
+              <li>${t?'Weight':'Trọng lượng'}: <strong style="margin-left:.3rem">${p.weight}</strong></li>
+              <li>${t?'Sensor':'Cảm biến'}: <strong style="margin-left:.3rem">${p.sensor}</strong></li>
+              <li>${t?'Polling Rate':'Polling Rate'}: <strong style="margin-left:.3rem">${p.polling}</strong></li>
+              <li>${t?'Switch':'Switch'}: <strong style="margin-left:.3rem">${p.switchType}</strong></li>
+              <li>${t?'Battery':'Pin'}: <strong style="margin-left:.3rem">${p.battery}</strong></li>
+            </ul>
+          </div>
+
+          <div class="pp-actions">
+            <div class="pp-qty-input">
+              <button onclick="ppQty(-1)">&minus;</button>
+              <input type="text" id="ppQtyInput" value="1" readonly>
+              <button onclick="ppQty(1)">+</button>
+            </div>
+            <button class="pp-add-btn" onclick="ppAddToCart()">&#128722; ${t?'Add to Cart':'Thêm vào giỏ'}</button>
+            <button class="pp-buy-btn" onclick="ppBuyNow()">${t?'Buy Now':'Mua Ngay'}</button>
+          </div>
+
+          <div class="pp-trust-badges">
+            <div class="pp-trust-badge">
+              <span class="icon">&#128666;</span>
+              <div class="text"><strong>${t?'Free Shipping':'Miễn phí ship'}</strong><span>${t?'For orders over 1M VND':'Đơn từ 1.000.000đ'}</span></div>
+            </div>
+            <div class="pp-trust-badge">
+              <span class="icon">&#128736;</span>
+              <div class="text"><strong>${t?'24-Month Warranty':'Bảo hành 24 tháng'}</strong><span>${t?'Official ATK warranty':'Chính hãng ATK'}</span></div>
+            </div>
+            <div class="pp-trust-badge">
+              <span class="icon">&#128259;</span>
+              <div class="text"><strong>${t?'30-Day Returns':'Đổi trả 30 ngày'}</strong><span>${t?'No questions asked':'Không cần lý do'}</span></div>
+            </div>
+            <div class="pp-trust-badge">
+              <span class="icon">&#128172;</span>
+              <div class="text"><strong>${t?'Expert Support':'Tư vấn chuyên gia'}</strong><span>0776765608</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs section -->
+      <div class="pp-tabs-section">
+        <div class="pp-tabs">
+          <button class="pp-tab active" onclick="ppSwitchTab('desc',this)">${t?'Description':'Mô tả'}</button>
+          <button class="pp-tab" onclick="ppSwitchTab('specs',this)">${t?'Specifications':'Thông số kỹ thuật'}</button>
+          <button class="pp-tab" onclick="ppSwitchTab('shipping',this)">${t?'Shipping & Returns':'Vận chuyển & Đổi trả'}</button>
+        </div>
+
+        <div class="pp-tab-content active" id="ppTabDesc">
+          <div class="pp-desc-content">
+            <p>${desc}</p>
+            <h3>${t?'Why this mouse?':'Tại sao nên chọn?'}</h3>
+            <ul>
+              <li>${t?'Ultra-light shell at only '+p.weight+' for fatigue-free long sessions':'Vỏ siêu nhẹ chỉ '+p.weight+' giúp chơi lâu không mỏi tay'}</li>
+              <li>${t?'Premium '+p.sensor+' sensor with industry-leading tracking precision':'Cảm biến cao cấp '+p.sensor+' với độ chính xác tracking dẫn đầu'}</li>
+              <li>${t?'Polling rate up to '+p.polling+' for ultra-low latency':'Polling rate lên đến '+p.polling+' cho độ trễ cực thấp'}</li>
+              <li>${t?p.switchType+' switches deliver crisp, satisfying clicks':'Switch '+p.switchType+' cho cảm giác click giòn, sướng tay'}</li>
+              <li>${t?'Long-lasting battery: '+p.battery:'Pin lâu dài: '+p.battery}</li>
+              ${p.coating&&p.coating!=='\u2014'?`<li>${t?p.coating+' surface for premium grip and feel':'Lớp phủ '+p.coating+' cao cấp, bám tay tốt'}</li>`:''}
+            </ul>
+            <h3>${t?'Perfect for':'Phù hợp với'}</h3>
+            <p>${t?'Competitive Valorant, CS2, Apex Legends, Overwatch and other FPS players who demand precision, speed, and reliability at the highest level.':'Game thủ Valorant, CS2, Apex Legends, Overwatch và các game FPS chuyên nghiệp đòi hỏi sự chính xác, tốc độ và độ tin cậy ở mức cao nhất.'}</p>
+          </div>
+        </div>
+
+        <div class="pp-tab-content" id="ppTabSpecs">
+          <div class="pp-spec-grid">
+            <table>
+              <tr><td>${t?'Sensor':'Cảm biến'}</td><td>${p.sensor}</td></tr>
+              <tr><td>MCU</td><td>${p.mcu}</td></tr>
+              <tr><td>${t?'Weight':'Trọng lượng'}</td><td>~${p.weight}</td></tr>
+              <tr><td>${t?'Polling Rate':'Polling Rate'}</td><td>${p.polling}</td></tr>
+              <tr><td>${t?'Battery':'Pin'}</td><td>${p.battery}</td></tr>
+              <tr><td>${t?'Connectivity':'Kết nối'}</td><td>${p.connect}</td></tr>
+              <tr><td>${t?'Switch':'Switch'}</td><td>${p.switchType}</td></tr>
+              <tr><td>${t?'Coating':'Lớp phủ'}</td><td>${p.coating}</td></tr>
+              <tr><td>${t?'Dimensions':'Kích thước'}</td><td>${p.size}</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="pp-tab-content" id="ppTabShipping">
+          <div class="pp-desc-content">
+            <h3>${t?'Shipping':'Vận chuyển'}</h3>
+            <p>${t?'Free shipping for orders over 1,000,000 VND. Shipping fee from 15,000 - 75,000 VND depending on region (calculated from Vung Tau).':'Miễn phí vận chuyển cho đơn hàng từ 1.000.000đ. Phí ship từ 15.000đ - 75.000đ tùy khu vực (tính từ Vũng Tàu).'}</p>
+            <p>${t?'Delivery time: 1-5 days depending on location.':'Thời gian giao: 1-5 ngày tùy khu vực.'}</p>
+            <h3>${t?'Returns':'Đổi trả'}</h3>
+            <p>${t?'30-day return policy. Product must be in original condition with all accessories.':'Chính sách đổi trả 30 ngày. Sản phẩm phải còn nguyên tem, hộp và phụ kiện.'}</p>
+            <h3>${t?'Warranty':'Bảo hành'}</h3>
+            <p>${t?'24 months official ATK warranty for all manufacturing defects.':'Bảo hành chính hãng ATK 24 tháng cho mọi lỗi từ nhà sản xuất.'}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related products -->
+      ${related.length?`<div class="pp-related">
+        <h3>${t?'Related Products':'Sản phẩm liên quan'}</h3>
+        <div class="pp-related-grid">
+          ${related.map(rp=>`
+            <div class="product-card" onclick="window.open('/'+'${rp.slug}','_blank')">
+              <div class="product-img">
+                <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${rp.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
+                ${rp.img?`<img class="product-photo" src="${rp.img}" alt="${rp.name}" loading="lazy">`:''}
+                ${badgeHTML(rp.badge)}
+              </div>
+              <div class="product-info">
+                <div class="product-series">${rp.series}</div>
+                <h3 class="product-name">${rp.name}</h3>
+                <div class="product-specs"><span class="spec-tag">${rp.weight}</span><span class="spec-tag">${rp.sensor}</span><span class="spec-tag">${rp.polling}</span></div>
+                <div class="product-footer">
+                  <div class="product-price">${formatPrice(rp.price)}</div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`:''}
+    </div>
+  `;
+  document.getElementById('productPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  window.scrollTo(0,0);
+  // Update document title
+  document.title=p.name+' — HnamStore';
+}
+
+function closeProductPage(){
+  document.getElementById('productPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  document.title='HnamStore Vietnam — Chuột Gaming Siêu Nhẹ';
+}
+
+function ppQty(d){
+  currentProductQty=Math.max(1,currentProductQty+d);
+  document.getElementById('ppQtyInput').value=currentProductQty;
+}
+
+function ppAddToCart(){
+  for(let n=0;n<currentProductQty;n++) addToCart(currentProductIdx);
+}
+
+function ppBuyNow(){
+  ppAddToCart();
+  closeProductPage();
+  setTimeout(()=>checkout(),200);
+}
+
+function ppSwitchTab(tab,btn){
+  document.querySelectorAll('.pp-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pp-tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('ppTab'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
 }
 
 function openProsPage(){
@@ -2176,6 +2502,7 @@ document.addEventListener('keydown',function(e){
     if(document.getElementById('specsPageOverlay').classList.contains('open')){closeSpecsPage();return;}
     if(document.getElementById('techPageOverlay').classList.contains('open')){closeTechPage();return;}
     if(document.getElementById('reviewsPageOverlay').classList.contains('open')){closeReviewsPage();return;}
+    if(document.getElementById('productPageOverlay').classList.contains('open')){closeProductPage();return;}
   }
 });
 
@@ -2198,9 +2525,8 @@ function handleRoute(){
 
   const productIdx=products.findIndex(p=>p.slug===first);
   if(productIdx>=0){
-    // Scroll to top first, then open detail modal
     window.scrollTo(0,0);
-    setTimeout(()=>openDetail(productIdx),50);
+    setTimeout(()=>openProductPage(productIdx),50);
     return;
   }
 }
