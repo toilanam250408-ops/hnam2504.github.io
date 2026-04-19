@@ -1088,25 +1088,25 @@ function renderProducts(filter='all'){
   const g=document.getElementById('productsGrid');
   g.innerHTML=products.map((p,i)=>{
     const h=filter!=='all'&&p.cat!==filter?'hidden':'';
-    return `<div class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s" onclick="window.open('/'+'${p.slug}','_blank')">
+    return `<a class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s;text-decoration:none;color:inherit;display:block" href="/${p.slug}" target="_blank">
       <div class="product-img">
         <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
         ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" loading="lazy">`:mouseShape(p.color,getAccent(p.cat))}
         ${badgeHTML(p.badge)}
-        <button class="wishlist-btn ${wishlist.includes(i)?'active':''}" onclick="toggleWishlist(${i});event.stopPropagation()" title="${currentLang==='en'?'Wishlist':'Yêu thích'}">${wishlist.includes(i)?'&#10084;':'&#9825;'}</button>
+        <button class="wishlist-btn ${wishlist.includes(i)?'active':''}" onclick="event.preventDefault();event.stopPropagation();toggleWishlist(${i})" title="${currentLang==='en'?'Wishlist':'Yêu thích'}">${wishlist.includes(i)?'&#10084;':'&#9825;'}</button>
       </div>
       <div class="product-info">
         <div class="product-series">${p.series}</div>
         <h3 class="product-name">${p.name}</h3>
         <div class="product-specs"><span class="spec-tag">${p.weight}</span><span class="spec-tag">${p.sensor}</span><span class="spec-tag">${p.polling}</span></div>
         <p class="product-desc">${currentLang==='en'&&p.descEn?p.descEn:p.desc}</p>
-        <div class="product-stock ${getStock(i)<=5?'stock-low':'stock-ok'}">${getStock(i)<=5?(currentLang==='en'?'Only '+getStock(i)+' left!':'Chỉ còn '+getStock(i)+' sản phẩm!'):(currentLang==='en'?'In stock':'Còn hàng')} </div>
+        <div class="product-stock ${getStock(i)<=5?'stock-low':'stock-ok'}">${getStock(i)<=5?(currentLang==='en'?'Only '+getStock(i)+' left!':'Chỉ còn '+getStock(i)+' sản phẩm!'):(currentLang==='en'?'In stock':'Còn hàng')}</div>
         <div class="product-footer">
           <div class="product-price">${formatPrice(p.price)}${p.oldPrice?`<span class="old">${formatPrice(p.oldPrice)}</span>`:''}</div>
-          <button class="add-cart" onclick="addToCart(${i});event.stopPropagation()" title="${currentLang==='en'?'Add to cart':'Thêm vào giỏ'}">+</button>
+          <button class="add-cart" onclick="event.preventDefault();event.stopPropagation();addToCart(${i})" title="${currentLang==='en'?'Add to cart':'Thêm vào giỏ'}">+</button>
         </div>
       </div>
-    </div>`;
+    </a>`;
   }).join('');
   requestAnimationFrame(initReveal);
 }
@@ -2512,26 +2512,33 @@ if(currentLang==='en') setLang('en');
 // ===== ROUTER =====
 // Handle direct URL access (when user opens /atka9air in new tab)
 function handleRoute(){
-  const path=location.pathname.replace(/\/$/,'')||'/';
-  const seg=path.split('/').filter(Boolean);
-  if(seg.length===0) return; // Home
-  const first=seg[0].toLowerCase();
+  try{
+    const path=location.pathname.replace(/\/$/,'')||'/';
+    const seg=path.split('/').filter(Boolean);
+    if(seg.length===0) return; // Home
+    const first=seg[0].toLowerCase();
 
-  if(first==='proplayer'){openProsPage();return;}
-  if(first==='specs'){openSpecsPage();return;}
-  if(first==='technology'||first==='tech'){openTechPage();return;}
-  if(first==='reviews'){openReviewsPage();return;}
-  if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
+    if(first==='proplayer'){openProsPage();return;}
+    if(first==='specs'){openSpecsPage();return;}
+    if(first==='technology'||first==='tech'){openTechPage();return;}
+    if(first==='reviews'){openReviewsPage();return;}
+    if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
 
-  const productIdx=products.findIndex(p=>p.slug===first);
-  if(productIdx>=0){
-    window.scrollTo(0,0);
-    setTimeout(()=>openProductPage(productIdx),50);
-    return;
+    const productIdx=products.findIndex(p=>p.slug===first);
+    if(productIdx>=0){
+      window.scrollTo(0,0);
+      openProductPage(productIdx);
+      return;
+    }
+    console.warn('Route not matched:',path);
+  }catch(err){
+    console.error('Router error:',err);
   }
 }
-// Delay to ensure DOM and all overlays are ready
-setTimeout(handleRoute,100);
+// Run immediately, then again after DOM is ready as fallback
+handleRoute();
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',handleRoute);
+window.addEventListener('load',handleRoute);
 </script>
 </body>
 </html>
