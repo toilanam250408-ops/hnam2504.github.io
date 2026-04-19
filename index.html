@@ -699,9 +699,9 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <ul class="nav-links">
     <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
     <li><a href="/specs" target="_blank" data-lang="nav_specs">Thông Số</a></li>
-    <li><a href="#features" data-lang="nav_tech">Công Nghệ</a></li>
-    <li><a href="#pros" data-lang="nav_pros">Pro Player</a></li>
-    <li><a href="#reviews" data-lang="nav_reviews">Đánh Giá</a></li>
+    <li><a href="/technology" target="_blank" data-lang="nav_tech">Công Nghệ</a></li>
+    <li><a href="/proplayer" target="_blank" data-lang="nav_pros">Pro Player</a></li>
+    <li><a href="/reviews" target="_blank" data-lang="nav_reviews">Đánh Giá</a></li>
     <li><a href="#contact" data-lang="nav_contact">Liên Hệ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:.8rem">
@@ -776,12 +776,16 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   </div>
 </section>
 
-<section class="features-section" id="features">
-  <div class="section-header reveal">
-    <div class="section-tag" data-lang="feat_tag">&#128300; Công Nghệ</div>
-    <h2 class="section-title" data-lang="feat_title">Tại Sao Chọn <span>ATK?</span></h2>
+<section class="specs-cta-section" id="features">
+  <div class="specs-cta-banner reveal" style="background:linear-gradient(135deg,#1a0a35,#350a3a)">
+    <div class="specs-cta-icon">&#128300;</div>
+    <div class="specs-cta-content">
+      <div class="section-tag" data-lang="feat_tag">&#128300; Công Nghệ</div>
+      <h2 class="section-title" data-lang="feat_title">Tại Sao Chọn <span>ATK?</span></h2>
+      <p class="section-desc" data-lang="feat_cta_desc">Khám phá 6 công nghệ đột phá: PAW3950 Ultra, 8000Hz polling, Nano Coating, pin 600h và nhiều hơn nữa</p>
+      <button class="btn-primary" onclick="window.open('/technology','_blank')" data-lang="feat_cta_btn">&#128300; Xem Chi Tiết Công Nghệ &rarr;</button>
+    </div>
   </div>
-  <div class="features-grid" id="featuresGrid"></div>
 </section>
 
 <section style="padding:2.5rem 2rem">
@@ -792,16 +796,16 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   </div>
 </section>
 
-<!-- Pro Player Pick -->
-<section class="pros-section" id="pros">
-  <div class="section-header reveal">
-    <div class="section-tag" data-lang="pros_tag">&#127942; Pro Player Pick</div>
-    <h2 class="section-title" data-lang="pros_title">Tuyển Thủ <span>Chuyên Nghiệp</span></h2>
-    <p class="section-desc" data-lang="pros_desc">Các pro player esports quốc tế đang sử dụng gear ATK trong thi đấu</p>
-  </div>
-  <div class="pros-grid" id="prosGrid"></div>
-  <div class="pros-cta">
-    <button class="pros-view-all" onclick="window.open('/proplayer','_blank')" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
+<!-- Pro Player Pick CTA -->
+<section class="specs-cta-section" id="pros">
+  <div class="specs-cta-banner reveal" style="background:linear-gradient(135deg,#350a1a,#1a0a35)">
+    <div class="specs-cta-icon">&#127942;</div>
+    <div class="specs-cta-content">
+      <div class="section-tag" data-lang="pros_tag">&#127942; Pro Player Pick</div>
+      <h2 class="section-title" data-lang="pros_title">Tuyển Thủ <span>Chuyên Nghiệp</span></h2>
+      <p class="section-desc" data-lang="pros_desc">8 pro player từ Team Vitality, Fnatic, MIBR, Leviatán, KRÜ Esports đang sử dụng gear ATK</p>
+      <button class="btn-primary" onclick="window.open('/proplayer','_blank')" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
+    </div>
   </div>
 </section>
 
@@ -815,12 +819,26 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <div class="specs-page" id="specsPage"></div>
 </div>
 
-<section class="testimonials" id="reviews">
-  <div class="section-header reveal">
-    <div class="section-tag" data-lang="rev_tag">&#128172; Đánh Giá</div>
-    <h2 class="section-title" data-lang="rev_title">Game Thủ <span>Nói Gì?</span></h2>
+<!-- Technology Full Page -->
+<div class="specs-page-overlay" id="techPageOverlay">
+  <div class="specs-page" id="techPage"></div>
+</div>
+
+<!-- Reviews Full Page -->
+<div class="specs-page-overlay" id="reviewsPageOverlay">
+  <div class="specs-page" id="reviewsPage"></div>
+</div>
+
+<section class="specs-cta-section" id="reviews">
+  <div class="specs-cta-banner reveal" style="background:linear-gradient(135deg,#0a3520,#0a1a35)">
+    <div class="specs-cta-icon">&#128172;</div>
+    <div class="specs-cta-content">
+      <div class="section-tag" data-lang="rev_tag">&#128172; Đánh Giá</div>
+      <h2 class="section-title" data-lang="rev_title">Game Thủ <span>Nói Gì?</span></h2>
+      <p class="section-desc" data-lang="rev_cta_desc">6 đánh giá thực tế từ game thủ Việt — Valorant, CS2, Apex Legends, Streamer</p>
+      <button class="btn-primary" onclick="window.open('/reviews','_blank')" data-lang="rev_cta_btn">&#11088; Xem Tất Cả Đánh Giá &rarr;</button>
+    </div>
   </div>
-  <div class="testimonial-grid" id="reviewsGrid"></div>
 </section>
 
 <!-- Newsletter -->
@@ -1133,6 +1151,68 @@ function openSpecsPage(){
 
 function closeSpecsPage(){
   document.getElementById('specsPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function openTechPage(){
+  const t=currentLang==='en';
+  const f=t?featuresEn:features;
+  document.getElementById('techPage').innerHTML=`
+    <div class="pros-page-header">
+      <div class="pros-page-title">
+        <h1>${t?'Why Choose <span>ATK?</span>':'Tại Sao Chọn <span>ATK?</span>'}</h1>
+        <p>${t?'6 breakthrough technologies powering ATK gaming mice':'6 công nghệ đột phá làm nên chuột gaming ATK'}</p>
+      </div>
+      <button class="pros-page-back" onclick="closeTechPage()">&larr; ${t?'Back':'Quay lại'}</button>
+    </div>
+    <div class="pros-page-stats">
+      <div class="pros-stat"><div class="val">47<span style="font-size:.7rem">g</span></div><div class="lbl">${t?'Lightest':'Nhẹ nhất'}</div></div>
+      <div class="pros-stat"><div class="val">8000<span style="font-size:.7rem">Hz</span></div><div class="lbl">${t?'Polling Rate':'Polling Rate'}</div></div>
+      <div class="pros-stat"><div class="val">42K</div><div class="lbl">${t?'Max DPI':'DPI Tối đa'}</div></div>
+      <div class="pros-stat"><div class="val">600<span style="font-size:.7rem">h</span></div><div class="lbl">${t?'Battery Life':'Pin'}</div></div>
+    </div>
+    <div class="features-grid" style="max-width:none">
+      ${f.map((feat,i)=>`<div class="feature-card reveal" style="transition-delay:${i*0.07}s"><div class="feature-icon">${feat.icon}</div><h3>${feat.title}</h3><p>${feat.desc}</p></div>`).join('')}
+    </div>
+  `;
+  document.getElementById('techPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(initReveal);
+}
+
+function closeTechPage(){
+  document.getElementById('techPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function openReviewsPage(){
+  const t=currentLang==='en';
+  const r=t?reviewsEn:reviews;
+  document.getElementById('reviewsPage').innerHTML=`
+    <div class="pros-page-header">
+      <div class="pros-page-title">
+        <h1>${t?'What <span>Gamers Say?</span>':'Game Thủ <span>Nói Gì?</span>'}</h1>
+        <p>${t?'Real reviews from ATK gaming mouse users':'Đánh giá thực tế từ người dùng chuột gaming ATK'}</p>
+      </div>
+      <button class="pros-page-back" onclick="closeReviewsPage()">&larr; ${t?'Back':'Quay lại'}</button>
+    </div>
+    <div class="pros-page-stats">
+      <div class="pros-stat"><div class="val">${r.length}</div><div class="lbl">${t?'Reviews':'Đánh giá'}</div></div>
+      <div class="pros-stat"><div class="val">5.0</div><div class="lbl">${t?'Average':'Điểm trung bình'}</div></div>
+      <div class="pros-stat"><div class="val">100%</div><div class="lbl">${t?'Satisfied':'Hài lòng'}</div></div>
+      <div class="pros-stat"><div class="val">VN</div><div class="lbl">${t?'Verified':'Xác thực'}</div></div>
+    </div>
+    <div class="testimonial-grid" style="max-width:none">
+      ${r.map((rev,i)=>`<div class="testimonial-card reveal" style="transition-delay:${i*0.07}s"><div class="stars">${'\u2605'.repeat(rev.rating)}${'\u2606'.repeat(5-rev.rating)}</div><blockquote>"${rev.text}"</blockquote><div class="reviewer"><div class="reviewer-avatar" style="background:${rev.bg}">${rev.name[0]}</div><div class="reviewer-info"><strong>${rev.name}</strong><span>${rev.tag}</span></div></div></div>`).join('')}
+    </div>
+  `;
+  document.getElementById('reviewsPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(initReveal);
+}
+
+function closeReviewsPage(){
+  document.getElementById('reviewsPageOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
 
@@ -2076,6 +2156,16 @@ translations.vi.specs_cta_desc='So sánh đầy đủ tất cả 17 model chuộ
 translations.en.specs_cta_desc='Full comparison of all 17 ATK mouse models — sensor, MCU, battery, switch, coating';
 translations.vi.specs_cta_btn='\ud83d\udcca Xem Bảng So Sánh \u2192';
 translations.en.specs_cta_btn='\ud83d\udcca View Comparison Table \u2192';
+translations.vi.feat_cta_desc='Khám phá 6 công nghệ đột phá: PAW3950 Ultra, 8000Hz polling, Nano Coating, pin 600h và nhiều hơn nữa';
+translations.en.feat_cta_desc='Explore 6 breakthrough technologies: PAW3950 Ultra, 8000Hz polling, Nano Coating, 600h battery and more';
+translations.vi.feat_cta_btn='\ud83d\udd2c Xem Chi Tiết Công Nghệ \u2192';
+translations.en.feat_cta_btn='\ud83d\udd2c View Technology Details \u2192';
+translations.vi.pros_desc='8 pro player từ Team Vitality, Fnatic, MIBR, Leviatán, KRÜ Esports đang sử dụng gear ATK';
+translations.en.pros_desc='8 pros from Team Vitality, Fnatic, MIBR, Leviatán, KRÜ Esports using ATK gear';
+translations.vi.rev_cta_desc='6 đánh giá thực tế từ game thủ Việt — Valorant, CS2, Apex Legends, Streamer';
+translations.en.rev_cta_desc='6 real reviews from Vietnamese gamers — Valorant, CS2, Apex Legends, Streamers';
+translations.vi.rev_cta_btn='\u2b50 Xem Tất Cả Đánh Giá \u2192';
+translations.en.rev_cta_btn='\u2b50 View All Reviews \u2192';
 
 // Escape key for policy modal
 const _origEsc=document.onkeydown;
@@ -2084,6 +2174,8 @@ document.addEventListener('keydown',function(e){
     if(document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
     if(document.getElementById('prosPageOverlay').classList.contains('open')){closeProsPage();return;}
     if(document.getElementById('specsPageOverlay').classList.contains('open')){closeSpecsPage();return;}
+    if(document.getElementById('techPageOverlay').classList.contains('open')){closeTechPage();return;}
+    if(document.getElementById('reviewsPageOverlay').classList.contains('open')){closeReviewsPage();return;}
   }
 });
 
@@ -2100,6 +2192,8 @@ function handleRoute(){
 
   if(first==='proplayer'){openProsPage();return;}
   if(first==='specs'){openSpecsPage();return;}
+  if(first==='technology'||first==='tech'){openTechPage();return;}
+  if(first==='reviews'){openReviewsPage();return;}
   if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
 
   const productIdx=products.findIndex(p=>p.slug===first);
