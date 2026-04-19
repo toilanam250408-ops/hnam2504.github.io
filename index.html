@@ -523,6 +523,26 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Specs CTA Banner (replaces inline specs section) */
+.specs-cta-section{padding:3rem 2rem;background:var(--bg2)}
+.specs-cta-banner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2rem;background:linear-gradient(135deg,#0a1a35,#1a1a45);border:1px solid var(--border);border-radius:18px;padding:2.5rem;position:relative;overflow:hidden}
+.specs-cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 50%,rgba(0,229,255,0.1),transparent 50%),radial-gradient(circle at 100% 50%,rgba(255,45,120,0.08),transparent 50%);pointer-events:none}
+.specs-cta-icon{font-size:4rem;line-height:1;flex-shrink:0;position:relative;z-index:1}
+.specs-cta-content{flex:1;position:relative;z-index:1}
+.specs-cta-content .section-tag{margin-bottom:.4rem}
+.specs-cta-content .section-title{margin-bottom:.5rem}
+.specs-cta-content .section-desc{margin:0 0 1.2rem 0;max-width:none}
+@media(max-width:600px){
+  .specs-cta-section{padding:1.5rem .8rem}
+  .specs-cta-banner{flex-direction:column;text-align:center;padding:1.5rem 1rem;gap:1rem}
+  .specs-cta-icon{font-size:2.5rem}
+}
+
+/* Specs Full Page */
+.specs-page-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+.specs-page-overlay.open{opacity:1;visibility:visible}
+.specs-page{max-width:1300px;margin:0 auto;padding:2rem}
+
 /* Pros Full Page */
 .pros-page-overlay{position:fixed;inset:0;background:var(--bg);z-index:4000;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
 .pros-page-overlay.open{opacity:1;visibility:visible}
@@ -678,7 +698,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <a href="#" class="logo">Hnam<span>Store</span></a>
   <ul class="nav-links">
     <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
-    <li><a href="#specs" data-lang="nav_specs">Thông Số</a></li>
+    <li><a href="/specs" target="_blank" data-lang="nav_specs">Thông Số</a></li>
     <li><a href="#features" data-lang="nav_tech">Công Nghệ</a></li>
     <li><a href="#pros" data-lang="nav_pros">Pro Player</a></li>
     <li><a href="#reviews" data-lang="nav_reviews">Đánh Giá</a></li>
@@ -702,7 +722,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
     <p data-lang="hero_desc">Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.</p>
     <div class="hero-cta">
       <a href="#products" class="btn-primary">&#128433; <span data-lang="hero_cta1">Xem Sản Phẩm</span></a>
-      <a href="#specs" class="btn-outline"><span data-lang="hero_cta2">So Sánh Thông Số</span> &rarr;</a>
+      <a href="/specs" target="_blank" class="btn-outline"><span data-lang="hero_cta2">So Sánh Thông Số</span> &rarr;</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-num">47g</div><div class="stat-label" data-lang="stat_light">Siêu nhẹ</div></div>
@@ -744,31 +764,15 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<section class="specs-section" id="specs">
-  <div class="section-header reveal">
-    <div class="section-tag" data-lang="specs_tag">&#128202; So Sánh</div>
-    <h2 class="section-title" data-lang="specs_title">Bảng Thông Số <span>Chi Tiết</span></h2>
-  </div>
-  <div class="specs-table-wrap reveal">
-    <table class="specs-table">
-      <thead><tr><th>Model</th><th>Sensor</th><th>MCU</th><th>Trọng lượng</th><th>Polling</th><th>Pin</th><th>Kết nối</th><th>Switch</th><th>Coating</th></tr></thead>
-      <tbody>
-        <tr class="row-a9"><td>A9 SE</td><td>PAW3311</td><td>HiSilicon Sparkle</td><td>~53g</td><td>1000Hz</td><td>500mAh / ~120h</td><td>2.4G / BT / USB-C</td><td>Huano Blue V2</td><td>&mdash;</td></tr>
-        <tr class="row-a9"><td>A9</td><td>PAW3395 SE</td><td>HiSilicon Sparkle</td><td>~53g</td><td>1000Hz</td><td>500mAh / ~120h</td><td>2.4G / BT / USB-C</td><td>Huano Blue V2</td><td>&mdash;</td></tr>
-        <tr class="row-a9"><td>A9 Plus</td><td>PAW3395</td><td>HiSilicon Sparkle</td><td>~57g</td><td>1000Hz</td><td>800mAh / ~240h</td><td>NearLink / BT / USB-C</td><td>Huano Iceberry</td><td>Ice-Feel</td></tr>
-        <tr class="row-a9"><td>A9 Pro</td><td>PAW3395</td><td>PixArt Flagship</td><td>~53g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
-        <tr class="row-a9"><td>A9 Pro Max</td><td>PAW3395</td><td>PixArt Flagship</td><td>~57g</td><td>8000Hz</td><td>800mAh / ~240h</td><td>2.4G / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
-        <tr class="row-a9"><td>A9 Ultra</td><td>PAW3950 Ultra</td><td>Nordic 52840</td><td>~53g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
-        <tr class="row-a9"><td>A9 Air</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~47g</td><td>8000Hz</td><td>300mAh / ~300h</td><td>2.4G / USB-C</td><td>ATK SwiftLight</td><td>Nano Coating</td></tr>
-        <tr class="row-a9"><td>A9 Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~53g</td><td>8000Hz</td><td>800mAh / ~600h</td><td>2.4G / USB-C</td><td>ATK Optical</td><td>Nano Coating</td></tr>
-        <tr class="row-x1"><td>X1 V1 Pro</td><td>PAW3950</td><td>Nordic 52840</td><td>~49g</td><td>8000Hz</td><td>300mAh / ~75-150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
-        <tr class="row-x1"><td>X1 V1 Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 52840</td><td>~54g</td><td>8000Hz</td><td>500mAh / ~150h</td><td>2.4G / BT / USB-C</td><td>Omron Optical</td><td>Ice-Feel</td></tr>
-        <tr class="row-x1"><td>X1 V2 Ultimate 2.0</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~54g</td><td>8000Hz</td><td>800mAh</td><td>2.4G / USB-C</td><td>ATK Swiftlight</td><td>Nano Coating</td></tr>
-        <tr class="row-x1"><td>X1 V2 Extreme 2.0</td><td>PAW3950 Ultra</td><td>Nordic 54H20</td><td>~54g</td><td>8000Hz</td><td>800mAh</td><td>2.4G / USB-C</td><td>ATK Swiftlight</td><td>Nano Coating</td></tr>
-        <tr class="row-ghost"><td>Ghost Ultimate</td><td>PAW3950 Ultra</td><td>Nordic 54L15</td><td>~48g</td><td>8000Hz</td><td>300mAh / ~210h</td><td>2.4G / BT / USB-C</td><td>ATK Lightblade</td><td>Nano Coating</td></tr>
-        <tr class="row-ghost"><td>Ghost Extreme</td><td>PAW3950 Ultra</td><td>Nordic 54H20</td><td>~48g</td><td>8000Hz</td><td>300mAh / ~210h</td><td>2.4G / USB-C</td><td>ATK Optical</td><td>Nano Coating</td></tr>
-      </tbody>
-    </table>
+<section class="specs-cta-section" id="specs">
+  <div class="specs-cta-banner reveal">
+    <div class="specs-cta-icon">&#128202;</div>
+    <div class="specs-cta-content">
+      <div class="section-tag" data-lang="specs_tag">&#128202; So Sánh</div>
+      <h2 class="section-title" data-lang="specs_title">Bảng Thông Số <span>Chi Tiết</span></h2>
+      <p class="section-desc" data-lang="specs_cta_desc">So sánh đầy đủ tất cả 17 model chuột ATK — sensor, MCU, pin, switch, coating</p>
+      <button class="btn-primary" onclick="window.open('/specs','_blank')" data-lang="specs_cta_btn">&#128202; Xem Bảng So Sánh &rarr;</button>
+    </div>
   </div>
 </section>
 
@@ -804,6 +808,11 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 <!-- Pros Full Page -->
 <div class="pros-page-overlay" id="prosPageOverlay">
   <div class="pros-page" id="prosPage"></div>
+</div>
+
+<!-- Specs Full Page -->
+<div class="specs-page-overlay" id="specsPageOverlay">
+  <div class="specs-page" id="specsPage"></div>
 </div>
 
 <section class="testimonials" id="reviews">
@@ -1072,6 +1081,59 @@ function renderPros(){
     </div>
   `).join('');
   requestAnimationFrame(initReveal);
+}
+
+function openSpecsPage(){
+  const t=currentLang==='en';
+  const rows=[
+    {cls:'row-a9',data:['A9 SE','PAW3311','HiSilicon Sparkle','~53g','1000Hz','500mAh / ~120h','2.4G / BT / USB-C','Huano Blue V2','—']},
+    {cls:'row-a9',data:['A9','PAW3395 SE','HiSilicon Sparkle','~53g','1000Hz','500mAh / ~120h','2.4G / BT / USB-C','Huano Blue V2','—']},
+    {cls:'row-a9',data:['A9 Plus','PAW3395','HiSilicon Sparkle','~57g','1000Hz','800mAh / ~240h','NearLink / BT / USB-C','Huano Iceberry','Ice-Feel']},
+    {cls:'row-a9',data:['A9 Pro','PAW3395','PixArt Flagship','~53g','8000Hz','500mAh / ~150h','2.4G / USB-C','Omron Optical','Ice-Feel']},
+    {cls:'row-a9',data:['A9 Pro Max','PAW3395','PixArt Flagship','~57g','8000Hz','800mAh / ~240h','2.4G / USB-C','Omron Optical','Ice-Feel']},
+    {cls:'row-a9',data:['A9 Ultra','PAW3950 Ultra','Nordic 52840','~53g','8000Hz','500mAh / ~150h','2.4G / BT / USB-C','Omron Optical','Ice-Feel']},
+    {cls:'row-a9',data:['A9 Air','PAW3950 Ultra','Nordic 54L15','~47g','8000Hz','300mAh / ~300h','2.4G / USB-C','ATK SwiftLight','Nano Coating']},
+    {cls:'row-a9',data:['A9 Ultimate','PAW3950 Ultra','Nordic 54L15','~53g','8000Hz','800mAh / ~600h','2.4G / USB-C','ATK Optical','Nano Coating']},
+    {cls:'row-x1',data:['X1 V1 Pro','PAW3950','Nordic 52840','~49g','8000Hz','300mAh / ~75-150h','2.4G / BT / USB-C','Omron Optical','Ice-Feel']},
+    {cls:'row-x1',data:['X1 V1 Ultimate','PAW3950 Ultra','Nordic 52840','~54g','8000Hz','500mAh / ~150h','2.4G / BT / USB-C','Omron Optical','Ice-Feel']},
+    {cls:'row-x1',data:['X1 V2 Ultimate 2.0','PAW3950 Ultra','Nordic 54L15','~54g','8000Hz','800mAh','2.4G / USB-C','ATK Swiftlight','Nano Coating']},
+    {cls:'row-x1',data:['X1 V2 Extreme 2.0','PAW3950 Ultra','Nordic 54H20','~54g','8000Hz','800mAh','2.4G / USB-C','ATK Swiftlight','Nano Coating']},
+    {cls:'row-ghost',data:['Ghost Ultimate','PAW3950 Ultra','Nordic 54L15','~48g','8000Hz','300mAh / ~210h','2.4G / BT / USB-C','ATK Lightblade','Nano Coating']},
+    {cls:'row-ghost',data:['Ghost Extreme','PAW3950 Ultra','Nordic 54H20','~48g','8000Hz','300mAh / ~210h','2.4G / USB-C','ATK Optical','Nano Coating']},
+    {cls:'row-ghost',data:['Ghost Ultimate Silver','PAW3950 Ultra','Nordic 54L15','~48g','8000Hz','300mAh / ~210h','2.4G / BT / USB-C','ATK Lightblade','Nano Coating']},
+    {cls:'row-ghost',data:['Ghost Ultimate Red','PAW3950 Ultra','Nordic 54L15','~48g','8000Hz','300mAh / ~210h','2.4G / BT / USB-C','ATK Lightblade','Nano Coating']},
+    {cls:'row-ghost',data:['Ghost Extreme Purple','PAW3950 Ultra','Nordic 54H20','~48g','8000Hz','300mAh / ~210h','2.4G / USB-C','ATK Optical','Nano Coating']},
+  ];
+  const headers=t?['Model','Sensor','MCU','Weight','Polling','Battery','Connectivity','Switch','Coating']:['Model','Sensor','MCU','Trọng lượng','Polling','Pin','Kết nối','Switch','Coating'];
+  document.getElementById('specsPage').innerHTML=`
+    <div class="pros-page-header">
+      <div class="pros-page-title">
+        <h1>${t?'Detailed <span>Specifications</span>':'Bảng Thông Số <span>Chi Tiết</span>'}</h1>
+        <p>${t?'Compare all 17 ATK mouse models — sensor, MCU, battery, switch, coating':'So sánh đầy đủ 17 model chuột ATK — sensor, MCU, pin, switch, coating'}</p>
+      </div>
+      <button class="pros-page-back" onclick="closeSpecsPage()">&larr; ${t?'Back':'Quay lại'}</button>
+    </div>
+    <div class="pros-page-stats">
+      <div class="pros-stat"><div class="val">17</div><div class="lbl">${t?'Models':'Sản phẩm'}</div></div>
+      <div class="pros-stat"><div class="val">3</div><div class="lbl">${t?'Series':'Dòng sản phẩm'}</div></div>
+      <div class="pros-stat"><div class="val">42K</div><div class="lbl">${t?'Max DPI':'DPI Tối đa'}</div></div>
+      <div class="pros-stat"><div class="val">8000<span style="font-size:.7rem">Hz</span></div><div class="lbl">${t?'Max Polling':'Polling Tối đa'}</div></div>
+    </div>
+    <div class="specs-table-wrap reveal">
+      <table class="specs-table">
+        <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${rows.map(r=>`<tr class="${r.cls}">${r.data.map(d=>`<td>${d}</td>`).join('')}</tr>`).join('')}</tbody>
+      </table>
+    </div>
+  `;
+  document.getElementById('specsPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(initReveal);
+}
+
+function closeSpecsPage(){
+  document.getElementById('specsPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 function openProsPage(){
@@ -2010,6 +2072,10 @@ translations.vi.nav_pros='Pro Player';
 translations.en.nav_pros='Pro Player';
 translations.vi.pros_view_all='\ud83d\udc64 Xem Tất Cả Pro Player \u2192';
 translations.en.pros_view_all='\ud83d\udc64 View All Pro Players \u2192';
+translations.vi.specs_cta_desc='So sánh đầy đủ tất cả 17 model chuột ATK — sensor, MCU, pin, switch, coating';
+translations.en.specs_cta_desc='Full comparison of all 17 ATK mouse models — sensor, MCU, battery, switch, coating';
+translations.vi.specs_cta_btn='\ud83d\udcca Xem Bảng So Sánh \u2192';
+translations.en.specs_cta_btn='\ud83d\udcca View Comparison Table \u2192';
 
 // Escape key for policy modal
 const _origEsc=document.onkeydown;
@@ -2017,6 +2083,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     if(document.getElementById('policyOverlay').classList.contains('open')){closePolicy();return;}
     if(document.getElementById('prosPageOverlay').classList.contains('open')){closeProsPage();return;}
+    if(document.getElementById('specsPageOverlay').classList.contains('open')){closeSpecsPage();return;}
   }
 });
 
@@ -2032,6 +2099,7 @@ function handleRoute(){
   const first=seg[0].toLowerCase();
 
   if(first==='proplayer'){openProsPage();return;}
+  if(first==='specs'){openSpecsPage();return;}
   if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
 
   const productIdx=products.findIndex(p=>p.slug===first);
