@@ -802,7 +802,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 </div>
 
 <nav class="navbar" id="navbar">
-  <a href="#" class="logo">Hnam<span>Store</span></a>
+  <a href="/" class="logo">Hnam<span>Store</span></a>
   <ul class="nav-links">
     <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
     <li><a href="/specs" target="_blank" data-lang="nav_specs">Thông Số</a></li>
@@ -976,7 +976,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 <footer id="contact">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="logo">Hnam<span>Store</span></a>
+      <a href="/" class="logo">Hnam<span>Store</span></a>
     </div>
     <div class="footer-col"><h4 data-lang="nav_products">Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
     <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="/policy/warranty" target="_blank" data-lang="footer_warranty">Bảo hành</a><a href="/policy/shipping" target="_blank" data-lang="footer_shipping">Vận chuyển</a><a href="/policy/return" target="_blank" data-lang="footer_return">Đổi trả 30 ngày</a><a href="/policy/faq" target="_blank">FAQ</a></div>
@@ -1276,6 +1276,7 @@ function openSpecsPage(){
 function closeSpecsPage(){
   document.getElementById('specsPageOverlay').classList.remove('open');
   document.body.style.overflow='';
+  if(location.pathname!=='/') history.pushState({},'','/');
 }
 
 function openTechPage(){
@@ -1307,6 +1308,7 @@ function openTechPage(){
 function closeTechPage(){
   document.getElementById('techPageOverlay').classList.remove('open');
   document.body.style.overflow='';
+  if(location.pathname!=='/') history.pushState({},'','/');
 }
 
 function openReviewsPage(){
@@ -1338,6 +1340,7 @@ function openReviewsPage(){
 function closeReviewsPage(){
   document.getElementById('reviewsPageOverlay').classList.remove('open');
   document.body.style.overflow='';
+  if(location.pathname!=='/') history.pushState({},'','/');
 }
 
 // ===== PRODUCT FULL PAGE (phongcachxanh-style) =====
@@ -1362,9 +1365,9 @@ function openProductPage(idx){
   document.getElementById('productPage').innerHTML=`
     <div class="product-page">
       <div class="pp-breadcrumb">
-        <a onclick="closeProductPage()">${t?'Home':'Trang chủ'}</a>
+        <a href="/" onclick="event.preventDefault();goHome()">${t?'Home':'Trang chủ'}</a>
         <span class="sep">/</span>
-        <a onclick="closeProductPage();setTimeout(()=>{location.hash='#products'},100)">${catName}</a>
+        <a href="/#products" onclick="event.preventDefault();goHome()">${catName}</a>
         <span class="sep">/</span>
         <span class="current">${p.name}</span>
       </div>
@@ -1540,6 +1543,11 @@ function closeProductPage(){
   document.getElementById('productPageOverlay').classList.remove('open');
   document.body.style.overflow='';
   document.title='HnamStore Vietnam — Chuột Gaming Siêu Nhẹ';
+  // Reset URL to root
+  if(location.pathname!=='/') history.pushState({},'','/');
+}
+function goHome(){
+  location.href='/';
 }
 
 function ppQty(d){
@@ -1620,6 +1628,7 @@ function openProsPage(){
 function closeProsPage(){
   document.getElementById('prosPageOverlay').classList.remove('open');
   document.body.style.overflow='';
+  if(location.pathname!=='/') history.pushState({},'','/');
 }
 
 // ===== CART SYSTEM =====
@@ -2569,6 +2578,21 @@ function handleRoute(){
 handleRoute();
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',handleRoute);
 window.addEventListener('load',handleRoute);
+
+// Handle browser back/forward — close all overlays if URL becomes /
+window.addEventListener('popstate',function(){
+  const path=location.pathname.replace(/\/$/,'')||'/';
+  if(path==='/'){
+    // Close all overlays
+    ['productPageOverlay','prosPageOverlay','specsPageOverlay','techPageOverlay','reviewsPageOverlay','policyOverlay'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.classList.remove('open');
+    });
+    document.body.style.overflow='';
+  }else{
+    handleRoute();
+  }
+});
 </script>
 </body>
 </html>
