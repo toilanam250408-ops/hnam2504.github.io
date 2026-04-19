@@ -47,9 +47,9 @@ body::before{
 .navbar.scrolled{padding:.55rem 2rem;background:rgba(7,7,12,0.95)}
 .logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:3px;color:var(--cyan);text-decoration:none}
 .logo span{color:var(--magenta)}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--text-dim);text-decoration:none;font-weight:500;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--cyan);transition:width .3s}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem;letter-spacing:1.2px;text-transform:uppercase;transition:all .3s;position:relative;padding:.4rem .2rem}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));transition:width .3s}
 .nav-links a:hover{color:var(--cyan)}
 .nav-links a:hover::after{width:100%}
 .cart-btn{
@@ -523,6 +523,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Quick nav hint */
+.quick-nav-hint{max-width:1200px;margin:1rem auto 0;padding:0 2rem;display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap}
+.quick-nav-link{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border-radius:50px;background:var(--glass);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.78rem;font-weight:600;transition:all .3s}
+.quick-nav-link:hover{background:rgba(0,229,255,0.08);border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.quick-nav-link .qn-icon{font-size:1rem}
+@media(max-width:600px){
+  .quick-nav-hint{padding:0 .8rem;gap:.4rem}
+  .quick-nav-link{padding:.45rem .8rem;font-size:.7rem}
+}
+
 /* Specs CTA Banner (replaces inline specs section) */
 .specs-cta-section{padding:3rem 2rem;background:var(--bg2)}
 .specs-cta-banner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2rem;background:linear-gradient(135deg,#0a1a35,#1a1a45);border:1px solid var(--border);border-radius:18px;padding:2.5rem;position:relative;overflow:hidden}
@@ -829,6 +839,14 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
     </div>
   </div>
 </section>
+
+<!-- Quick Nav -->
+<div class="quick-nav-hint">
+  <a href="/specs" target="_blank" class="quick-nav-link"><span class="qn-icon">&#128202;</span> <span data-lang="qn_specs">Bảng Thông Số</span></a>
+  <a href="/technology" target="_blank" class="quick-nav-link"><span class="qn-icon">&#128300;</span> <span data-lang="qn_tech">Công Nghệ</span></a>
+  <a href="/proplayer" target="_blank" class="quick-nav-link"><span class="qn-icon">&#127942;</span> <span data-lang="qn_pros">Pro Player</span></a>
+  <a href="/reviews" target="_blank" class="quick-nav-link"><span class="qn-icon">&#11088;</span> <span data-lang="qn_reviews">Đánh Giá</span></a>
+</div>
 
 <!-- Banner Carousel -->
 <section class="carousel-section">
@@ -2492,6 +2510,10 @@ translations.vi.rev_cta_desc='6 đánh giá thực tế từ game thủ Việt �
 translations.en.rev_cta_desc='6 real reviews from Vietnamese gamers — Valorant, CS2, Apex Legends, Streamers';
 translations.vi.rev_cta_btn='\u2b50 Xem Tất Cả Đánh Giá \u2192';
 translations.en.rev_cta_btn='\u2b50 View All Reviews \u2192';
+translations.vi.qn_specs='Bảng Thông Số';translations.en.qn_specs='Specs Table';
+translations.vi.qn_tech='Công Nghệ';translations.en.qn_tech='Technology';
+translations.vi.qn_pros='Pro Player';translations.en.qn_pros='Pro Player';
+translations.vi.qn_reviews='Đánh Giá';translations.en.qn_reviews='Reviews';
 
 // Escape key for policy modal
 const _origEsc=document.onkeydown;
