@@ -836,10 +836,10 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <a href="/" class="logo">Hnam<span>Store</span></a>
   <ul class="nav-links">
     <li><a href="#products" data-lang="nav_products">Sản Phẩm</a></li>
-    <li><a href="/specs" target="_blank" data-lang="nav_specs">Thông Số</a></li>
-    <li><a href="/technology" target="_blank" data-lang="nav_tech">Công Nghệ</a></li>
-    <li><a href="/proplayer" target="_blank" data-lang="nav_pros">Pro Player</a></li>
-    <li><a href="/reviews" target="_blank" data-lang="nav_reviews">Đánh Giá</a></li>
+    <li><a href="/specs" onclick="event.preventDefault();navigateTo('/specs')" data-lang="nav_specs">Thông Số</a></li>
+    <li><a href="/technology" onclick="event.preventDefault();navigateTo('/technology')" data-lang="nav_tech">Công Nghệ</a></li>
+    <li><a href="/proplayer" onclick="event.preventDefault();navigateTo('/proplayer')" data-lang="nav_pros">Pro Player</a></li>
+    <li><a href="/reviews" onclick="event.preventDefault();navigateTo('/reviews')" data-lang="nav_reviews">Đánh Giá</a></li>
     <li><a href="#contact" data-lang="nav_contact">Liên Hệ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:.8rem">
@@ -860,7 +860,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
     <p data-lang="hero_desc">Chuột esports siêu nhẹ từ 47g — cảm biến PAW3950 Ultra 42K DPI — polling 8000Hz. Dòng Dragonfly A9, Blazing Sky X1 và Ghost Carbon Fiber.</p>
     <div class="hero-cta">
       <a href="#products" class="btn-primary">&#128433; <span data-lang="hero_cta1">Xem Sản Phẩm</span></a>
-      <a href="/specs" target="_blank" class="btn-outline"><span data-lang="hero_cta2">So Sánh Thông Số</span> &rarr;</a>
+      <a href="/specs" onclick="event.preventDefault();navigateTo('/specs')" class="btn-outline"><span data-lang="hero_cta2">So Sánh Thông Số</span> &rarr;</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-num">47g</div><div class="stat-label" data-lang="stat_light">Siêu nhẹ</div></div>
@@ -873,10 +873,10 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
 
 <!-- Quick Nav -->
 <div class="quick-nav-hint">
-  <a href="/specs" target="_blank" class="quick-nav-link"><span class="qn-icon">&#128202;</span> <span data-lang="qn_specs">Bảng Thông Số</span></a>
-  <a href="/technology" target="_blank" class="quick-nav-link"><span class="qn-icon">&#128300;</span> <span data-lang="qn_tech">Công Nghệ</span></a>
-  <a href="/proplayer" target="_blank" class="quick-nav-link"><span class="qn-icon">&#127942;</span> <span data-lang="qn_pros">Pro Player</span></a>
-  <a href="/reviews" target="_blank" class="quick-nav-link"><span class="qn-icon">&#11088;</span> <span data-lang="qn_reviews">Đánh Giá</span></a>
+  <a href="/specs" onclick="event.preventDefault();navigateTo('/specs')" class="quick-nav-link"><span class="qn-icon">&#128202;</span> <span data-lang="qn_specs">Bảng Thông Số</span></a>
+  <a href="/technology" onclick="event.preventDefault();navigateTo('/technology')" class="quick-nav-link"><span class="qn-icon">&#128300;</span> <span data-lang="qn_tech">Công Nghệ</span></a>
+  <a href="/proplayer" onclick="event.preventDefault();navigateTo('/proplayer')" class="quick-nav-link"><span class="qn-icon">&#127942;</span> <span data-lang="qn_pros">Pro Player</span></a>
+  <a href="/reviews" onclick="event.preventDefault();navigateTo('/reviews')" class="quick-nav-link"><span class="qn-icon">&#11088;</span> <span data-lang="qn_reviews">Đánh Giá</span></a>
 </div>
 
 <!-- Banner Carousel -->
@@ -917,7 +917,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <div class="section-tag" data-lang="specs_tag">&#128202; So Sánh</div>
       <h2 class="section-title" data-lang="specs_title">Bảng Thông Số <span>Chi Tiết</span></h2>
       <p class="section-desc" data-lang="specs_cta_desc">So sánh đầy đủ tất cả 17 model chuột ATK — sensor, MCU, pin, switch, coating</p>
-      <button class="btn-primary" onclick="window.open('/specs','_blank')" data-lang="specs_cta_btn">&#128202; Xem Bảng So Sánh &rarr;</button>
+      <button class="btn-primary" onclick="navigateTo('/specs')" data-lang="specs_cta_btn">&#128202; Xem Bảng So Sánh &rarr;</button>
     </div>
   </div>
 </section>
@@ -929,7 +929,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <div class="section-tag" data-lang="feat_tag">&#128300; Công Nghệ</div>
       <h2 class="section-title" data-lang="feat_title">Tại Sao Chọn <span>ATK?</span></h2>
       <p class="section-desc" data-lang="feat_cta_desc">Khám phá 6 công nghệ đột phá: PAW3950 Ultra, 8000Hz polling, Nano Coating, pin 600h và nhiều hơn nữa</p>
-      <button class="btn-primary" onclick="window.open('/technology','_blank')" data-lang="feat_cta_btn">&#128300; Xem Chi Tiết Công Nghệ &rarr;</button>
+      <button class="btn-primary" onclick="navigateTo('/technology')" data-lang="feat_cta_btn">&#128300; Xem Chi Tiết Công Nghệ &rarr;</button>
     </div>
   </div>
 </section>
@@ -950,7 +950,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <div class="section-tag" data-lang="pros_tag">&#127942; Pro Player Pick</div>
       <h2 class="section-title" data-lang="pros_title">Tuyển Thủ <span>Chuyên Nghiệp</span></h2>
       <p class="section-desc" data-lang="pros_desc">8 pro player từ Team Vitality, Fnatic, MIBR, Leviatán, KRÜ Esports đang sử dụng gear ATK</p>
-      <button class="btn-primary" onclick="window.open('/proplayer','_blank')" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
+      <button class="btn-primary" onclick="navigateTo('/proplayer')" data-lang="pros_view_all">&#128100; Xem Tất Cả Pro Player &rarr;</button>
     </div>
   </div>
 </section>
@@ -999,7 +999,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <div class="section-tag" data-lang="rev_tag">&#128172; Đánh Giá</div>
       <h2 class="section-title" data-lang="rev_title">Game Thủ <span>Nói Gì?</span></h2>
       <p class="section-desc" data-lang="rev_cta_desc">6 đánh giá thực tế từ game thủ Việt — Valorant, CS2, Apex Legends, Streamer</p>
-      <button class="btn-primary" onclick="window.open('/reviews','_blank')" data-lang="rev_cta_btn">&#11088; Xem Tất Cả Đánh Giá &rarr;</button>
+      <button class="btn-primary" onclick="navigateTo('/reviews')" data-lang="rev_cta_btn">&#11088; Xem Tất Cả Đánh Giá &rarr;</button>
     </div>
   </div>
 </section>
@@ -1022,7 +1022,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
       <a href="/" class="logo">Hnam<span>Store</span></a>
     </div>
     <div class="footer-col"><h4 data-lang="nav_products">Sản Phẩm</h4><a href="#">Dragonfly A9 Series</a><a href="#">Blazing Sky X1</a><a href="#">Blazing Sky Ghost</a><a href="#">Phụ kiện &amp; Lót chuột</a></div>
-    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="/policy/warranty" target="_blank" data-lang="footer_warranty">Bảo hành</a><a href="/policy/shipping" target="_blank" data-lang="footer_shipping">Vận chuyển</a><a href="/policy/return" target="_blank" data-lang="footer_return">Đổi trả 30 ngày</a><a href="/policy/faq" target="_blank">FAQ</a></div>
+    <div class="footer-col"><h4 data-lang="footer_support">Hỗ Trợ</h4><a href="/policy/warranty" onclick="event.preventDefault();navigateTo('/policy/warranty')" data-lang="footer_warranty">Bảo hành</a><a href="/policy/shipping" onclick="event.preventDefault();navigateTo('/policy/shipping')" data-lang="footer_shipping">Vận chuyển</a><a href="/policy/return" onclick="event.preventDefault();navigateTo('/policy/return')" data-lang="footer_return">Đổi trả 30 ngày</a><a href="/policy/faq" onclick="event.preventDefault();navigateTo('/policy/faq')">FAQ</a></div>
     <div class="footer-col"><h4 data-lang="nav_contact">Liên Hệ</h4><a href="tel:0776765608">&#128222; 0776765608</a><a href="mailto:oneplusoneequalsthree2504@gmail.com">&#9993; oneplusoneequalsthree2504@gmail.com</a><a href="#">&#128205; Vũng Tàu, Bà Rịa - Vũng Tàu</a></div>
   </div>
   <div class="footer-bottom">
@@ -1149,7 +1149,7 @@ function renderProducts(filter='all'){
   const g=document.getElementById('productsGrid');
   g.innerHTML=products.map((p,i)=>{
     const h=filter!=='all'&&p.cat!==filter?'hidden':'';
-    return `<a class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s;text-decoration:none;color:inherit;display:block" href="/${p.slug}" target="_blank">
+    return `<a class="product-card reveal ${h}" style="transition-delay:${(i%6)*0.07}s;text-decoration:none;color:inherit;display:block" href="/${p.slug}" onclick="event.preventDefault();navigateTo('/${p.slug}')">
       <div class="product-img">
         <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${p.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
         ${p.img?`<img class="product-photo" src="${p.img}" alt="${p.name}" loading="lazy">`:mouseShape(p.color,getAccent(p.cat))}
@@ -1243,7 +1243,7 @@ function renderPros(){
   // Only show first 4 on home page
   const preview=proPlayers.slice(0,4);
   el.innerHTML=preview.map((p,i)=>`
-    <div class="pro-card reveal" style="transition-delay:${i*0.1}s" onclick="window.open('/proplayer','_blank')">
+    <div class="pro-card reveal" style="transition-delay:${i*0.1}s" onclick="navigateTo('/proplayer')">
       <div class="pro-header">
         <div class="pro-avatar" style="background:${p.avatar}">${p.initial}</div>
         <div class="pro-info">
@@ -1555,7 +1555,7 @@ function openProductPage(idx){
         <h3>${t?'Related Products':'Sản phẩm liên quan'}</h3>
         <div class="pp-related-grid">
           ${related.map(rp=>`
-            <div class="product-card" onclick="window.open('/'+'${rp.slug}','_blank')">
+            <div class="product-card" style="cursor:pointer" onclick="navigateTo('/${rp.slug}')">
               <div class="product-img">
                 <div class="img-bg" style="background:radial-gradient(ellipse at 50% 50%,${rp.color}55,transparent 70%),linear-gradient(135deg,var(--bg2),var(--bg3))"></div>
                 ${rp.img?`<img class="product-photo" src="${rp.img}" alt="${rp.name}" loading="lazy">`:''}
@@ -1590,7 +1590,14 @@ function closeProductPage(){
   if(location.pathname!=='/') history.pushState({},'','/');
 }
 function goHome(){
-  location.href='/';
+  // Close all overlays and navigate to home
+  ['productPageOverlay','prosPageOverlay','specsPageOverlay','techPageOverlay','reviewsPageOverlay','policyOverlay'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.remove('open');
+  });
+  document.body.style.overflow='';
+  if(location.pathname!=='/') history.pushState({},'','/');
+  document.title='HnamStore Vietnam — Chuột Gaming Siêu Nhẹ';
 }
 
 function ppQty(d){
@@ -2651,6 +2658,13 @@ renderProducts();renderFeatures();renderReviews();renderPros();renderCarousel();
 if(currentLang==='en') setLang('en');
 
 // ===== ROUTER =====
+// Navigate to a path in the SAME tab (no new tab)
+function navigateTo(path){
+  if(location.pathname===path)return;
+  history.pushState({},'',path);
+  handleRoute();
+}
+
 // Handle direct URL access (when user opens /atka9air in new tab)
 function handleRoute(){
   try{
