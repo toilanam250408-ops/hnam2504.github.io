@@ -1175,13 +1175,17 @@ function clearSearch(){
 }
 
 function renderFeatures(){
-  document.getElementById('featuresGrid').innerHTML=features.map((f,i)=>`
+  const el=document.getElementById('featuresGrid');
+  if(!el)return;
+  el.innerHTML=features.map((f,i)=>`
     <div class="feature-card reveal" style="transition-delay:${i*0.07}s"><div class="feature-icon">${f.icon}</div><h3>${f.title}</h3><p>${f.desc}</p></div>
   `).join('');
 }
 
 function renderReviews(){
-  document.getElementById('reviewsGrid').innerHTML=reviews.map((r,i)=>`
+  const el=document.getElementById('reviewsGrid');
+  if(!el)return;
+  el.innerHTML=reviews.map((r,i)=>`
     <div class="testimonial-card reveal" style="transition-delay:${i*0.1}s">
       <div class="stars">${'\u2605'.repeat(r.rating)}${'\u2606'.repeat(5-r.rating)}</div>
       <blockquote>"${r.text}"</blockquote>
@@ -2363,8 +2367,10 @@ function setLang(lang){
 // Override renderFeatures/renderReviews to use current language
 const _origRenderFeatures=renderFeatures;
 renderFeatures=function(){
+  const el=document.getElementById('featuresGrid');
+  if(!el)return;
   const f=currentLang==='en'?featuresEn:features;
-  document.getElementById('featuresGrid').innerHTML=f.map((feat,i)=>`
+  el.innerHTML=f.map((feat,i)=>`
     <div class="feature-card reveal" style="transition-delay:${i*0.07}s"><div class="feature-icon">${feat.icon}</div><h3>${feat.title}</h3><p>${feat.desc}</p></div>
   `).join('');
   requestAnimationFrame(initReveal);
@@ -2372,8 +2378,10 @@ renderFeatures=function(){
 
 const _origRenderReviews=renderReviews;
 renderReviews=function(){
+  const el=document.getElementById('reviewsGrid');
+  if(!el)return;
   const r=currentLang==='en'?reviewsEn:reviews;
-  document.getElementById('reviewsGrid').innerHTML=r.map((rev,i)=>`
+  el.innerHTML=r.map((rev,i)=>`
     <div class="testimonial-card reveal" style="transition-delay:${i*0.1}s">
       <div class="stars">${'\u2605'.repeat(rev.rating)}${'\u2606'.repeat(5-rev.rating)}</div>
       <blockquote>"${rev.text}"</blockquote>
