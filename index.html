@@ -764,7 +764,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<section class="specs-cta-section" id="specs">
+<section class="specs-cta-section" id="specs" style="display:none">
   <div class="specs-cta-banner reveal">
     <div class="specs-cta-icon">&#128202;</div>
     <div class="specs-cta-content">
@@ -776,7 +776,7 @@ body.has-announce .hero{padding-top:calc(6rem + 36px)}
   </div>
 </section>
 
-<section class="specs-cta-section" id="features">
+<section class="specs-cta-section" id="features" style="display:none">
   <div class="specs-cta-banner reveal" style="background:linear-gradient(135deg,#1a0a35,#350a3a)">
     <div class="specs-cta-icon">&#128300;</div>
     <div class="specs-cta-content">
@@ -2197,9 +2197,15 @@ function handleRoute(){
   if(first==='policy'&&seg[1]){openPolicy(seg[1]);return;}
 
   const productIdx=products.findIndex(p=>p.slug===first);
-  if(productIdx>=0){openDetail(productIdx);return;}
+  if(productIdx>=0){
+    // Scroll to top first, then open detail modal
+    window.scrollTo(0,0);
+    setTimeout(()=>openDetail(productIdx),50);
+    return;
+  }
 }
-handleRoute();
+// Delay to ensure DOM and all overlays are ready
+setTimeout(handleRoute,100);
 </script>
 </body>
 </html>
