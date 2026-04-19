@@ -416,10 +416,109 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
   .detail-top{grid-template-columns:1fr}.detail-img{border-radius:20px 20px 0 0;height:220px}
 }
 @media(max-width:600px){
-  .products-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;gap:.8rem;text-align:center}
-  .hero-stats{flex-direction:column;gap:.8rem}.hero-cta{flex-direction:column;align-items:center}
-  .cat-tabs{gap:.4rem}.cat-tab{padding:.4rem 1rem;font-size:.75rem}
+  /* Compact spacing - reduce vertical scroll dramatically */
+  section{padding:2.2rem 1rem}
+  .hero{min-height:auto;padding:5rem 1rem 2rem}
+  .section-header{margin-bottom:1.3rem}
+  .section-title{font-size:1.4rem}
+  .section-tag{font-size:.65rem;letter-spacing:2px;margin-bottom:.4rem}
+  .section-desc{font-size:.78rem;margin-top:.5rem}
+
+  /* Hero compact */
+  .hero h1{font-size:2rem!important;margin-bottom:.8rem}
+  .hero p{font-size:.9rem;margin-bottom:1.5rem}
+  .hero-cta{gap:.6rem}
+  .btn-primary,.btn-outline{padding:.65rem 1.3rem;font-size:.78rem}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:2rem}
+  .stat-num{font-size:1.1rem}
+  .stat-label{font-size:.62rem;letter-spacing:1px;margin-top:.15rem}
+
+  /* Products: 2 columns on mobile */
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}
+  .product-img{height:130px}
+  .product-info{padding:.7rem}
+  .product-series{font-size:.6rem;letter-spacing:1px}
+  .product-name{font-size:.78rem;margin-bottom:.3rem}
+  .product-specs{gap:.25rem;margin-bottom:.4rem}
+  .spec-tag{padding:.15rem .35rem;font-size:.58rem}
+  .product-desc{display:none}
+  .product-stock{font-size:.62rem;margin-bottom:.3rem}
+  .product-price{font-size:.85rem}
+  .product-price .old{font-size:.62rem;display:block;margin-left:0}
+  .add-cart{width:32px;height:32px;font-size:.95rem;border-radius:8px}
+  .wishlist-btn{width:30px;height:30px;font-size:.8rem;top:.4rem;right:.4rem}
+  .product-badge{top:.4rem;left:.4rem;font-size:.55rem;padding:.15rem .4rem}
+
+  /* Carousel smaller */
+  .carousel-wrap{height:140px;border-radius:12px}
+  .carousel-section{padding:1rem .8rem 0}
+  .carousel-slide{padding:1rem 1.5rem}
+
+  /* Cat tabs */
+  .cat-tabs{gap:.3rem;margin-bottom:1rem}.cat-tab{padding:.35rem .8rem;font-size:.7rem}
+
+  /* Search bar compact */
+  .search-wrap{margin-bottom:1.2rem}
+  .search-input{padding:.6rem 1rem .6rem 2.5rem;font-size:.8rem}
+
+  /* Features compact - 2 columns */
+  .features-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .feature-card{padding:.9rem .7rem}
+  .feature-icon{font-size:1.3rem;margin-bottom:.5rem}
+  .feature-card h3{font-size:.75rem;margin-bottom:.3rem}
+  .feature-card p{font-size:.7rem;line-height:1.4}
+
+  /* Reviews & pros 1 column but compact */
+  .testimonial-grid,.pros-grid{grid-template-columns:1fr;gap:.7rem}
+  .testimonial-card{padding:1rem}
+  .testimonial-card blockquote{font-size:.78rem}
+  .stars{font-size:.85rem;margin-bottom:.5rem}
+  .pro-card{padding:1rem}
+  .pro-avatar{width:48px;height:48px;font-size:1.05rem}
+  .pro-info h3{font-size:.88rem}
+  .pro-info .pro-real{font-size:.68rem}
+  .pro-info .pro-team{font-size:.7rem}
+  .pro-tag{font-size:.62rem;padding:.18rem .45rem}
+  .pro-gear{padding:.5rem}
+  .pro-gear-text .gear{font-size:.72rem}
+  .pro-gear-text .label{font-size:.6rem}
+
+  /* CTA banner compact */
+  .cta-banner{padding:2rem 1.2rem}
+  .cta-banner h2{font-size:1.3rem;margin-bottom:.5rem}
+  .cta-banner p{font-size:.82rem;margin-bottom:1.2rem}
+
+  /* Specs table - smaller font */
+  .specs-table{font-size:.72rem}
+  .specs-table th{font-size:.6rem;padding:.55rem .4rem}
+  .specs-table td{padding:.45rem .4rem}
+
+  /* Newsletter compact */
+  .newsletter-section{padding:2rem 1rem}
+  .newsletter-inner h3{font-size:.95rem}
+  .newsletter-inner p{font-size:.78rem;margin-bottom:.9rem}
+
+  /* Footer compact */
+  footer{padding:2rem 1rem 1rem}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:1.2rem}
+  .footer-col h4{font-size:.7rem}
+  .footer-col a{font-size:.74rem;margin-bottom:.35rem}
+  .footer-bottom{flex-direction:column;gap:.6rem;text-align:center;font-size:.7rem}
+
+  /* Chat float smaller */
+  .chat-float{bottom:1rem;left:1rem}
+  .chat-toggle{width:46px;height:46px;font-size:1.2rem}
+  .chat-fab{width:42px;height:42px;font-size:1.1rem}
+
+  /* Pros view all button */
+  .pros-view-all{padding:.7rem 1.5rem;font-size:.78rem}
+
+  /* Logo smaller */
+  .logo{font-size:1.1rem;letter-spacing:2px}
+  .navbar{padding:.6rem 1rem}
+  .cart-btn{padding:.4rem .9rem;font-size:.7rem}
+  .lang-switch{height:28px}
+  .lang-btn{padding:.2rem .5rem;font-size:.68rem}
 }
 .reveal{opacity:0;transform:translateY(35px);transition:all .65s cubic-bezier(.25,.46,.45,.94)}
 .reveal.visible{opacity:1;transform:translateY(0)}
